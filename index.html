@@ -1,140 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Puja ❤️</title>
+
   <style>
-    :root{
-      --pink:#ff3d7f;
-      --rose:#ff7aa8;
-      --deep:#5b1234;
-      --cream:#fff6f8;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Arial, sans-serif;
-      color:#fff;
-      background:linear-gradient(135deg,#4d0c2d,#b5165a 45%,#ff6e9d);
-      overflow-x:hidden;
-    }
-    .hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-    .heart{
-      position:absolute;bottom:-40px;font-size:24px;
-      animation:floatUp linear infinite;opacity:.8;
-    }
-    .heart:nth-child(1){left:7%;animation-duration:8s}
-    .heart:nth-child(2){left:22%;animation-duration:12s;font-size:18px}
-    .heart:nth-child(3){left:40%;animation-duration:9s;font-size:30px}
-    .heart:nth-child(4){left:58%;animation-duration:13s;font-size:20px}
-    .heart:nth-child(5){left:76%;animation-duration:10s;font-size:28px}
-    .heart:nth-child(6){left:90%;animation-duration:14s;font-size:18px}
-    @keyframes floatUp{
-      from{transform:translateY(0) rotate(0deg);opacity:0}
-      15%{opacity:.9}
-      to{transform:translateY(-115vh) rotate(360deg);opacity:0}
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #ff4d7d, #ff8a5b, #ffd166);
     }
 
-    .hero{
-      position:relative;z-index:1;min-height:100vh;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;padding:40px 18px;
-      background:radial-gradient(circle at top,rgba(255,255,255,.22),transparent 45%);
+    .hero {
+      min-height: 100vh;
+      padding: 70px 20px 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
-    .date{
-      padding:10px 18px;border:1px solid rgba(255,255,255,.55);
-      border-radius:999px;background:rgba(255,255,255,.14);
-      font-size:14px;letter-spacing:1px;
-    }
-    .hero h1{font-size:clamp(42px,11vw,72px);margin:22px 0 5px;text-shadow:0 4px 18px rgba(0,0,0,.28)}
-    .hero h2{font-size:clamp(26px,7vw,42px);margin:0;color:#ffe2ed}
-    .hero p{font-size:18px;line-height:1.7;max-width:460px;margin:18px auto}
-    .big-heart{font-size:60px;animation:pulse 1.2s infinite}
-    @keyframes pulse{50%{transform:scale(1.18)}}
 
-    .btn{
-      display:inline-block;border:none;border-radius:999px;
-      padding:15px 25px;margin:8px;background:#fff;color:#c71c5d;
-      font-weight:700;font-size:16px;cursor:pointer;
-      box-shadow:0 8px 22px rgba(0,0,0,.22);text-decoration:none;
+    h1 {
+      font-size: 42px;
+      margin: 0 0 15px;
+      text-shadow: 0 3px 10px rgba(0,0,0,.2);
     }
-    .btn.dark{background:#7c143f;color:#fff;border:1px solid rgba(255,255,255,.35)}
-    .section{position:relative;z-index:1;padding:55px 16px;text-align:center}
-    .section-title{font-size:30px;margin:0 0 22px}
-    .card{
-      max-width:620px;margin:16px auto;padding:25px 20px;border-radius:25px;
-      background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);
-      backdrop-filter:blur(8px);
+
+    .hero p {
+      font-size: 19px;
+      line-height: 1.7;
+      max-width: 600px;
     }
-    .card p{font-size:18px;line-height:1.8;margin:0}
-    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:520px;margin:20px auto}
-    .time{
-      background:rgba(255,255,255,.18);padding:16px 6px;border-radius:18px;
-      border:1px solid rgba(255,255,255,.25)
+
+    .btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 15px 25px;
+      border: 0;
+      border-radius: 30px;
+      background: white;
+      color: #e83e6d;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 7px 18px rgba(0,0,0,.2);
     }
-    .time b{display:block;font-size:28px}.time span{font-size:12px;opacity:.9}
-    .gallery{
-      max-width:760px;margin:0 auto;display:grid;
-      grid-template-columns:repeat(2,1fr);gap:12px;
+
+    .section {
+      padding: 45px 18px;
+      background: rgba(255,255,255,.14);
     }
-    .gallery img{
-      width:100%;height:245px;object-fit:cover;border-radius:20px;
-      border:3px solid rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+    .card {
+      max-width: 720px;
+      margin: auto;
+      padding: 28px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.18);
+      box-shadow: 0 8px 24px rgba(0,0,0,.15);
+      backdrop-filter: blur(5px);
     }
-    .gallery img:first-child{grid-column:span 2;height:330px}
-    .letter{font-family:Georgia,serif;color:#fff9fb}
-    .footer{position:relative;z-index:1;text-align:center;padding:28px 16px;background:rgba(0,0,0,.16)}
-    #surprise{display:none}
-    @media(max-width:420px){
-      .gallery img{height:190px}.gallery img:first-child{height:270px}
-      .countdown{gap:7px}.time b{font-size:23px}
+
+    h2 {
+      font-size: 28px;
+      margin-top: 0;
+    }
+
+    .letter {
+      text-align: left;
+      font-size: 17px;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 3px solid rgba(255,255,255,.8);
+    }
+
+    footer {
+      padding: 25px 15px;
+      font-size: 15px;
+      background: rgba(0,0,0,.15);
+    }
+
+    .floating {
+      position: fixed;
+      bottom: -50px;
+      z-index: 20;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 34px; }
+      .gallery img { height: 170px; }
     }
   </style>
 </head>
+
 <body>
 
-  <div class="hearts">
-    <span class="heart">❤️</span><span class="heart">💕</span><span class="heart">💖</span>
-    <span class="heart">❤️</span><span class="heart">💗</span><span class="heart">💕</span>
-  </div>
-
   <section class="hero">
-    <div class="date">🎂 26 NOVEMBER 2026 • 21ST BIRTHDAY 🎂</div>
-    <div class="big-heart">❤️</div>
-    <h1>Happy Birthday</h1>
-    <h2>PUJA MONDAL</h2>
-    <p>আজকের দিনটা শুধু তোমার জন্য।<br>তোমার হাসি, তোমার স্বপ্ন আর তোমার ভালো থাকা—সবসময় সুন্দর থাকুক।</p>
-    <button class="btn" id="openBtn">Open Your Surprise 🎁</button>
+    <h1>🎉 Happy Birthday Puja 🎉</h1>
+    <p>
+      আজ তোমার special দিন। তোমার হাসি, স্বপ্ন আর ভালোবাসায়
+      জীবন সবসময় সুন্দর থাকুক। ❤️
+    </p>
+    <button class="btn" onclick="showSurprise()">Open Your Surprise 🎁</button>
   </section>
 
-  <main id="surprise">
-    <section class="section">
-      <h2 class="section-title">Countdown To Your Special Day ✨</h2>
-      <div class="countdown">
-        <div class="time"><b id="days">0</b><span>DAYS</span></div>
-        <div class="time"><b id="hours">0</b><span>HOURS</span></div>
-        <div class="time"><b id="minutes">0</b><span>MINUTES</span></div>
-        <div class="time"><b id="seconds">0</b><span>SECONDS</span></div>
-      </div>
-    </section>
+  <section class="section">
+    <div class="card">
+      <h2>My Dear Puja ❤️</h2>
+      <div class="letter">
+তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি।
 
-    <section class="section">
-      <div class="card letter">
-        <h2>My Dearest Puja ❤️</h2>
-        <p>
-          তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি।<br>
-          তোমার প্রতিটা হাসি আমার কাছে খুব special।<br><br>
-          তোমার ২১তম জন্মদিনে আমি চাই—তোমার সব স্বপ্ন পূরণ হোক,
-          আর তোমার জীবন ভরে থাকুক ভালোবাসা, শান্তি আর আনন্দে।<br><br>
-          Happy Birthday, My Love. I Love You So Much. 💕
-        </p>
-      </div>
-    </section>
+তোমার প্রতিটি হাসি আমার দিনকে special করে দেয়।
+তোমার পাশে থাকলে সবকিছু আরও সুন্দর মনে হয়।
 
-    <section class="section">
-      <h2 class="section-title">Our Beautiful Memories 📸</h2>
+আজ তোমার জন্মদিনে শুধু একটাই wish—
+তুমি সবসময় হাসিখুশি থাকো,
+তোমার সব স্বপ্ন পূরণ হোক।
+
+Happy Birthday, My Love.
+I Love You So Much. ❤️
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h2>Our Beautiful Memories 📸</h2>
+
       <div class="gallery">
         <img src="IMG-20260618-WA0019.jpg" alt="Puja smiling">
         <img src="IMG-20260313-WA0046.jpg" alt="Puja">
@@ -142,67 +171,56 @@
         <img src="IMG-20260313-WA0053.jpg" alt="Puja">
         <img src="IMG-20251021-WA0071.jpg" alt="Puja">
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section">
-      <div class="card">
-        <h2>Celebrate With Love 💝</h2>
-        <p>তোমার special day-এর জন্য একটা ছোট surprise তৈরি করেছি।</p>
-        <a class="btn" href="https://maps.app.goo.gl/tfk6Pv2vxufxo5JD9?g_st=ac" target="_blank" rel="noopener">📍 Open Celebration Location</a>
-        <button class="btn dark" id="loveBtn">Send Love ❤️</button>
-      </div>
-    </section>
-  </main>
+  <section class="section">
+    <div class="card">
+      <h2>Celebrate With Love 💝</h2>
+      <p>আজকের দিনটা তোমার জন্য অনেক special। অনেক ভালোবাসা রইল।</p>
+      <button class="btn" onclick="sendLove()">Send Love ❤️</button>
+    </div>
+  </section>
 
-  <footer class="footer">Made with endless love for PUJA MONDAL ❤️</footer>
+  <footer>
+    Made with endless love for PUJA MONDAL ❤️
+  </footer>
 
   <script>
-    const openBtn = document.getElementById('openBtn');
-    const surprise = document.getElementById('surprise');
+    function createFlowers(count) {
+      const items = ["❤️", "🌸", "💖", "🌹", "✨", "🎉", "🎈"];
 
-    openBtn.addEventListener('click', () => {
-      surprise.style.display = 'block';
-      surprise.scrollIntoView({behavior:'smooth'});
-      burstHearts();
-    });
+      for (let i = 0; i < count; i++) {
+        const item = document.createElement("span");
+        item.className = "floating";
+        item.textContent = items[Math.floor(Math.random() * items.length)];
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.fontSize = (20 + Math.random() * 25) + "px";
+        item.style.animationDuration = (4 + Math.random() * 4) + "s";
+        item.style.animationDelay = (Math.random() * 1.5) + "s";
 
-    document.getElementById('loveBtn').addEventListener('click', () => {
-      alert('Happy 21st Birthday, Puja! ❤️ তোমাকে অনেক ভালোবাসি।');
-      burstHearts();
-    });
+        document.body.appendChild(item);
 
-    function burstHearts(){
-      for(let i=0;i<24;i++){
-        const h=document.createElement('span');
-        h.textContent=['🎈','🌸','🌺','🌹','✨','🎉'][Math.floor(Math.random()*4)];
-        h.style.position='fixed';
-        h.style.left=(Math.random()*100)+'vw';
-        h.style.top='45vh';
-        h.style.fontSize=(18+Math.random()*22)+'px';
-        h.style.zIndex='10';
-        h.style.pointerEvents='none';
-        h.style.transition='transform 1.8s ease-out, opacity 1.8s ease-out';
-        document.body.appendChild(h);
-        setTimeout(()=>{
-          h.style.transform=`translate(${(Math.random()-.5)*260}px, ${-180-Math.random()*260}px) rotate(${Math.random()*360}deg)`;
-          h.style.opacity='0';
-        },20);
-        setTimeout(()=>h.remove(),1900);
+        setTimeout(() => item.remove(), 9000);
       }
     }
 
-    const birthday = new Date('2026-11-26T00:00:00').getTime();
-    function updateCountdown(){
-      const now = new Date().getTime();
-      let gap = birthday-now;
-      if(gap<0) gap=0;
-      document.getElementById('days').textContent=Math.floor(gap/(1000*60*60*24));
-      document.getElementById('hours').textContent=Math.floor((gap%(1000*60*60*24))/(1000*60*60));
-      document.getElementById('minutes').textContent=Math.floor((gap%(1000*60*60))/(1000*60));
-      document.getElementById('seconds').textContent=Math.floor((gap%(1000*60))/1000);
+    function showSurprise() {
+      createFlowers(55);
+      document.querySelector(".section").scrollIntoView({
+        behavior: "smooth"
+      });
     }
-    updateCountdown();
-    setInterval(updateCountdown,1000);
+
+    function sendLove() {
+      alert("Happy Birthday Puja ❤️ তোমাকে অনেক ভালোবাসি!");
+      createFlowers(35);
+    }
+
+    window.addEventListener("load", () => {
+      createFlowers(35);
+    });
   </script>
+
 </body>
 </html>
