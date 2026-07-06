@@ -6,262 +6,52 @@
   <title>Happy Birthday Puja ❤️</title>
 
   <style>
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
     body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  color:white;
-  text-align:center;
-  overflow-x:hidden;
-  background:#ff7394;
-}
-
-.hero{
-  min-height:100vh;
-  padding:70px 20px 35px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  background:
-    linear-gradient(rgba(80,15,45,.18), rgba(255,90,130,.18)),
-    url("birthday-bg.png") center/cover no-repeat;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(255,80,130,.10), rgba(30,0,20,.20));
-}
-
-.hero > *{
-  position:relative;
-  z-index:1;
-}
-
-h1{
-  font-family:cursive;
-  font-size:56px;
-  line-height:1.05;
-  margin:0 0 22px;
-  color:#fff;
-  text-shadow:
-    0 4px 0 #e94b76,
-    0 8px 20px rgba(70,0,30,.45);
-}
-
-.hero p{
-  max-width:650px;
-  font-size:22px;
-  line-height:1.7;
-  font-weight:bold;
-  text-shadow:0 2px 8px rgba(60,0,30,.6);
-}
-
-.btn{
-  margin-top:22px;
-  padding:16px 32px;
-  border:2px solid white;
-  border-radius:40px;
-  background:linear-gradient(135deg,#ff4f7b,#ff7aa8);
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  box-shadow:0 10px 22px rgba(80,0,35,.35);
-}
-
-@media(max-width:480px){
-  h1{font-size:46px;}
-  .hero p{font-size:19px;}
-}
-      
-
-    .section {
-      padding: 45px 18px;
-      background: rgba(255,255,255,.14);
+      min-height:100vh;
+      background:#f47b91;
+      font-family:Arial, sans-serif;
+      overflow:hidden;
     }
 
-    .card {
-      max-width: 720px;
-      margin: auto;
-      padding: 28px 20px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.18);
-      box-shadow: 0 8px 24px rgba(0,0,0,.15);
-      backdrop-filter: blur(5px);
+    .birthday-page{
+      min-height:100vh;
+      width:100%;
+      background:url("birthday-bg.png") center center / cover no-repeat;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding:0 20px 11vh;
     }
 
-    h2 {
-      font-size: 28px;
-      margin-top: 0;
+    .open-btn{
+      width:min(82vw, 430px);
+      padding:18px 20px;
+      border:2px solid white;
+      border-radius:50px;
+      background:rgba(235, 42, 105, 0.55);
+      color:white;
+      font-size:clamp(21px, 5vw, 30px);
+      font-weight:bold;
+      text-decoration:none;
+      text-align:center;
+      box-shadow:0 8px 22px rgba(100,0,35,.35);
     }
 
-    .letter {
-      text-align: left;
-      font-size: 17px;
-      line-height: 1.8;
-      white-space: pre-line;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .gallery img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  padding: 8px;
-  background: linear-gradient(135deg, #fff, #ffd6e5, #fff);
-  border: 3px solid #ffffff;
-  border-radius: 24px;
-  box-shadow:
-    0 8px 18px rgba(120, 30, 70, 0.28),
-    inset 0 0 0 2px #ff7aa8;
-  transform: rotate(-1deg);
-}
-
-.gallery img:nth-child(even) {
-  transform: rotate(1deg);
-}
-
-.gallery img:nth-child(3n) {
-  transform: rotate(-2deg);
-}
-      
-
-
-    footer {
-      padding: 25px 15px;
-      font-size: 15px;
-      background: rgba(0,0,0,.15);
-    }
-
-    .floating {
-      position: fixed;
-      bottom: -50px;
-      z-index: 20;
-      pointer-events: none;
-      animation: floatUp linear forwards;
-    }
-
-    @keyframes floatUp {
-      from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-115vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 34px; }
-      .gallery img { height: 170px; }
+    .open-btn:active{
+      transform:scale(.95);
     }
   </style>
 </head>
 
 <body>
-
-  <section class="hero">
-    <h1>🎉 Happy Birthday<br>Puja 🎉</h1>
-    <p>
-      আজ তোমার special দিন। তোমার হাসি, স্বপ্ন আর ভালোবাসায়
-      জীবন সবসময় সুন্দর থাকুক। ❤️
-    </p>
-    <button class="btn" onclick="showSurprise()">Open Your Surprise 🎁</button>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>My Dear Puja ❤️</h2>
-      <div class="letter">
-তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি।
-
-তোমার প্রতিটি হাসি আমার দিনকে special করে দেয়।
-তোমার পাশে থাকলে সবকিছু আরও সুন্দর মনে হয়।
-
-আজ তোমার জন্মদিনে শুধু একটাই wish—
-তুমি সবসময় হাসিখুশি থাকো,
-তোমার সব স্বপ্ন পূরণ হোক।
-
-Happy Birthday, My Love.
-I Love You So Much. ❤️
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>Our Beautiful Memories 📸</h2>
-
-      <div class="gallery">
-        <img src="IMG-20260618-WA0019.jpg" alt="Puja smiling">
-        <img src="IMG-20260313-WA0046.jpg" alt="Puja">
-        <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
-        <img src="IMG-20260313-WA0053.jpg" alt="Puja">
-        <img src="IMG-20251021-WA0071.jpg" alt="Puja">
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>Celebrate With Love 💝</h2>
-      <p>আজকের দিনটা তোমার জন্য অনেক special। অনেক ভালোবাসা রইল।</p>
-      <button class="btn" onclick="sendLove()">Send Love ❤️</button>
-    </div>
-  </section>
-
-  <footer>
-    Made with endless love for PUJA MONDAL ❤️
-  </footer>
-
-  <script>
-    function createFlowers(count) {
-      const items = ["❤️", "🌸", "💖", "🌹", "✨", "🎉", "🎈"];
-
-      for (let i = 0; i < count; i++) {
-        const item = document.createElement("span");
-        item.className = "floating";
-        item.textContent = items[Math.floor(Math.random() * items.length)];
-        item.style.left = Math.random() * 100 + "vw";
-        item.style.fontSize = (20 + Math.random() * 25) + "px";
-        item.style.animationDuration = (4 + Math.random() * 4) + "s";
-        item.style.animationDelay = (Math.random() * 1.5) + "s";
-
-        document.body.appendChild(item);
-
-        setTimeout(() => item.remove(), 9000);
-      }
-    }
-
-    function showSurprise() {
-      createFlowers(55);
-      document.querySelector(".section").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-
-    function sendLove() {
-      alert("Happy Birthday Puja ❤️ তোমাকে অনেক ভালোবাসি!");
-      createFlowers(35);
-    }
-
-    window.addEventListener("load", () => {
-      createFlowers(35);
-    });
-  </script>
-
+  <main class="birthday-page">
+    <a class="open-btn" href="#surprise">Open Your Surprise 🎁</a>
+  </main>
 </body>
 </html>
