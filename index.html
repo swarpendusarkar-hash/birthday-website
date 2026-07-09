@@ -1,370 +1,412 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Puja</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Puja</title>
 
-<style>
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:Arial,sans-serif;
-  overflow-x:hidden;
-  background:#fff5f7;
-}
-.page{
-  min-height:100vh;
-  width:100%;
-  display:none;
-  position:relative;
-  overflow:hidden;
-}
-.page.active{display:flex}
+  <style>
+    * { box-sizing: border-box; }
 
-/* 1. Fingerprint cover */
-#coverPage{
-  background:
-    linear-gradient(rgba(20,0,0,.12),rgba(20,0,0,.12)),
-    url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
-.coverTap{
-  width:230px;
-  height:230px;
-  border-radius:50%;
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  z-index:5;
-}
-.coverText{
-  position:absolute;
-  top:42%;
-  left:50%;
-  transform:translateX(-50%);
-  width:90%;
-  text-align:center;
-  color:#f6d47a;
-  font-size:clamp(26px,7vw,42px);
-  font-family:cursive;
-  text-shadow:0 2px 8px #260000;
-  pointer-events:none;
-  z-index:3;
-}
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, sans-serif;
+      background: #fff7f7;
+      overflow-x: hidden;
+    }
 
-/* 2. Golden ribbon light animation */
-#goldenPage{
-  background:#2b0909;
-  align-items:center;
-  justify-content:center;
-}
-.goldenBg{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(65,10,10,.55),rgba(65,10,10,.55)),
-    url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-  opacity:.48;
-}
-.ring{
-  position:absolute;
-  width:70vw;
-  height:70vw;
-  max-width:390px;
-  max-height:390px;
-  border-radius:50%;
-  border:7px solid rgba(255,218,104,.9);
-  box-shadow:
-    0 0 15px #fff4b2,
-    0 0 45px #ffd45d,
-    0 0 95px #ff8d2c;
-  animation:ringOpen 2.2s ease-in-out forwards;
-  z-index:2;
-}
-.ring:before,.ring:after{
-  content:"";
-  position:absolute;
-  inset:-18px;
-  border-radius:50%;
-  border:3px solid rgba(255,241,172,.75);
-  animation:spin 1.7s linear infinite;
-}
-.ring:after{
-  inset:20px;
-  border-color:rgba(255,158,60,.8);
-  animation-direction:reverse;
-}
-.lightCenter{
-  position:absolute;
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 25px 15px #fff6bc,0 0 80px 35px #ffbd3d;
-  z-index:3;
-  animation:flash 3.2s ease-in-out forwards;
-}
-.spark{
-  position:absolute;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#fff7b0;
-  box-shadow:0 0 12px #fff;
-  animation:sparkMove 2s ease-in-out infinite;
-}
-@keyframes ringOpen{
-  0%{transform:scale(.05);opacity:0}
-  35%{transform:scale(.8);opacity:1}
-  80%{transform:scale(1.15);opacity:1}
-  100%{transform:scale(1.8);opacity:0}
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes flash{
-  0%,20%{transform:scale(.2);opacity:.2}
-  65%{transform:scale(2.7);opacity:1}
-  100%{transform:scale(7);opacity:0}
-}
-@keyframes sparkMove{
-  0%{transform:translate(0,0) scale(.5);opacity:0}
-  40%{opacity:1}
-  100%{transform:translate(var(--x),var(--y)) scale(1.4);opacity:0}
-}
+    .page {
+      display: none;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* 3. Birthday page */
-#birthdayPage{
-  background:
-    linear-gradient(rgba(255,130,170,.04),rgba(255,130,170,.04)),
-    url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
-  align-items:flex-end;
-  justify-content:center;
-  padding:0 18px 45px;
-}
-.dateButton{
-  width:min(88%,480px);
-  border:3px solid rgba(255,255,255,.96);
-  border-radius:35px;
-  padding:17px 14px;
-  text-align:center;
-  color:white;
-  font-weight:800;
-  font-size:clamp(22px,6vw,32px);
-  letter-spacing:1px;
-  background:linear-gradient(135deg,#ff4c83,#e70b65);
-  box-shadow:0 8px 24px rgba(184,0,74,.45),inset 0 0 14px rgba(255,255,255,.35);
-  cursor:pointer;
-  z-index:4;
-  animation:datePulse 1.8s infinite;
-}
-.dateButton small{
-  display:block;
-  font-size:13px;
-  margin-top:5px;
-  letter-spacing:3px;
-}
-@keyframes datePulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.035)}
-}
+    .page.active { display: block; }
 
-/* 4. Memory page */
-#memoryPage{
-  min-height:100vh;
-  display:block;
-  background:linear-gradient(#fffaf7,#fff0f4);
-  padding:42px 16px 55px;
-}
-.memoryTitle{
-  text-align:center;
-  color:#a25461;
-  margin-bottom:26px;
-  position:relative;
-  z-index:2;
-}
-.memoryTitle small{
-  display:block;
-  font-size:14px;
-  letter-spacing:5px;
-  margin-bottom:8px;
-}
-.memoryTitle h1{
-  margin:0;
-  font-family:Georgia,serif;
-  font-size:clamp(45px,12vw,72px);
-}
-.gallery{
-  width:min(100%,620px);
-  margin:auto;
-  position:relative;
-  z-index:2;
-}
-.photoCard{
-  background:#fff;
-  border-radius:18px;
-  padding:12px 12px 18px;
-  margin:0 auto 28px;
-  box-shadow:0 12px 28px rgba(139,61,86,.18);
-  transform:rotate(-1deg);
-}
-.photoCard:nth-child(even){transform:rotate(1deg)}
-.photoCard img{
-  width:100%;
-  display:block;
-  border-radius:10px;
-  max-height:620px;
-  object-fit:cover;
-}
-.caption{
-  text-align:center;
-  font-family:cursive;
-  font-size:28px;
-  color:#a25461;
-  padding-top:12px;
-}
+    /* BIRTHDAY PAGE */
+    #birthdayPage {
+      min-height: 100vh;
+      background-image: url("file_000000001794720bbe1f6708d96e5b55.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 72vh 0 28px;
+    }
 
-/* petals + confetti */
-.petal,.confetti{
-  position:fixed;
-  top:-40px;
-  pointer-events:none;
-  z-index:20;
-  animation:fall linear forwards;
-}
-.petal{
-  width:12px;
-  height:18px;
-  border-radius:70% 30% 70% 30%;
-  opacity:.88;
-}
-.confetti{
-  width:7px;
-  height:12px;
-  border-radius:2px;
-  opacity:.85;
-}
-@keyframes fall{
-  0%{transform:translate3d(0,-30px,0) rotate(0deg);opacity:0}
-  8%{opacity:.9}
-  100%{transform:translate3d(var(--drift),110vh,0) rotate(620deg);opacity:.75}
-}
-</style>
+    .scratch-wrap {
+      width: min(88%, 420px);
+      margin: 0 auto;
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(117, 18, 69, .35);
+      touch-action: none;
+    }
+
+    .date-card {
+      height: 140px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff5192, #e9006e);
+      border: 3px solid white;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .date-card b {
+      font-size: clamp(26px, 7vw, 38px);
+      letter-spacing: 1px;
+    }
+
+    .date-card span {
+      margin-top: 10px;
+      font-size: 15px;
+      letter-spacing: 4px;
+      font-weight: bold;
+    }
+
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .scratch-help {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 17px;
+      letter-spacing: 1px;
+      pointer-events: none;
+      text-shadow: 0 2px 6px rgba(0,0,0,.4);
+    }
+
+    /* GOLDEN REVEAL */
+    #goldenReveal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(75, 13, 38, .28);
+      z-index: 20;
+      overflow: hidden;
+    }
+
+    #goldenReveal.show { display: flex; }
+
+    .gold-ring {
+      width: 100px;
+      height: 100px;
+      border: 6px solid #ffd35b;
+      border-radius: 50%;
+      box-shadow:
+        0 0 20px #fff1a0,
+        0 0 60px #ffc400,
+        0 0 130px #ffb000;
+      animation: goldenOpen 1.8s ease-out forwards;
+    }
+
+    .gold-core {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff7c2;
+      box-shadow: 0 0 30px 18px #ffe173, 0 0 90px 45px #ffb300;
+      animation: coreFlash 1.8s ease-out forwards;
+    }
+
+    @keyframes goldenOpen {
+      0% { transform: scale(.15) rotate(0deg); opacity: 0; }
+      25% { opacity: 1; }
+      100% { transform: scale(13) rotate(540deg); opacity: 0; }
+    }
+
+    @keyframes coreFlash {
+      0% { transform: scale(.1); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: scale(22); opacity: 0; }
+    }
+
+    /* MEMORY PAGE */
+    #memoryPage {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #fff8f4, #ffe7ee);
+      padding: 45px 18px 70px;
+    }
+
+    .memory-title {
+      text-align: center;
+      color: #9b4d5a;
+      letter-spacing: 5px;
+      font-size: 14px;
+      margin: 10px 0 8px;
+    }
+
+    .memory-heading {
+      text-align: center;
+      color: #934957;
+      font-family: Georgia, serif;
+      font-size: clamp(42px, 12vw, 65px);
+      margin: 0 0 30px;
+    }
+
+    .photo-card {
+      width: min(100%, 520px);
+      margin: 0 auto 28px;
+      background: white;
+      padding: 16px 16px 22px;
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(118, 55, 75, .18);
+      animation: photoIn .8s ease both;
+    }
+
+    .photo-card:nth-of-type(2) { animation-delay: .15s; }
+    .photo-card:nth-of-type(3) { animation-delay: .3s; }
+    .photo-card:nth-of-type(4) { animation-delay: .45s; }
+    .photo-card:nth-of-type(5) { animation-delay: .6s; }
+
+    .photo-card img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      max-height: 680px;
+      object-fit: cover;
+    }
+
+    .photo-caption {
+      text-align: center;
+      color: #9b4d5a;
+      font-family: Georgia, serif;
+      font-size: 25px;
+      margin-top: 15px;
+    }
+
+    @keyframes photoIn {
+      from { opacity: 0; transform: translateY(35px) scale(.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* PETALS + CONFETTI */
+    .petal, .confetti {
+      position: fixed;
+      top: -40px;
+      z-index: 30;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    .petal {
+      width: 13px;
+      height: 20px;
+      border-radius: 70% 20% 70% 20%;
+      background: #ff9ab7;
+      opacity: .85;
+    }
+
+    .confetti {
+      width: 8px;
+      height: 14px;
+      background: #ffd35b;
+      opacity: .9;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translate(var(--drift), 115vh) rotate(720deg);
+        opacity: .15;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<section id="coverPage" class="page active">
-  <div class="coverTap" onclick="openGolden()"></div>
-</section>
+  <!-- BIRTHDAY PAGE -->
+  <section id="birthdayPage" class="page active">
+    <div class="scratch-wrap" id="scratchWrap">
+      <div class="date-card">
+        <b>26 NOVEMBER 2026</b>
+        <span>TAP &amp; SCRATCH</span>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+      <div class="scratch-help">SCRATCH HERE ✨</div>
+    </div>
+  </section>
 
-<section id="goldenPage" class="page">
-  <div class="goldenBg"></div>
-  <div class="ring"></div>
-  <div class="lightCenter"></div>
-</section>
-
-<section id="birthdayPage" class="page">
-  <button class="dateButton" onclick="openMemories()">
-    26 NOVEMBER 2026
-    <small>TAP HERE ❤️</small>
-  </button>
-</section>
-
-<section id="memoryPage" class="page">
-  <div class="memoryTitle">
-    <small>OUR MEMORIES</small>
-    <h1>Forever Us</h1>
+  <!-- GOLDEN ANIMATION -->
+  <div id="goldenReveal">
+    <div class="gold-ring"></div>
+    <div class="gold-core"></div>
   </div>
 
-  <div class="gallery">
-    <div class="photoCard">
-      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
-      <div class="caption">Beautiful Puja ❤️</div>
+  <!-- MEMORY PAGE -->
+  <section id="memoryPage" class="page">
+    <p class="memory-title">OUR MEMORIES</p>
+    <h1 class="memory-heading">Forever Us</h1>
+
+    <div class="photo-card">
+      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja photo 1">
+      <div class="photo-caption">Beautiful Puja ❤️</div>
     </div>
 
-    <div class="photoCard">
-      <img src="IMG-20260313-WA0046.jpg" alt="Puja memory">
-      <div class="caption">Our Lovely Memory 💕</div>
+    <div class="photo-card">
+      <img src="IMG-20260313-WA0046.jpg" alt="Puja photo 2">
+      <div class="photo-caption">Our Sweet Memory ❤️</div>
     </div>
 
-    <div class="photoCard">
-      <img src="IMG-20260618-WA0019.jpg" alt="Puja">
-      <div class="caption">My Favourite Smile 🌸</div>
+    <div class="photo-card">
+      <img src="IMG-20260618-WA0019.jpg" alt="Puja photo 3">
+      <div class="photo-caption">My Favourite Smile ❤️</div>
     </div>
 
-    <div class="photoCard">
-      <img src="IMG-20251021-WA0071.jpg" alt="Together">
-      <div class="caption">Together Forever ❤️</div>
+    <div class="photo-card">
+      <img src="IMG-20251021-WA0071.jpg" alt="Puja photo 4">
+      <div class="photo-caption">Together Forever ❤️</div>
     </div>
 
-    <div class="photoCard">
-      <img src="IMG-20260313-WA0053.jpg" alt="Puja">
-      <div class="caption">Happy Birthday Puja 🎂</div>
+    <div class="photo-card">
+      <img src="IMG-20260313-WA0053.jpg" alt="Puja photo 5">
+      <div class="photo-caption">Happy Birthday Puja ❤️</div>
     </div>
-  </div>
-</section>
+  </section>
 
-<script>
-function showPage(id){
-  document.querySelectorAll(".page").forEach(page=>{
-    page.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-  window.scrollTo(0,0);
-}
+  <script>
+    const canvas = document.getElementById("scratchCanvas");
+    const ctx = canvas.getContext("2d");
+    const wrap = document.getElementById("scratchWrap");
+    const help = document.querySelector(".scratch-help");
+    let drawing = false;
+    let completed = false;
 
-function openGolden(){
-  showPage("goldenPage");
+    function setupCanvas() {
+      const rect = wrap.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
 
-  for(let i=0;i<32;i++){
-    const spark=document.createElement("div");
-    spark.className="spark";
-    const angle=Math.random()*Math.PI*2;
-    const distance=120+Math.random()*240;
-    spark.style.left="50%";
-    spark.style.top="50%";
-    spark.style.setProperty("--x",Math.cos(angle)*distance+"px");
-    spark.style.setProperty("--y",Math.sin(angle)*distance+"px");
-    spark.style.animationDelay=(Math.random()*.5)+"s";
-    document.getElementById("goldenPage").appendChild(spark);
-    setTimeout(()=>spark.remove(),2500);
-  }
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = rect.width + "px";
+      canvas.style.height = rect.height + "px";
 
-  setTimeout(()=>{
-    showPage("birthdayPage");
-    createPetalsAndConfetti(45);
-  },2200);
-}
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = "#b45b78";
+      ctx.fillRect(0, 0, rect.width, rect.height);
 
-function openMemories(){
-  showPage("memoryPage");
-  createPetalsAndConfetti(110);
-}
+      ctx.fillStyle = "rgba(255,255,255,.16)";
+      for (let i = 0; i < 65; i++) {
+        ctx.beginPath();
+        ctx.arc(
+          Math.random() * rect.width,
+          Math.random() * rect.height,
+          Math.random() * 4 + 1,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
+    }
 
-function createPetalsAndConfetti(total){
-  const petalColors=["#f6a8bf","#ffd0db","#f4c95d","#fff0a8","#ec91ad"];
-  const confettiColors=["#f5c84b","#f0a1b7","#bd6978","#ffe59b","#ffffff"];
+    function point(event) {
+      const rect = canvas.getBoundingClientRect();
+      const touch = event.touches ? event.touches[0] : event;
+      return {
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top
+      };
+    }
 
-  for(let i=0;i<total;i++){
-    const item=document.createElement("div");
-    const isPetal=Math.random()>.42;
-    item.className=isPetal ? "petal" : "confetti";
-    item.style.left=(Math.random()*100)+"vw";
-    item.style.background=isPetal
-      ? petalColors[Math.floor(Math.random()*petalColors.length)]
-      : confettiColors[Math.floor(Math.random()*confettiColors.length)];
-    item.style.setProperty("--drift",((Math.random()*180)-90)+"px");
-    item.style.animationDuration=(5+Math.random()*5)+"s";
-    item.style.animationDelay=(Math.random()*2.5)+"s";
-    document.body.appendChild(item);
-    setTimeout(()=>item.remove(),12500);
-  }
-}
-</script>
+    function scratch(event) {
+      if (!drawing || completed) return;
+      event.preventDefault();
+
+      const p = point(event);
+      help.style.display = "none";
+
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 28, 0, Math.PI * 2);
+      ctx.fill();
+
+      checkScratch();
+    }
+
+    function checkScratch() {
+      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let clear = 0;
+
+      for (let i = 3; i < pixels.length; i += 40) {
+        if (pixels[i] === 0) clear++;
+      }
+
+      const total = pixels.length / 40;
+      if (clear / total > 0.42) openMemory();
+    }
+
+    function openMemory() {
+      if (completed) return;
+      completed = true;
+
+      document.getElementById("goldenReveal").classList.add("show");
+      createPetalsAndConfetti(45);
+
+      setTimeout(() => {
+        document.getElementById("birthdayPage").classList.remove("active");
+        document.getElementById("memoryPage").classList.add("active");
+        document.getElementById("goldenReveal").classList.remove("show");
+        createPetalsAndConfetti(75);
+        window.scrollTo(0, 0);
+      }, 1700);
+    }
+
+    canvas.addEventListener("pointerdown", (e) => {
+      drawing = true;
+      canvas.setPointerCapture(e.pointerId);
+      scratch(e);
+    });
+
+    canvas.addEventListener("pointermove", scratch);
+
+    canvas.addEventListener("pointerup", () => drawing = false);
+    canvas.addEventListener("pointercancel", () => drawing = false);
+
+    function createPetalsAndConfetti(count) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement("div");
+        el.className = Math.random() > 0.42 ? "petal" : "confetti";
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = (4 + Math.random() * 5) + "s";
+        el.style.animationDelay = (Math.random() * 1.2) + "s";
+        el.style.setProperty("--drift", (Math.random() * 180 - 90) + "px");
+
+        if (el.className === "petal") {
+          el.style.background = Math.random() > .5 ? "#ff9ab7" : "#ffe18b";
+        } else {
+          el.style.background = Math.random() > .5 ? "#ffd35b" : "#f29ab2";
+        }
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 10500);
+      }
+    }
+
+    window.addEventListener("resize", setupCanvas);
+    setupCanvas();
+  </script>
 
 </body>
 </html>
