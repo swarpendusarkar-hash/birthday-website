@@ -1,266 +1,218 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Puja ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Puja ❤️</title>
 
-  <style>
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;background:#180408}
-    body{overflow-x:hidden;color:white}
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;background:#180408}
+body{overflow-x:hidden;color:white}
+.page{min-height:100vh;display:none;position:relative;overflow:hidden}
+.page.show{display:block}
 
-    .page{
-      min-height:100vh;
-      display:none;
-      position:relative;
-      overflow:hidden;
-    }
-    .page.show{display:block}
+#cover{
+  display:block;
+  min-height:100vh;
+  cursor:pointer;
+  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
+}
 
-    /* COVER */
-    #cover{
-      display:block;
-      background:
-        linear-gradient(rgba(20,0,5,.12),rgba(20,0,5,.25)),
-        url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-      min-height:100vh;
-      cursor:pointer;
-    }
-    .seal{
-      position:absolute;
-      left:50%;
-      top:62%;
-      transform:translate(-50%,-50%);
-      width:150px;
-      height:150px;
-      border-radius:50%;
-      border:6px solid #d8a94e;
-      box-shadow:0 0 0 7px rgba(255,221,130,.22),0 0 35px rgba(255,199,66,.8);
-      background:radial-gradient(circle,#f7d987,#bd7b1e);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:70px;
-      animation:pulse 1.8s infinite;
-      pointer-events:none;
-    }
-    @keyframes pulse{
-      0%,100%{transform:translate(-50%,-50%) scale(1)}
-      50%{transform:translate(-50%,-50%) scale(1.08)}
-    }
+#magic{
+  background:#280309;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.magicBg{
+  position:absolute;
+  inset:0;
+  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
+  opacity:.4;
+  filter:blur(2px);
+}
+.ring{
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  border:5px solid #ffd66b;
+  box-shadow:0 0 30px #ffcb4d,0 0 100px #ff8a27,0 0 180px #fff0a4;
+  animation:ringOpen 2.2s ease-in-out forwards;
+  z-index:2;
+}
+.star{
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:#fff4a6;
+  border-radius:50%;
+  box-shadow:0 0 20px 10px #ffd15a;
+  z-index:3;
+  animation:starFlash 2.2s forwards;
+}
+@keyframes ringOpen{
+  0%{transform:scale(.1) rotate(0);opacity:0}
+  35%{opacity:1}
+  100%{transform:scale(6) rotate(180deg);opacity:0}
+}
+@keyframes starFlash{
+  0%{transform:scale(.1);opacity:0}
+  40%{transform:scale(2);opacity:1}
+  100%{transform:scale(16);opacity:0}
+}
 
-    /* LIGHT OPENING */
-    #magic{
-      background:#280309;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .magicBg{
-      position:absolute;inset:0;
-      background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-      opacity:.38;
-      filter:blur(2px);
-    }
-    .ring{
-      width:260px;height:260px;border-radius:50%;
-      border:5px solid #ffd66b;
-      box-shadow:0 0 30px #ffcb4d,0 0 100px #ff8a27,0 0 180px #fff0a4;
-      animation:ringOpen 2.2s ease-in-out forwards;
-      z-index:2;
-    }
-    .star{
-      position:absolute;
-      width:20px;height:20px;
-      background:#fff4a6;
-      border-radius:50%;
-      box-shadow:0 0 20px 10px #ffd15a;
-      z-index:3;
-      animation:starFlash 2.2s forwards;
-    }
-    @keyframes ringOpen{
-      0%{transform:scale(.1) rotate(0);opacity:0}
-      35%{opacity:1}
-      100%{transform:scale(6) rotate(180deg);opacity:0}
-    }
-    @keyframes starFlash{
-      0%{transform:scale(.1);opacity:0}
-      40%{transform:scale(2);opacity:1}
-      100%{transform:scale(16);opacity:0}
-    }
+#birthday{
+  min-height:100vh;
+  background:url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:30px 20px 45px;
+}
+#birthday.show{display:flex}
 
-    /* BIRTHDAY */
-    #birthday{
-      min-height:100vh;
-      background:
-        linear-gradient(rgba(60,0,15,.08),rgba(60,0,15,.18)),
-        url("file_00000000f70471fb966e130dbdfbbd9d.png") center top/cover no-repeat;
-      display:none;
-      align-items:flex-end;
-      justify-content:center;
-      padding:30px 20px 45px;
-    }
-    #birthday.show{display:flex}
-    .surpriseBtn{
-      border:2px solid white;
-      border-radius:50px;
-      padding:17px 28px;
-      font-size:22px;
-      font-weight:bold;
-      color:white;
-      background:rgba(237,39,103,.55);
-      box-shadow:0 8px 25px rgba(70,0,20,.45);
-      cursor:pointer;
-      animation:buttonPulse 1.8s infinite;
-    }
-    @keyframes buttonPulse{
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.06)}
-    }
+.surpriseBtn{
+  border:2px solid white;
+  border-radius:50px;
+  padding:17px 28px;
+  font-size:22px;
+  font-weight:bold;
+  color:white;
+  background:rgba(237,39,103,.55);
+  box-shadow:0 8px 25px rgba(70,0,20,.45);
+  cursor:pointer;
+  animation:buttonPulse 1.8s infinite;
+}
+@keyframes buttonPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+}
 
-    /* FINAL SURPRISE */
-    #final{
-      background:linear-gradient(180deg,#ffb4bd,#ff7f9c 45%,#ffbd9e);
-      min-height:100vh;
-      padding:40px 18px 55px;
-      text-align:center;
-    }
-    .finalCard{
-      max-width:460px;
-      margin:55px auto 0;
-      padding:30px 18px;
-      border-radius:28px;
-      background:rgba(255,255,255,.2);
-      border:1px solid rgba(255,255,255,.5);
-      backdrop-filter:blur(7px);
-      box-shadow:0 15px 35px rgba(100,0,30,.25);
-      animation:appear .9s ease both;
-    }
-    .finalCard h1{
-      font-family:cursive;
-      font-size:42px;
-      margin:0 0 15px;
-      text-shadow:0 3px 12px #b0003b;
-    }
-    .finalCard p{
-      font-size:21px;
-      line-height:1.65;
-      margin:0;
-    }
-    .love{font-size:25px;margin-top:18px}
+#final{
+  min-height:100vh;
+  padding:40px 18px 55px;
+  text-align:center;
+  background:linear-gradient(180deg,#ffb4bd,#ff7f9c 45%,#ffbd9e);
+}
+.finalCard{
+  max-width:460px;
+  margin:55px auto 0;
+  padding:30px 18px;
+  border-radius:28px;
+  background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:0 15px 35px rgba(100,0,30,.25);
+  animation:appear .9s ease both;
+}
+.finalCard h1{
+  font-family:cursive;
+  font-size:42px;
+  margin:0 0 15px;
+  text-shadow:0 3px 12px #b0003b;
+}
+.finalCard p{
+  font-size:21px;
+  line-height:1.65;
+  margin:0;
+}
+.love{
+  font-size:25px;
+  margin-top:18px;
+}
+@keyframes appear{
+  from{opacity:0;transform:translateY(35px) scale(.92)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
 
-    /* falling confetti */
-    .confetti{
-      position:fixed;
-      top:-40px;
-      z-index:99;
-      pointer-events:none;
-      animation:fall linear forwards;
-    }
-    @keyframes fall{
-      to{
-        transform:translate(var(--drift),110vh) rotate(720deg);
-        opacity:.95;
-      }
-    }
-    @keyframes appear{
-      from{opacity:0;transform:translateY(35px) scale(.92)}
-      to{opacity:1;transform:translateY(0) scale(1)}
-    }
-
-    .photoGrid{
-      max-width:460px;
-      margin:25px auto 0;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .photoGrid img{
-      width:100%;
-      height:190px;
-      object-fit:cover;
-      border-radius:20px;
-      border:3px solid rgba(255,255,255,.8);
-      box-shadow:0 8px 18px rgba(80,0,25,.28);
-    }
-  </style>
+.confetti{
+  position:fixed;
+  top:-50px;
+  z-index:99;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
+@keyframes fall{
+  to{
+    transform:translate(var(--drift),110vh) rotate(720deg);
+    opacity:.95;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <section id="cover" class="page show" onclick="openCover()">
-    <div class="coverHint">Tap to Reveal</div>
-    <div class="seal">☝️</div>
-  </section>
+<section id="cover" class="page show" onclick="openCover()"></section>
 
-  <section id="magic" class="page">
-    <div class="magicBg"></div>
-    <div class="ring"></div>
-    <div class="star"></div>
-  </section>
+<section id="magic" class="page">
+  <div class="magicBg"></div>
+  <div class="ring"></div>
+  <div class="star"></div>
+</section>
 
-  <section id="birthday" class="page">
-    <button class="surpriseBtn" onclick="openSurprise()">Open Your Surprise 🎁</button>
-  </section>
+<section id="birthday" class="page">
+  <button class="surpriseBtn" onclick="openSurprise()">Open Your Surprise 🎁</button>
+</section>
 
-  <section id="final" class="page">
-    <div class="finalCard">
-      <h1>Happy Birthday Puja 🎉</h1>
-      <p>
-        আজ তোমার special দিন।<br>
-        তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
-        জীবন সবসময় সুন্দর থাকুক। ❤️
-      </p>
-      <div class="love">Made with Love for Puja 💖</div>
-    </div>
+<section id="final" class="page">
+  <div class="finalCard">
+    <h1>Happy Birthday Puja 🎉</h1>
+    <p>
+      আজ তোমার special দিন।<br>
+      তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
+      জীবন সবসময় সুন্দর থাকুক। ❤️
+    </p>
+    <div class="love">Made with Love for Puja 💖</div>
+  </div>
+</section>
 
-    <div class="photoGrid">
-      <img src="IMG-20251021-WA0071.jpg" alt="Puja photo">
-      <img src="IMG-20260313-WA0046.jpg" alt="Puja photo">
-      <img src="IMG-20260313-WA0053.jpg" alt="Puja photo">
-      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja photo">
-    </div>
-  </section>
+<script>
+function hideAll(){
+  document.querySelectorAll(".page").forEach(function(page){
+    page.classList.remove("show");
+  });
+}
 
-  <script>
-    function hideAll(){
-      document.querySelectorAll(".page").forEach(p => p.classList.remove("show"));
-    }
+function openCover(){
+  hideAll();
+  document.getElementById("magic").classList.add("show");
 
-    function openCover(){
-      hideAll();
-      document.getElementById("magic").classList.add("show");
+  setTimeout(function(){
+    hideAll();
+    document.getElementById("birthday").classList.add("show");
+  },2200);
+}
 
-      setTimeout(() => {
-        hideAll();
-        document.getElementById("birthday").classList.add("show");
-      }, 2200);
-    }
+function openSurprise(){
+  hideAll();
+  document.getElementById("final").classList.add("show");
 
-    function openSurprise(){
-      hideAll();
-      document.getElementById("final").classList.add("show");
-      launchConfetti();
-      setTimeout(launchConfetti, 700);
-      setTimeout(launchConfetti, 1400);
-    }
+  launchConfetti();
+  setTimeout(launchConfetti,700);
+  setTimeout(launchConfetti,1400);
+}
 
-    function launchConfetti(){
-      const items = ["🎉","🎊","🌸","🌹","💖","✨","🎈","💛"];
-      for(let i=0;i<85;i++){
-        const piece = document.createElement("div");
-        piece.className = "confetti";
-        piece.innerHTML = items[Math.floor(Math.random()*items.length)];
-        piece.style.left = Math.random()*100 + "vw";
-        piece.style.fontSize = (16 + Math.random()*22) + "px";
-        piece.style.animationDuration = (3 + Math.random()*3) + "s";
-        piece.style.setProperty("--drift", (Math.random()*240-120) + "px");
-        document.body.appendChild(piece);
-        setTimeout(() => piece.remove(), 6500);
-      }
-    }
-  </script>
+function launchConfetti(){
+  var items=["🎉","🎊","🌸","🌹","💖","✨","🎈","💛"];
+
+  for(var i=0;i<85;i++){
+    var piece=document.createElement("div");
+    piece.className="confetti";
+    piece.innerHTML=items[Math.floor(Math.random()*items.length)];
+    piece.style.left=Math.random()*100+"vw";
+    piece.style.fontSize=(16+Math.random()*22)+"px";
+    piece.style.animationDuration=(3+Math.random()*3)+"s";
+    piece.style.setProperty("--drift",(Math.random()*240-120)+"px");
+
+    document.body.appendChild(piece);
+
+    setTimeout(function(element){
+      return function(){element.remove();}
+    }(piece),6500);
+  }
+}
+</script>
 
 </body>
 </html>
