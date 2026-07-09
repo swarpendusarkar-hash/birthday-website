@@ -3,139 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Puja ❤️</title>
+<title>Happy Birthday Puja</title>
 
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;background:#180408}
-body{overflow-x:hidden;color:white}
-.page{min-height:100vh;display:none;position:relative;overflow:hidden}
-.page.show{display:block}
+html,body{margin:0;height:100%;font-family:Arial,sans-serif;overflow:hidden}
 
+.page{
+  position:fixed;
+  inset:0;
+  display:none;
+  overflow:hidden;
+}
+.page.active{display:flex}
+
+/* 1. Cover page */
 #cover{
-  display:block;
-  min-height:100vh;
+  display:flex;
+  background-image:url("file_00000000792471fab9d1ed26ab406cbf.png");
+  background-size:cover;
+  background-position:center;
   cursor:pointer;
-  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
 }
 
-#magic{
-  background:#280309;
-  display:flex;
+/* 2. Golden animation */
+#animation{
+  display:none;
   align-items:center;
   justify-content:center;
+  background:#3b0a10;
 }
-.magicBg{
+#animation.active{display:flex}
+
+#animation::before{
+  content:"";
   position:absolute;
   inset:0;
-  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-  opacity:.4;
-  filter:blur(2px);
-}
-.ring{
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  border:5px solid #ffd66b;
-  box-shadow:0 0 30px #ffcb4d,0 0 100px #ff8a27,0 0 180px #fff0a4;
-  animation:ringOpen 2.2s ease-in-out forwards;
-  z-index:2;
-}
-.star{
-  position:absolute;
-  width:20px;
-  height:20px;
-  background:#fff4a6;
-  border-radius:50%;
-  box-shadow:0 0 20px 10px #ffd15a;
-  z-index:3;
-  animation:starFlash 2.2s forwards;
-}
-@keyframes ringOpen{
-  0%{transform:scale(.1) rotate(0);opacity:0}
-  35%{opacity:1}
-  100%{transform:scale(6) rotate(180deg);opacity:0}
-}
-@keyframes starFlash{
-  0%{transform:scale(.1);opacity:0}
-  40%{transform:scale(2);opacity:1}
-  100%{transform:scale(16);opacity:0}
+  background-image:url("file_00000000792471fab9d1ed26ab406cbf.png");
+  background-size:cover;
+  background-position:center;
+  opacity:.45;
 }
 
+.goldLight{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#fff7b0;
+  box-shadow:
+    0 0 20px 10px #ffd54d,
+    0 0 80px 35px #ff9d2f,
+    0 0 180px 90px #fff2a4;
+  z-index:5;
+  animation:goldOpen 2.2s ease-out forwards;
+}
+
+@keyframes goldOpen{
+  0%{transform:scale(.1);opacity:0}
+  30%{transform:scale(1.4);opacity:1}
+  100%{transform:scale(20);opacity:0}
+}
+
+/* 3. Birthday photo page */
 #birthday{
-  min-height:100vh;
-  background:url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
   display:none;
   align-items:flex-end;
   justify-content:center;
-  padding:30px 20px 45px;
+  padding-bottom:55px;
+  background-image:url("file_00000000f70471fb966e130dbdfbbd9d.png");
+  background-size:cover;
+  background-position:center;
 }
-#birthday.show{display:flex}
 
-.surpriseBtn{
-  border:2px solid white;
+#birthday.active{display:flex}
+
+#surpriseButton{
+  width:82%;
+  max-width:420px;
+  padding:17px 12px;
   border-radius:50px;
-  padding:17px 28px;
+  border:2px solid white;
+  color:white;
   font-size:22px;
   font-weight:bold;
-  color:white;
-  background:rgba(237,39,103,.55);
-  box-shadow:0 8px 25px rgba(70,0,20,.45);
+  background:rgba(232,28,105,.70);
+  box-shadow:0 8px 22px rgba(100,0,25,.45);
   cursor:pointer;
-  animation:buttonPulse 1.8s infinite;
+  z-index:10;
+  animation:buttonPulse 1.5s infinite;
 }
+
 @keyframes buttonPulse{
   0%,100%{transform:scale(1)}
   50%{transform:scale(1.06)}
 }
 
+/* 4. Final wish */
 #final{
-  min-height:100vh;
-  padding:40px 18px 55px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
   text-align:center;
-  background:linear-gradient(180deg,#ffb4bd,#ff7f9c 45%,#ffbd9e);
+  background:linear-gradient(#ff9db5,#ff668d,#ffc29b);
 }
-.finalCard{
-  max-width:460px;
-  margin:55px auto 0;
+#final.active{display:flex}
+
+.message{
   padding:30px 18px;
   border-radius:28px;
-  background:rgba(255,255,255,.2);
-  border:1px solid rgba(255,255,255,.5);
-  box-shadow:0 15px 35px rgba(100,0,30,.25);
-  animation:appear .9s ease both;
-}
-.finalCard h1{
-  font-family:cursive;
-  font-size:42px;
-  margin:0 0 15px;
-  text-shadow:0 3px 12px #b0003b;
-}
-.finalCard p{
-  font-size:21px;
-  line-height:1.65;
-  margin:0;
-}
-.love{
-  font-size:25px;
-  margin-top:18px;
-}
-@keyframes appear{
-  from{opacity:0;transform:translateY(35px) scale(.92)}
-  to{opacity:1;transform:translateY(0) scale(1)}
+  background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 15px 35px rgba(110,0,35,.3);
+  animation:messageOpen .8s ease-out;
 }
 
+.message h1{
+  margin:0 0 18px;
+  font-family:cursive;
+  font-size:42px;
+  text-shadow:0 3px 10px #a00035;
+}
+.message p{
+  margin:0;
+  font-size:21px;
+  line-height:1.65;
+  font-weight:bold;
+}
+
+@keyframes messageOpen{
+  from{opacity:0;transform:scale(.5) translateY(50px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* Flowers/confetti */
 .confetti{
   position:fixed;
-  top:-50px;
-  z-index:99;
+  top:-45px;
+  z-index:100;
   pointer-events:none;
-  animation:fall linear forwards;
+  animation:drop linear forwards;
 }
-@keyframes fall{
+@keyframes drop{
   to{
-    transform:translate(var(--drift),110vh) rotate(720deg);
-    opacity:.95;
+    transform:translate(var(--side),110vh) rotate(720deg);
+    opacity:.9;
   }
 }
 </style>
@@ -143,73 +155,70 @@ body{overflow-x:hidden;color:white}
 
 <body>
 
-<section id="cover" class="page show" onclick="openCover()"></section>
+<div id="cover" class="page active" onclick="openCover()"></div>
 
-<section id="magic" class="page">
-  <div class="magicBg"></div>
-  <div class="ring"></div>
-  <div class="star"></div>
-</section>
+<div id="animation" class="page">
+  <div class="goldLight"></div>
+</div>
 
-<section id="birthday" class="page">
-  <button class="surpriseBtn" onclick="openSurprise()">Open Your Surprise 🎁</button>
-</section>
+<div id="birthday" class="page">
+  <button id="surpriseButton" onclick="openSurprise()">Open Your Surprise 🎁</button>
+</div>
 
-<section id="final" class="page">
-  <div class="finalCard">
+<div id="final" class="page">
+  <div class="message">
     <h1>Happy Birthday Puja 🎉</h1>
     <p>
       আজ তোমার special দিন।<br>
       তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
       জীবন সবসময় সুন্দর থাকুক। ❤️
     </p>
-    <div class="love">Made with Love for Puja 💖</div>
+    <p style="margin-top:18px;font-size:28px">🌸 💖 🎊 🎈</p>
   </div>
-</section>
+</div>
 
 <script>
 function hideAll(){
-  document.querySelectorAll(".page").forEach(function(page){
-    page.classList.remove("show");
-  });
+  document.getElementById("cover").classList.remove("active");
+  document.getElementById("animation").classList.remove("active");
+  document.getElementById("birthday").classList.remove("active");
+  document.getElementById("final").classList.remove("active");
 }
 
 function openCover(){
   hideAll();
-  document.getElementById("magic").classList.add("show");
+  document.getElementById("animation").classList.add("active");
 
   setTimeout(function(){
     hideAll();
-    document.getElementById("birthday").classList.add("show");
+    document.getElementById("birthday").classList.add("active");
   },2200);
 }
 
 function openSurprise(){
   hideAll();
-  document.getElementById("final").classList.add("show");
-
-  launchConfetti();
-  setTimeout(launchConfetti,700);
-  setTimeout(launchConfetti,1400);
+  document.getElementById("final").classList.add("active");
+  flowerRain();
+  setTimeout(flowerRain,700);
+  setTimeout(flowerRain,1400);
 }
 
-function launchConfetti(){
-  var items=["🎉","🎊","🌸","🌹","💖","✨","🎈","💛"];
+function flowerRain(){
+  var flowers=["🌸","🌹","🎉","🎊","✨","💖","🎈","🌺"];
 
-  for(var i=0;i<85;i++){
-    var piece=document.createElement("div");
-    piece.className="confetti";
-    piece.innerHTML=items[Math.floor(Math.random()*items.length)];
-    piece.style.left=Math.random()*100+"vw";
-    piece.style.fontSize=(16+Math.random()*22)+"px";
-    piece.style.animationDuration=(3+Math.random()*3)+"s";
-    piece.style.setProperty("--drift",(Math.random()*240-120)+"px");
+  for(var i=0;i<80;i++){
+    var x=document.createElement("div");
+    x.className="confetti";
+    x.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
+    x.style.left=Math.random()*100+"vw";
+    x.style.fontSize=(16+Math.random()*25)+"px";
+    x.style.animationDuration=(3+Math.random()*3)+"s";
+    x.style.setProperty("--side",(Math.random()*240-120)+"px");
+    document.body.appendChild(x);
 
-    document.body.appendChild(piece);
-
-    setTimeout(function(element){
-      return function(){element.remove();}
-    }(piece),6500);
+    setTimeout(function(a){
+      return function(){a.remove();}
+    }(x),6500);
   }
 }
 </script>
