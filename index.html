@@ -6,312 +6,369 @@
 <title>Happy Birthday Puja ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#1b0509;overflow:hidden}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:Arial,sans-serif;overflow-x:hidden}
+body{background:#fff7f5}
 
 /* সব page */
 .page{
-  position:fixed;
-  inset:0;
-  width:100%;
-  min-height:100vh;
   display:none;
+  min-height:100vh;
+  width:100%;
+  position:relative;
   overflow:hidden;
 }
 .page.active{display:flex}
 
 /* 1. Fingerprint cover */
 #coverPage{
-  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
+  background-image:url("file_00000000792471fab9d1ed26ab406cbf.png");
+  background-size:cover;
+  background-position:center;
   align-items:center;
   justify-content:center;
   cursor:pointer;
 }
 
-#coverPage::after{
-  content:"";
+.coverTap{
   position:absolute;
-  inset:0;
-  background:rgba(20,0,0,.10);
+  left:50%;
+  top:62%;
+  transform:translate(-50%,-50%);
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  cursor:pointer;
 }
 
-.coverClick{
+.coverText{
   position:absolute;
-  inset:0;
-  z-index:3;
+  top:43%;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  text-align:center;
+  color:#f6d47a;
+  font-family:Georgia,serif;
+  font-size:clamp(25px,7vw,42px);
+  text-shadow:0 2px 8px #26060a;
+  pointer-events:none;
 }
 
-/* Golden ring animation */
-#goldAnimation{
-  position:absolute;
-  inset:0;
-  display:none;
+/* Golden opening animation */
+#goldenPage{
+  background:#260a0b;
   align-items:center;
   justify-content:center;
-  z-index:10;
-  overflow:hidden;
 }
 
-#goldAnimation.show{display:flex}
-
-.ring{
-  width:120px;
-  height:120px;
-  border:5px solid #ffd36a;
-  border-radius:50%;
-  box-shadow:
-    0 0 18px #fff3bd,
-    0 0 45px #ffd15c,
-    0 0 100px #ffae00;
-  animation:ringOpen 1.8s ease-out forwards;
-}
-
-.light{
+.goldenBg{
   position:absolute;
-  width:90px;
-  height:90px;
+  inset:0;
+  background-image:url("file_00000000792471fab9d1ed26ab406cbf.png");
+  background-size:cover;
+  background-position:center;
+  opacity:.35;
+  filter:blur(2px);
+}
+
+.lightRing{
+  position:relative;
+  width:130px;
+  height:130px;
   border-radius:50%;
-  background:radial-gradient(circle,#fffde2 0%,#ffd567 28%,rgba(255,177,0,.45) 52%,transparent 72%);
-  animation:lightOpen 1.8s ease-out forwards;
+  border:5px solid #ffd76a;
+  box-shadow:
+    0 0 20px #fff2a8,
+    0 0 55px #ffcc3f,
+    0 0 110px #ff9f1c;
+  animation:ringOpen 2.2s ease-out forwards;
+}
+
+.lightRing:before,
+.lightRing:after{
+  content:"";
+  position:absolute;
+  inset:-35px;
+  border-radius:50%;
+  border:2px solid rgba(255,221,113,.75);
+  animation:wave 1.5s ease-out infinite;
+}
+
+.lightRing:after{
+  inset:-70px;
+  animation-delay:.35s;
 }
 
 @keyframes ringOpen{
   0%{transform:scale(.2);opacity:0}
-  20%{opacity:1}
-  100%{transform:scale(13);opacity:0}
+  35%{transform:scale(1);opacity:1}
+  100%{transform:scale(8);opacity:0}
 }
 
-@keyframes lightOpen{
-  0%{transform:scale(.2);opacity:0}
-  35%{transform:scale(4);opacity:1}
-  100%{transform:scale(15);opacity:0}
+@keyframes wave{
+  0%{transform:scale(.4);opacity:1}
+  100%{transform:scale(1.5);opacity:0}
 }
 
-/* 2. Happy Birthday page */
+/* 2. Birthday page */
 #birthdayPage{
-  background:url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
+  background-image:url("file_00000000f70471fb966e130dbdfbbd9d.png");
+  background-size:cover;
+  background-position:center;
   align-items:flex-end;
   justify-content:center;
-  padding-bottom:9vh;
+  min-height:100vh;
 }
 
-.surpriseBtn{
-  width:min(86vw,420px);
-  padding:18px 18px;
-  border-radius:50px;
-  border:3px solid white;
-  background:linear-gradient(135deg,#ff5f91,#e82068);
-  color:white;
-  font-size:clamp(20px,5vw,28px);
-  font-weight:bold;
-  box-shadow:0 8px 25px rgba(175,0,72,.45);
-  cursor:pointer;
-  z-index:5;
-  animation:btnPulse 2s infinite;
-}
-
-@keyframes btnPulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.04)}
-}
-
-/* হালকা confetti */
-.confetti{
-  position:fixed;
-  top:-20px;
-  width:6px;
-  height:10px;
-  border-radius:2px;
-  opacity:.7;
-  pointer-events:none;
-  z-index:30;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  from{transform:translateY(-20px) rotate(0deg)}
-  to{transform:translateY(110vh) rotate(480deg)}
-}
-
-/* 3. Photo memory page */
-#memoryPage{
-  background:linear-gradient(180deg,#fff9f5,#ffe6ee);
-  overflow-y:auto;
-  flex-direction:column;
-  align-items:center;
-  padding:38px 16px 60px;
-}
-
-.memorySmall{
-  color:#a76b72;
-  font-size:14px;
-  letter-spacing:5px;
-  margin-top:5px;
-}
-
-.memoryTitle{
-  color:#8d4a53;
-  font-family:Georgia,serif;
-  font-size:clamp(46px,13vw,72px);
-  margin:10px 0 30px;
+.dateTap{
+  position:absolute;
+  left:50%;
+  top:83%;
+  transform:translate(-50%,-50%);
+  width:min(76vw,420px);
+  padding:16px 14px;
   text-align:center;
+  cursor:pointer;
+  border-radius:24px;
+  background:rgba(239,35,110,.35);
+  border:2px solid rgba(255,255,255,.95);
+  box-shadow:0 8px 24px rgba(150,0,65,.35);
+  color:white;
+  animation:datePulse 2s ease-in-out infinite;
 }
 
-.photoStack{
-  width:min(94vw,560px);
-  display:flex;
+.dateSmall{
+  font-size:11px;
+  letter-spacing:4px;
+  font-weight:bold;
+  margin-bottom:6px;
+  color:#fff;
+}
+
+.birthdayDate{
+  font-family:Georgia,serif;
+  font-size:clamp(27px,7vw,40px);
+  font-weight:bold;
+  line-height:1.05;
+  color:#fff8d5;
+  text-shadow:0 2px 7px #b30045;
+}
+
+@keyframes datePulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.04)}
+}
+
+/* 3. Memory page */
+#memoryPage{
+  display:none;
+  min-height:100vh;
   flex-direction:column;
   align-items:center;
-  gap:28px;
+  background:linear-gradient(#fffaf6,#ffe8ee);
+  padding:42px 18px 80px;
+}
+
+#memoryPage.active{display:flex}
+
+.memoryTop{
+  text-align:center;
+  margin-bottom:28px;
+  position:relative;
+  z-index:2;
+}
+
+.memoryTop p{
+  margin:0 0 8px;
+  letter-spacing:5px;
+  font-size:13px;
+  color:#b5808c;
+  font-weight:bold;
+}
+
+.memoryTop h1{
+  margin:0;
+  color:#914f5d;
+  font-family:Georgia,serif;
+  font-size:clamp(44px,12vw,70px);
 }
 
 .photoCard{
-  width:92%;
+  width:min(92vw,620px);
   background:#fff;
-  padding:12px 12px 24px;
-  border-radius:8px;
-  box-shadow:0 15px 32px rgba(90,30,45,.22);
-  opacity:0;
-  animation:photoIn .8s ease forwards;
-}
-
-.photoCard:nth-child(1){transform:translateY(40px) rotate(-3deg);animation-delay:.1s}
-.photoCard:nth-child(2){transform:translateY(40px) rotate(3deg);animation-delay:.25s}
-.photoCard:nth-child(3){transform:translateY(40px) rotate(-2deg);animation-delay:.4s}
-.photoCard:nth-child(4){transform:translateY(40px) rotate(3deg);animation-delay:.55s}
-.photoCard:nth-child(5){transform:translateY(40px) rotate(-3deg);animation-delay:.7s}
-
-@keyframes photoIn{
-  to{opacity:1;transform:translateY(0) rotate(0deg)}
+  padding:18px 18px 22px;
+  border-radius:18px;
+  box-shadow:0 14px 30px rgba(142,69,88,.20);
+  margin:0 0 32px;
+  position:relative;
+  z-index:2;
 }
 
 .photoCard img{
   width:100%;
-  max-height:620px;
+  height:auto;
+  max-height:680px;
   object-fit:cover;
+  border-radius:9px;
   display:block;
-  border-radius:4px;
 }
 
-.caption{
-  color:#914c55;
+.photoCard p{
   text-align:center;
-  font-family:cursive;
-  font-size:23px;
-  padding-top:11px;
-}
-
-.lastText{
-  color:#914c55;
+  margin:16px 0 0;
+  color:#a15b6c;
   font-family:Georgia,serif;
-  font-size:21px;
-  line-height:1.5;
-  text-align:center;
-  margin:35px 10px 0;
+  font-size:28px;
+}
+
+/* Petals + confetti */
+.petal,.confetti{
+  position:fixed;
+  top:-40px;
+  pointer-events:none;
+  z-index:99;
+  opacity:.85;
+  animation:fallDown linear forwards;
+}
+
+.petal{
+  width:15px;
+  height:10px;
+  border-radius:85% 0 85% 0;
+}
+
+.confetti{
+  width:7px;
+  height:12px;
+  border-radius:2px;
+}
+
+@keyframes fallDown{
+  0%{
+    transform:translateY(-50px) translateX(0) rotate(0deg);
+    opacity:0;
+  }
+  8%{opacity:.85}
+  45%{
+    transform:translateY(48vh) translateX(35px) rotate(220deg);
+  }
+  75%{
+    transform:translateY(78vh) translateX(-28px) rotate(390deg);
+  }
+  100%{
+    transform:translateY(112vh) translateX(25px) rotate(620deg);
+    opacity:.15;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- COVER -->
-<section id="coverPage" class="page active">
-  <div class="coverClick" onclick="openCover()"></div>
+<section id="coverPage" class="page active" onclick="startGolden()">
+  <div class="coverText">Tap to Reveal</div>
+  <div class="coverTap"></div>
 </section>
 
-<!-- GOLDEN LIGHT ANIMATION -->
-<div id="goldAnimation">
-  <div class="light"></div>
-  <div class="ring"></div>
-</div>
+<section id="goldenPage" class="page">
+  <div class="goldenBg"></div>
+  <div class="lightRing"></div>
+</section>
 
-<!-- BIRTHDAY -->
 <section id="birthdayPage" class="page">
-  <button class="surpriseBtn" onclick="openMemory()">
-    Open Your Surprise 🎁
-  </button>
+  <div class="dateTap" onclick="openMemory()">
+    <div class="dateSmall">A SPECIAL DAY</div>
+    <div class="birthdayDate">26 NOVEMBER<br>2026</div>
+  </div>
 </section>
 
-<!-- MEMORY PAGE -->
 <section id="memoryPage" class="page">
-  <div class="memorySmall">OUR MEMORIES</div>
-  <div class="memoryTitle">Forever Us</div>
-
-  <div class="photoStack">
-
-    <div class="photoCard">
-      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
-      <div class="caption">Beautiful Puja ❤️</div>
-    </div>
-
-    <div class="photoCard">
-      <img src="IMG-20260313-WA0046.jpg" alt="Puja">
-      <div class="caption">Our Lovely Memory ❤️</div>
-    </div>
-
-    <div class="photoCard">
-      <img src="IMG-20260618-WA0019.jpg" alt="Puja">
-      <div class="caption">My Favourite Smile ✨</div>
-    </div>
-
-    <div class="photoCard">
-      <img src="IMG-20251021-WA0071.jpg" alt="Puja">
-      <div class="caption">Together Forever ❤️</div>
-    </div>
-
-    <div class="photoCard">
-      <img src="IMG-20260313-WA0053.jpg" alt="Puja">
-      <div class="caption">Happy Birthday Puja 🎂</div>
-    </div>
-
+  <div class="memoryTop">
+    <p>OUR MEMORIES</p>
+    <h1>Forever Us</h1>
   </div>
 
-  <div class="lastText">
-    তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
-    জীবন সবসময় সুন্দর থাকুক ❤️
+  <div class="photoCard">
+    <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
+    <p>Beautiful Puja ❤️</p>
+  </div>
+
+  <div class="photoCard">
+    <img src="IMG-20260313-WA0046.jpg" alt="Puja">
+    <p>Our Lovely Moment ❤️</p>
+  </div>
+
+  <div class="photoCard">
+    <img src="IMG-20260618-WA0019.jpg" alt="Puja">
+    <p>My Favourite Smile 🌸</p>
+  </div>
+
+  <div class="photoCard">
+    <img src="IMG-20251021-WA0071.jpg" alt="Puja">
+    <p>Always Together ❤️</p>
+  </div>
+
+  <div class="photoCard">
+    <img src="IMG-20260313-WA0053.jpg" alt="Puja">
+    <p>Forever My Puja ❤️</p>
   </div>
 </section>
 
 <script>
-let coverOpened = false;
+function showPage(pageId){
+  document.querySelectorAll(".page").forEach(function(page){
+    page.classList.remove("active");
+  });
+  document.getElementById(pageId).classList.add("active");
+}
 
-function openCover(){
-  if(coverOpened) return;
-  coverOpened = true;
-
-  const animation = document.getElementById("goldAnimation");
-  animation.classList.add("show");
+function startGolden(){
+  showPage("goldenPage");
 
   setTimeout(function(){
-    document.getElementById("coverPage").classList.remove("active");
-    animation.classList.remove("show");
-    document.getElementById("birthdayPage").classList.add("active");
-    createConfetti(18);
-  }, 1750);
+    showPage("birthdayPage");
+  },2200);
 }
 
 function openMemory(){
-  document.getElementById("birthdayPage").classList.remove("active");
-  document.getElementById("memoryPage").classList.add("active");
-  createConfetti(16);
+  showPage("memoryPage");
+  createPetalsAndConfetti();
 }
 
-function createConfetti(total){
-  const colors=["#f3a1b7","#ffd66c","#f7c8d4","#e38da6","#fff0a6"];
+function createPetalsAndConfetti(){
+  const petalColors=["#f7b6c8","#ffd2dc","#f3c85c","#fff0b8","#e98ca9"];
+  const confettiColors=["#f6c94d","#f2a3b7","#b56a76","#f9df9a","#ffffff"];
 
-  for(let i=0;i<total;i++){
+  for(let i=0;i<85;i++){
+    const item=document.createElement("div");
+    const isPetal=Math.random()>0.35;
+
+    item.className=isPetal ? "petal" : "confetti";
+    item.style.left=(Math.random()*100)+"vw";
+
+    item.style.background=isPetal
+      ? petalColors[Math.floor(Math.random()*petalColors.length)]
+      : confettiColors[Math.floor(Math.random()*confettiColors.length)];
+
+    item.style.animationDuration=(6+Math.random()*6)+"s";
+    item.style.animationDelay=(Math.random()*3)+"s";
+
+    if(isPetal){
+      const size=8+Math.random()*9;
+      item.style.width=size+"px";
+      item.style.height=(size*.65)+"px";
+    }else{
+      const size=5+Math.random()*5;
+      item.style.width=size+"px";
+      item.style.height=(size*1.7)+"px";
+    }
+
+    document.body.appendChild(item);
+
     setTimeout(function(){
-      const piece=document.createElement("div");
-      piece.className="confetti";
-      piece.style.left=(Math.random()*100)+"vw";
-      piece.style.background=colors[Math.floor(Math.random()*colors.length)];
-      piece.style.animationDuration=(5+Math.random()*4)+"s";
-      document.body.appendChild(piece);
-
-      setTimeout(function(){
-        piece.remove();
-      },9500);
-    },i*180);
+      item.remove();
+    },15000);
   }
 }
 </script>
