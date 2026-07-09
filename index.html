@@ -1,207 +1,219 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Puja ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Puja ❤️</title>
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#ff7196;color:#fff;overflow-x:hidden}
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-/* COVER */
-#cover{
-  position:fixed; inset:0; z-index:1000; overflow:hidden;
-  background:#4b1018;
-}
-.cover-bg{
-  position:absolute; inset:0;
-  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-  transition:opacity 1.2s ease,transform 1.4s ease;
-}
-.tap{
-  position:absolute; left:50%; top:43%;
-  transform:translate(-50%,-50%);
-  z-index:5; color:#ffe9bc; font-family:cursive;
-  font-size:clamp(34px,9vw,60px); white-space:nowrap;
-  text-shadow:0 3px 12px #240207;
-  animation:pulse 1.5s infinite;
-}
-.seal{
-  position:absolute; left:50%; top:66%;
-  transform:translate(-50%,-50%);
-  width:220px; height:220px; border:0; border-radius:50%;
-  background:transparent; z-index:8; cursor:pointer;
-}
-.left,.right{
-  position:absolute; top:0; height:100%; width:50%;
-  z-index:6; pointer-events:none;
-  transition:transform 1.35s cubic-bezier(.7,0,.2,1);
-}
-.left{
-  left:0;
-  background:linear-gradient(90deg,rgba(50,0,10,.42),rgba(50,0,10,.03));
-  clip-path:polygon(0 0,100% 0,82% 50%,100% 100%,0 100%);
-}
-.right{
-  right:0;
-  background:linear-gradient(270deg,rgba(50,0,10,.42),rgba(50,0,10,.03));
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,18% 50%);
-}
-#cover.open .left{transform:translateX(-105%)}
-#cover.open .right{transform:translateX(105%)}
-#cover.open .tap{opacity:0;transition:.3s}
-#cover.open .seal{animation:sealOut 1s forwards}
-#cover.open .cover-bg{opacity:0;transform:scale(1.12)}
+    body{
+      font-family:Arial, sans-serif;
+      overflow:hidden;
+      background:#3a0d14;
+    }
 
-@keyframes pulse{
-  0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  50%{opacity:.65;transform:translate(-50%,-50%) scale(1.06)}
-}
-@keyframes sealOut{
-  0%{transform:translate(-50%,-50%) scale(1);opacity:1}
-  70%{transform:translate(-50%,-50%) scale(1.35) rotate(8deg);opacity:1}
-  100%{transform:translate(-50%,-50%) scale(2.4) rotate(18deg);opacity:0}
-}
+    .screen{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
 
-/* BIRTHDAY PAGE */
-.hero{
-  min-height:100vh; padding:55px 20px;
-  display:flex; align-items:center; justify-content:center; text-align:center;
-  background:linear-gradient(135deg,#ff5d87,#ff9d83,#ffcf8f);
-}
-.box{max-width:700px}
-h1{
-  font-family:cursive;
-  font-size:clamp(52px,13vw,96px);
-  line-height:1; margin-bottom:30px;
-  text-shadow:0 5px 0 #d93f6d,0 12px 25px rgba(90,0,35,.45);
-}
-h1 span{
-  display:block; margin-top:8px; color:#ffe4a9;
-  font-size:clamp(48px,12vw,86px);
-  text-shadow:0 5px 0 #bd7435,0 12px 25px rgba(90,0,35,.4);
-}
-.wish{
-  font-size:clamp(22px,5.7vw,34px); line-height:1.6;
-  font-weight:bold; text-shadow:0 3px 9px rgba(80,0,35,.65);
-  margin-bottom:40px;
-}
-.btn{
-  border:3px solid white; border-radius:50px;
-  padding:19px 30px; cursor:pointer;
-  background:linear-gradient(135deg,#ff4675,#ff8eb2);
-  color:white; font-size:clamp(20px,5vw,28px); font-weight:bold;
-  box-shadow:0 12px 25px rgba(80,0,35,.35);
-}
+    /* প্রথম Puja fingerprint cover */
+    #cover{
+      background-image:url("file_00000000792471fab9d1ed26ab406cbf.png");
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:10;
+      transition:transform 1.1s ease-in-out, opacity 1.1s ease-in-out;
+    }
 
-/* SURPRISE */
-#surprise{
-  display:none; min-height:100vh; padding:55px 18px;
-  text-align:center; background:linear-gradient(135deg,#ff6390,#ffb46f);
-}
-.card{
-  max-width:650px; margin:auto; padding:30px 18px; border-radius:28px;
-  background:rgba(255,255,255,.20); border:2px solid rgba(255,255,255,.65);
-  box-shadow:0 15px 35px rgba(80,0,25,.28);
-}
-.card h2{font-size:34px;margin-bottom:15px}
-.card p{font-size:21px;line-height:1.7}
-.gallery{
-  max-width:700px; margin:35px auto;
-  display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
-}
-.gallery img{
-  width:100%; aspect-ratio:1/1; object-fit:cover;
-  border-radius:22px; border:4px solid white;
-  box-shadow:0 10px 22px rgba(80,0,25,.3);
-}
-.love{
-  margin-top:20px; padding:16px 28px; border:0; border-radius:50px;
-  background:white; color:#e52d63; font-size:22px; font-weight:bold;
-}
-.heart{
-  position:fixed; z-index:2000; pointer-events:none; font-size:28px;
-  animation:fly 2s ease-out forwards;
-}
-@keyframes fly{
-  from{opacity:1;transform:translateY(0) scale(1)}
-  to{opacity:0;transform:translateY(-350px) rotate(360deg) scale(1.8)}
-}
-</style>
+    #cover::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(35,0,5,0.10);
+    }
+
+    .tap-area{
+      position:relative;
+      z-index:2;
+      width:52%;
+      max-width:290px;
+      height:32%;
+      position:absolute;
+      top:46%;
+      left:24%;
+      border-radius:50%;
+    }
+
+    .tap-text{
+      position:absolute;
+      z-index:3;
+      top:40%;
+      left:50%;
+      transform:translateX(-50%);
+      color:#f7d889;
+      font-family:cursive;
+      font-size:28px;
+      white-space:nowrap;
+      text-shadow:0 2px 8px #260006;
+      animation:pulse 1.4s infinite;
+      pointer-events:none;
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:translateX(-50%) scale(1);}
+      50%{transform:translateX(-50%) scale(1.08);}
+    }
+
+    /* Cover খোলার animation */
+    #cover.open{
+      opacity:0;
+      transform:scale(1.25) rotate(-2deg);
+      pointer-events:none;
+    }
+
+    /* Birthday page */
+    #birthday{
+      display:none;
+      background-image:url("file_00000000f70471fb966e130dbdfbbd9d.png");
+      z-index:1;
+      animation:appear 1.2s ease-out forwards;
+    }
+
+    #birthday.show{
+      display:block;
+    }
+
+    @keyframes appear{
+      from{opacity:0; transform:scale(1.08);}
+      to{opacity:1; transform:scale(1);}
+    }
+
+    .decor{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .flower,.balloon,.confetti{
+      position:absolute;
+      animation:floatUp linear infinite;
+      filter:drop-shadow(0 3px 4px rgba(0,0,0,.25));
+    }
+
+    .flower{
+      font-size:32px;
+    }
+
+    .balloon{
+      font-size:42px;
+    }
+
+    .confetti{
+      font-size:28px;
+    }
+
+    @keyframes floatUp{
+      0%{
+        transform:translateY(110vh) rotate(0deg);
+        opacity:0;
+      }
+      10%{opacity:1;}
+      100%{
+        transform:translateY(-20vh) rotate(360deg);
+        opacity:0;
+      }
+    }
+
+    .one{left:4%;animation-duration:9s;animation-delay:0s;}
+    .two{left:18%;animation-duration:12s;animation-delay:2s;}
+    .three{left:34%;animation-duration:10s;animation-delay:1s;}
+    .four{left:50%;animation-duration:13s;animation-delay:3s;}
+    .five{left:66%;animation-duration:11s;animation-delay:0s;}
+    .six{left:80%;animation-duration:9s;animation-delay:2s;}
+    .seven{left:92%;animation-duration:12s;animation-delay:1s;}
+
+    .birthday-button{
+      position:absolute;
+      bottom:8%;
+      left:50%;
+      transform:translateX(-50%);
+      border:2px solid white;
+      background:rgba(255,70,130,.62);
+      color:white;
+      padding:16px 30px;
+      border-radius:40px;
+      font-size:20px;
+      font-weight:bold;
+      box-shadow:0 8px 22px rgba(90,0,35,.35);
+      white-space:nowrap;
+    }
+
+    @media(max-width:420px){
+      .tap-text{font-size:23px;}
+      .birthday-button{font-size:17px;padding:14px 22px;}
+    }
+  </style>
 </head>
 
 <body>
 
-<section id="cover">
-  <div class="cover-bg"></div>
-  <div class="left"></div>
-  <div class="right"></div>
-  <div class="tap">Tap to Reveal</div>
-  <button class="seal" id="sealBtn"></button>
-</section>
+  <!-- প্রথমে Puja fingerprint cover -->
+  <section id="cover" class="screen" onclick="openBirthday()">
+    <div class="tap-text">Tap to Reveal</div>
+    <div class="tap-area"></div>
+  </section>
 
-<section class="hero">
-  <div class="box">
-    <h1>Happy Birthday <span>Puja</span></h1>
-    <p class="wish">
-      আজ তোমার special দিন।<br>
-      তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
-      জীবন সবসময় সুন্দর থাকুক। ❤️
-    </p>
-    <button class="btn" id="openBtn">Open Your Surprise 🎁</button>
-  </div>
-</section>
+  <!-- Tap করার পরে Happy Birthday image -->
+  <section id="birthday" class="screen">
+    <div class="decor">
+      <div class="flower one">🌹</div>
+      <div class="balloon two">🎈</div>
+      <div class="confetti three">🎊</div>
+      <div class="flower four">🌸</div>
+      <div class="balloon five">🎈</div>
+      <div class="confetti six">✨</div>
+      <div class="flower seven">🌹</div>
 
-<section id="surprise">
-  <div class="card">
-    <h2>Happy Birthday Puja ❤️</h2>
-    <p>তোমার জন্য অনেক ভালোবাসা, হাসি আর সুন্দর মুহূর্ত থাকুক।<br>তুমি সবসময় এভাবেই হাসিখুশি থেকো। 🌸</p>
-    <button class="love" id="loveBtn">Send Love ❤️</button>
-  </div>
+      <div class="confetti one" style="animation-delay:4s;">🎉</div>
+      <div class="flower three" style="animation-delay:5s;">🌺</div>
+      <div class="balloon five" style="animation-delay:6s;">🎈</div>
+      <div class="confetti seven" style="animation-delay:4s;">💖</div>
+    </div>
 
-  <div class="gallery">
-    <img src="IMG-20251021-WA0071.jpg" alt="Puja">
-    <img src="IMG-20260313-WA0046.jpg" alt="Puja">
-    <img src="IMG-20260313-WA0053.jpg" alt="Puja">
-    <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
-    <img src="IMG-20260618-WA0019.jpg" alt="Puja">
-  </div>
-</section>
+    <div class="birthday-button">Happy Birthday Puja 🎁</div>
+  </section>
 
-<script>
-const cover=document.getElementById("cover");
-document.getElementById("sealBtn").onclick=()=>{
-  cover.classList.add("open");
-  setTimeout(()=>cover.style.display="none",1500);
-};
+  <script>
+    function openBirthday(){
+      const cover = document.getElementById("cover");
+      const birthday = document.getElementById("birthday");
 
-const surprise=document.getElementById("surprise");
-document.getElementById("openBtn").onclick=()=>{
-  surprise.style.display="block";
-  surprise.scrollIntoView({behavior:"smooth"});
-  hearts();
-};
+      cover.classList.add("open");
 
-document.getElementById("loveBtn").onclick=()=>{
-  hearts();
-  alert("Happy Birthday Puja ❤️ তোমাকে অনেক ভালোবাসা!");
-};
+      setTimeout(function(){
+        birthday.classList.add("show");
+      }, 650);
 
-function hearts(){
-  const items=["❤️","💖","🌸","🎉","✨","🌹","💝"];
-  for(let i=0;i<28;i++){
-    const h=document.createElement("span");
-    h.className="heart";
-    h.innerText=items[Math.floor(Math.random()*items.length)];
-    h.style.left=(Math.random()*92)+"vw";
-    h.style.top=(55+Math.random()*30)+"vh";
-    h.style.fontSize=(22+Math.random()*25)+"px";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),2100);
-  }
-}
-</script>
+      setTimeout(function(){
+        cover.style.display = "none";
+      }, 1200);
+    }
+  </script>
 
 </body>
 </html>
