@@ -1,423 +1,320 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Puja ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Puja ❤️</title>
 
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#1b0509;overflow:hidden}
 
-    body{
-      font-family:Arial, sans-serif;
-      background:#180408;
-      overflow-x:hidden;
-    }
+/* সব page */
+.page{
+  position:fixed;
+  inset:0;
+  width:100%;
+  min-height:100vh;
+  display:none;
+  overflow:hidden;
+}
+.page.active{display:flex}
 
-    .page{
-      min-height:100vh;
-      width:100%;
-      display:none;
-      position:relative;
-      overflow:hidden;
-    }
+/* 1. Fingerprint cover */
+#coverPage{
+  background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
 
-    .page.active{
-      display:flex;
-    }
+#coverPage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(20,0,0,.10);
+}
 
-    /* ================= COVER PAGE ================= */
+.coverClick{
+  position:absolute;
+  inset:0;
+  z-index:3;
+}
 
-    #coverPage{
-      min-height:100vh;
-      background:
-        linear-gradient(rgba(20,0,5,.12), rgba(20,0,5,.30)),
-        url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-    }
+/* Golden ring animation */
+#goldAnimation{
+  position:absolute;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+  overflow:hidden;
+}
 
-    .coverTapArea{
-      width:100%;
-      height:100vh;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
+#goldAnimation.show{display:flex}
 
-    .coverHint{
-      position:absolute;
-      top:43%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      color:#f8dc9b;
-      font-family:cursive;
-      font-size:clamp(31px,8vw,54px);
-      white-space:nowrap;
-      text-shadow:0 2px 10px #210000;
-      pointer-events:none;
-    }
+.ring{
+  width:120px;
+  height:120px;
+  border:5px solid #ffd36a;
+  border-radius:50%;
+  box-shadow:
+    0 0 18px #fff3bd,
+    0 0 45px #ffd15c,
+    0 0 100px #ffae00;
+  animation:ringOpen 1.8s ease-out forwards;
+}
 
-    .fingerHint{
-      position:absolute;
-      top:67%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      width:210px;
-      height:210px;
-      border-radius:50%;
-      pointer-events:none;
-    }
+.light{
+  position:absolute;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fffde2 0%,#ffd567 28%,rgba(255,177,0,.45) 52%,transparent 72%);
+  animation:lightOpen 1.8s ease-out forwards;
+}
 
-    .goldRing{
-      position:absolute;
-      top:50%;
-      left:50%;
-      width:70px;
-      height:70px;
-      border-radius:50%;
-      transform:translate(-50%,-50%) scale(.2);
-      opacity:0;
-      border:4px solid #ffd45d;
-      box-shadow:
-        0 0 20px #fff3a8,
-        0 0 45px #ffcc39,
-        0 0 100px #ffb000;
-      pointer-events:none;
-    }
+@keyframes ringOpen{
+  0%{transform:scale(.2);opacity:0}
+  20%{opacity:1}
+  100%{transform:scale(13);opacity:0}
+}
 
-    .goldRing.animate{
-      animation:goldenOpen 1.8s ease-in-out forwards;
-    }
+@keyframes lightOpen{
+  0%{transform:scale(.2);opacity:0}
+  35%{transform:scale(4);opacity:1}
+  100%{transform:scale(15);opacity:0}
+}
 
-    .goldLight{
-      position:absolute;
-      inset:0;
-      opacity:0;
-      background:
-        radial-gradient(circle at center, rgba(255,248,190,.95) 0%, rgba(255,198,58,.65) 18%, rgba(255,140,0,.20) 42%, transparent 72%);
-      pointer-events:none;
-    }
+/* 2. Happy Birthday page */
+#birthdayPage{
+  background:url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
+  align-items:flex-end;
+  justify-content:center;
+  padding-bottom:9vh;
+}
 
-    .goldLight.animate{
-      animation:flashLight 1.8s ease-in-out forwards;
-    }
+.surpriseBtn{
+  width:min(86vw,420px);
+  padding:18px 18px;
+  border-radius:50px;
+  border:3px solid white;
+  background:linear-gradient(135deg,#ff5f91,#e82068);
+  color:white;
+  font-size:clamp(20px,5vw,28px);
+  font-weight:bold;
+  box-shadow:0 8px 25px rgba(175,0,72,.45);
+  cursor:pointer;
+  z-index:5;
+  animation:btnPulse 2s infinite;
+}
 
-    @keyframes goldenOpen{
-      0%{
-        transform:translate(-50%,-50%) scale(.2);
-        opacity:0;
-      }
-      25%{
-        opacity:1;
-      }
-      100%{
-        transform:translate(-50%,-50%) scale(12);
-        opacity:0;
-      }
-    }
+@keyframes btnPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.04)}
+}
 
-    @keyframes flashLight{
-      0%{opacity:0;}
-      35%{opacity:1;}
-      100%{opacity:0;}
-    }
+/* হালকা confetti */
+.confetti{
+  position:fixed;
+  top:-20px;
+  width:6px;
+  height:10px;
+  border-radius:2px;
+  opacity:.7;
+  pointer-events:none;
+  z-index:30;
+  animation:fall linear forwards;
+}
 
-    /* ================= BIRTHDAY PAGE ================= */
+@keyframes fall{
+  from{transform:translateY(-20px) rotate(0deg)}
+  to{transform:translateY(110vh) rotate(480deg)}
+}
 
-    #birthdayPage{
-      min-height:100vh;
-      background:
-        linear-gradient(rgba(255,120,150,.08), rgba(255,120,150,.08)),
-        url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    }
+/* 3. Photo memory page */
+#memoryPage{
+  background:linear-gradient(180deg,#fff9f5,#ffe6ee);
+  overflow-y:auto;
+  flex-direction:column;
+  align-items:center;
+  padding:38px 16px 60px;
+}
 
-    .birthdayContent{
-      width:100%;
-      max-width:520px;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-end;
-      padding-bottom:10vh;
-      position:relative;
-      z-index:2;
-    }
+.memorySmall{
+  color:#a76b72;
+  font-size:14px;
+  letter-spacing:5px;
+  margin-top:5px;
+}
 
-    .surpriseBtn{
-      border:3px solid rgba(255,255,255,.95);
-      background:linear-gradient(135deg,#f53e7a,#ec1f67);
-      color:#fff;
-      font-size:clamp(20px,5vw,29px);
-      font-weight:bold;
-      border-radius:60px;
-      padding:18px 32px;
-      box-shadow:0 8px 25px rgba(164,0,70,.42);
-      cursor:pointer;
-      width:min(88%,420px);
-      animation:buttonPulse 2s infinite;
-    }
+.memoryTitle{
+  color:#8d4a53;
+  font-family:Georgia,serif;
+  font-size:clamp(46px,13vw,72px);
+  margin:10px 0 30px;
+  text-align:center;
+}
 
-    @keyframes buttonPulse{
-      0%,100%{
-        transform:scale(1);
-        box-shadow:0 8px 25px rgba(164,0,70,.42);
-      }
-      50%{
-        transform:scale(1.04);
-        box-shadow:0 10px 38px rgba(255,255,255,.70);
-      }
-    }
+.photoStack{
+  width:min(94vw,560px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:28px;
+}
 
-    /* light confetti */
+.photoCard{
+  width:92%;
+  background:#fff;
+  padding:12px 12px 24px;
+  border-radius:8px;
+  box-shadow:0 15px 32px rgba(90,30,45,.22);
+  opacity:0;
+  animation:photoIn .8s ease forwards;
+}
 
-    .confetti{
-      position:fixed;
-      top:-20px;
-      width:7px;
-      height:12px;
-      border-radius:3px;
-      opacity:.65;
-      z-index:10;
-      pointer-events:none;
-      animation:fall linear forwards;
-    }
+.photoCard:nth-child(1){transform:translateY(40px) rotate(-3deg);animation-delay:.1s}
+.photoCard:nth-child(2){transform:translateY(40px) rotate(3deg);animation-delay:.25s}
+.photoCard:nth-child(3){transform:translateY(40px) rotate(-2deg);animation-delay:.4s}
+.photoCard:nth-child(4){transform:translateY(40px) rotate(3deg);animation-delay:.55s}
+.photoCard:nth-child(5){transform:translateY(40px) rotate(-3deg);animation-delay:.7s}
 
-    @keyframes fall{
-      from{
-        transform:translateY(-30px) rotate(0deg);
-      }
-      to{
-        transform:translateY(110vh) rotate(500deg);
-      }
-    }
+@keyframes photoIn{
+  to{opacity:1;transform:translateY(0) rotate(0deg)}
+}
 
-    /* ================= MEMORY PAGE ================= */
+.photoCard img{
+  width:100%;
+  max-height:620px;
+  object-fit:cover;
+  display:block;
+  border-radius:4px;
+}
 
-    #memoryPage{
-      min-height:100vh;
-      background:linear-gradient(180deg,#fff9f6,#ffe7ee);
-      display:none;
-      flex-direction:column;
-      align-items:center;
-      padding:42px 18px 60px;
-      overflow-y:auto;
-    }
+.caption{
+  color:#914c55;
+  text-align:center;
+  font-family:cursive;
+  font-size:23px;
+  padding-top:11px;
+}
 
-    .memoryTitle{
-      color:#8c4650;
-      text-align:center;
-      font-size:15px;
-      letter-spacing:6px;
-      margin-bottom:8px;
-    }
-
-    .memoryHeading{
-      color:#8f4851;
-      font-family:Georgia, serif;
-      font-size:clamp(44px,12vw,72px);
-      text-align:center;
-      margin-bottom:35px;
-    }
-
-    .photoStack{
-      width:min(94vw,560px);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:28px;
-    }
-
-    .photoCard{
-      width:92%;
-      background:#fff;
-      padding:12px 12px 26px;
-      border-radius:8px;
-      box-shadow:0 15px 35px rgba(102,40,55,.22);
-      opacity:0;
-      transform:translateY(45px) rotate(-3deg);
-      animation:photoShow .8s ease forwards;
-    }
-
-    .photoCard:nth-child(2){
-      transform:translateY(45px) rotate(3deg);
-      animation-delay:.15s;
-    }
-
-    .photoCard:nth-child(3){
-      transform:translateY(45px) rotate(-2deg);
-      animation-delay:.30s;
-    }
-
-    .photoCard:nth-child(4){
-      transform:translateY(45px) rotate(3deg);
-      animation-delay:.45s;
-    }
-
-    .photoCard:nth-child(5){
-      transform:translateY(45px) rotate(-3deg);
-      animation-delay:.60s;
-    }
-
-    @keyframes photoShow{
-      to{
-        opacity:1;
-        transform:translateY(0) rotate(var(--rotate, 0deg));
-      }
-    }
-
-    .photoCard img{
-      width:100%;
-      display:block;
-      border-radius:4px;
-      max-height:620px;
-      object-fit:cover;
-    }
-
-    .photoCaption{
-      color:#8f4851;
-      text-align:center;
-      font-family:cursive;
-      font-size:24px;
-      padding-top:12px;
-    }
-
-    .memoryText{
-      margin-top:35px;
-      color:#8f4851;
-      text-align:center;
-      font-size:22px;
-      line-height:1.55;
-      font-family:Georgia, serif;
-      padding:0 10px;
-    }
-  </style>
+.lastText{
+  color:#914c55;
+  font-family:Georgia,serif;
+  font-size:21px;
+  line-height:1.5;
+  text-align:center;
+  margin:35px 10px 0;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- COVER -->
-  <section id="coverPage" class="page active">
-    <div class="coverTapArea" onclick="openCover()">
-      <div class="coverHint">Tap to Reveal</div>
-      <div class="fingerHint"></div>
-      <div id="goldRing" class="goldRing"></div>
-      <div id="goldLight" class="goldLight"></div>
-    </div>
-  </section>
+<!-- COVER -->
+<section id="coverPage" class="page active">
+  <div class="coverClick" onclick="openCover()"></div>
+</section>
 
-  <!-- BIRTHDAY -->
-  <section id="birthdayPage" class="page">
-    <div class="birthdayContent">
-      <button class="surpriseBtn" onclick="openMemory()">
-        Open Your Surprise 🎁
-      </button>
-    </div>
-  </section>
+<!-- GOLDEN LIGHT ANIMATION -->
+<div id="goldAnimation">
+  <div class="light"></div>
+  <div class="ring"></div>
+</div>
 
-  <!-- MEMORY -->
-  <section id="memoryPage" class="page">
-    <div class="memoryTitle">OUR MEMORIES</div>
-    <h1 class="memoryHeading">Forever Us</h1>
+<!-- BIRTHDAY -->
+<section id="birthdayPage" class="page">
+  <button class="surpriseBtn" onclick="openMemory()">
+    Open Your Surprise 🎁
+  </button>
+</section>
 
-    <div class="photoStack">
+<!-- MEMORY PAGE -->
+<section id="memoryPage" class="page">
+  <div class="memorySmall">OUR MEMORIES</div>
+  <div class="memoryTitle">Forever Us</div>
 
-      <div class="photoCard" style="--rotate:-3deg;">
-        <img src="IMG-20260528-WA0006(1).jpg" alt="Puja photo 1">
-        <div class="photoCaption">Beautiful Puja ❤️</div>
-      </div>
+  <div class="photoStack">
 
-      <div class="photoCard" style="--rotate:3deg;">
-        <img src="IMG-20260313-WA0046.jpg" alt="Puja photo 2">
-        <div class="photoCaption">Our Lovely Memory ❤️</div>
-      </div>
-
-      <div class="photoCard" style="--rotate:-2deg;">
-        <img src="IMG-20260618-WA0019.jpg" alt="Puja photo 3">
-        <div class="photoCaption">My Favourite Smile ✨</div>
-      </div>
-
-      <div class="photoCard" style="--rotate:3deg;">
-        <img src="IMG-20251021-WA0071.jpg" alt="Puja photo 4">
-        <div class="photoCaption">Together Forever ❤️</div>
-      </div>
-
-      <div class="photoCard" style="--rotate:-3deg;">
-        <img src="IMG-20260313-WA0053.jpg" alt="Puja photo 5">
-        <div class="photoCaption">Happy Birthday Puja 🎂</div>
-      </div>
-
+    <div class="photoCard">
+      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
+      <div class="caption">Beautiful Puja ❤️</div>
     </div>
 
-    <div class="memoryText">
-      তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
-      জীবন সবসময় সুন্দর থাকুক ❤️
+    <div class="photoCard">
+      <img src="IMG-20260313-WA0046.jpg" alt="Puja">
+      <div class="caption">Our Lovely Memory ❤️</div>
     </div>
-  </section>
 
-  <script>
-    let opened = false;
+    <div class="photoCard">
+      <img src="IMG-20260618-WA0019.jpg" alt="Puja">
+      <div class="caption">My Favourite Smile ✨</div>
+    </div>
 
-    function openCover(){
-      if(opened) return;
-      opened = true;
+    <div class="photoCard">
+      <img src="IMG-20251021-WA0071.jpg" alt="Puja">
+      <div class="caption">Together Forever ❤️</div>
+    </div>
 
-      document.getElementById("goldRing").classList.add("animate");
-      document.getElementById("goldLight").classList.add("animate");
+    <div class="photoCard">
+      <img src="IMG-20260313-WA0053.jpg" alt="Puja">
+      <div class="caption">Happy Birthday Puja 🎂</div>
+    </div>
+
+  </div>
+
+  <div class="lastText">
+    তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
+    জীবন সবসময় সুন্দর থাকুক ❤️
+  </div>
+</section>
+
+<script>
+let coverOpened = false;
+
+function openCover(){
+  if(coverOpened) return;
+  coverOpened = true;
+
+  const animation = document.getElementById("goldAnimation");
+  animation.classList.add("show");
+
+  setTimeout(function(){
+    document.getElementById("coverPage").classList.remove("active");
+    animation.classList.remove("show");
+    document.getElementById("birthdayPage").classList.add("active");
+    createConfetti(18);
+  }, 1750);
+}
+
+function openMemory(){
+  document.getElementById("birthdayPage").classList.remove("active");
+  document.getElementById("memoryPage").classList.add("active");
+  createConfetti(16);
+}
+
+function createConfetti(total){
+  const colors=["#f3a1b7","#ffd66c","#f7c8d4","#e38da6","#fff0a6"];
+
+  for(let i=0;i<total;i++){
+    setTimeout(function(){
+      const piece=document.createElement("div");
+      piece.className="confetti";
+      piece.style.left=(Math.random()*100)+"vw";
+      piece.style.background=colors[Math.floor(Math.random()*colors.length)];
+      piece.style.animationDuration=(5+Math.random()*4)+"s";
+      document.body.appendChild(piece);
 
       setTimeout(function(){
-        document.getElementById("coverPage").classList.remove("active");
-        document.getElementById("birthdayPage").classList.add("active");
-        startLightConfetti();
-      }, 1600);
-    }
-
-    function openMemory(){
-      document.getElementById("birthdayPage").classList.remove("active");
-      document.getElementById("memoryPage").classList.add("active");
-      startLightConfetti();
-      window.scrollTo(0,0);
-    }
-
-    function startLightConfetti(){
-      for(let i = 0; i < 24; i++){
-        setTimeout(function(){
-          const confetti = document.createElement("div");
-          confetti.className = "confetti";
-
-          const colors = [
-            "#f5a1b6",
-            "#ffd36b",
-            "#ff8eab",
-            "#f9d6dc",
-            "#d98a9d"
-          ];
-
-          confetti.style.left = Math.random() * 100 + "vw";
-          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.animationDuration = (5 + Math.random() * 4) + "s";
-          confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
-
-          document.body.appendChild(confetti);
-
-          setTimeout(function(){
-            confetti.remove();
-          }, 9500);
-
-        }, i * 180);
-      }
-    }
-  </script>
+        piece.remove();
+      },9500);
+    },i*180);
+  }
+}
+</script>
 
 </body>
 </html>
