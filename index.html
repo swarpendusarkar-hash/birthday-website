@@ -13,45 +13,261 @@
     }
 
     body{
-      min-height:100vh;
-      background:#f47b91;
-      font-family:Arial, sans-serif;
-      overflow:hidden;
+      font-family: Arial, sans-serif;
+      background:#f55d82;
+      color:white;
+      text-align:center;
+      overflow-x:hidden;
     }
 
-    .birthday-page{
+    .hero{
       min-height:100vh;
-      width:100%;
-      background:url("birthday-bg.png") center center / cover no-repeat;
+      padding:60px 20px 45px;
       display:flex;
-      align-items:flex-end;
+      flex-direction:column;
+      align-items:center;
       justify-content:center;
-      padding:0 20px 11vh;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(rgba(94, 13, 44, .12), rgba(255, 90, 130, .16)),
+        url("file_00000000f70471fb966e130dbfbbd9d.png") center/cover no-repeat;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        180deg,
+        rgba(255,80,130,.10),
+        rgba(70,0,25,.18)
+      );
+      z-index:0;
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:650px;
+      padding:20px 10px;
+    }
+
+    h1{
+      font-family:cursive;
+      font-size:clamp(48px, 13vw, 92px);
+      line-height:1;
+      color:#fff;
+      text-shadow:
+        0 4px 0 #e94b76,
+        0 8px 22px rgba(70,0,30,.55);
+      margin-bottom:32px;
+    }
+
+    h1 span{
+      display:block;
+      font-size:clamp(42px, 11vw, 78px);
+      margin-top:8px;
+      color:#ffe1a8;
+      text-shadow:
+        0 4px 0 #c98138,
+        0 8px 22px rgba(70,0,30,.45);
+    }
+
+    .message{
+      font-size:clamp(22px, 5.8vw, 34px);
+      line-height:1.65;
+      font-weight:bold;
+      color:#fff;
+      text-shadow:0 3px 8px rgba(65,0,25,.7);
+      margin:15px auto 45px;
     }
 
     .open-btn{
-      width:min(82vw, 430px);
-      padding:18px 20px;
-      border:2px solid white;
+      border:3px solid white;
       border-radius:50px;
-      background:rgba(235, 42, 105, 0.55);
-      color:white;
-      font-size:clamp(21px, 5vw, 30px);
+      padding:20px 32px;
+      font-size:clamp(20px, 5vw, 29px);
       font-weight:bold;
-      text-decoration:none;
-      text-align:center;
-      box-shadow:0 8px 22px rgba(100,0,35,.35);
+      color:white;
+      background:linear-gradient(135deg,#ff4f7b,#ff7aa8);
+      box-shadow:0 12px 25px rgba(83,0,32,.45);
+      cursor:pointer;
+      transition:.25s;
     }
 
     .open-btn:active{
       transform:scale(.95);
     }
+
+    .surprise{
+      display:none;
+      min-height:100vh;
+      padding:55px 20px;
+      background:linear-gradient(135deg,#ff5d88,#ffb16f);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card{
+      max-width:650px;
+      margin:auto;
+      background:rgba(255,255,255,.22);
+      border:2px solid rgba(255,255,255,.65);
+      border-radius:28px;
+      padding:30px 20px;
+      box-shadow:0 15px 35px rgba(80,0,25,.28);
+      backdrop-filter:blur(5px);
+    }
+
+    .card h2{
+      font-size:34px;
+      margin-bottom:18px;
+    }
+
+    .card p{
+      font-size:21px;
+      line-height:1.7;
+    }
+
+    .gallery{
+      max-width:700px;
+      margin:35px auto;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .gallery img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:22px;
+      border:4px solid white;
+      box-shadow:0 10px 22px rgba(80,0,25,.3);
+    }
+
+    .love-btn{
+      margin-top:20px;
+      border:none;
+      border-radius:50px;
+      padding:17px 30px;
+      font-size:22px;
+      font-weight:bold;
+      color:#e62c62;
+      background:white;
+      cursor:pointer;
+    }
+
+    .heart{
+      position:fixed;
+      z-index:10;
+      pointer-events:none;
+      font-size:28px;
+      animation:fly 2s ease-out forwards;
+    }
+
+    @keyframes fly{
+      0%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+      }
+      100%{
+        opacity:0;
+        transform:translateY(-350px) rotate(360deg) scale(1.8);
+      }
+    }
+
+    @media(max-width:420px){
+      .hero{
+        padding:45px 16px;
+      }
+
+      .gallery{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <main class="birthday-page">
-    <a class="open-btn" href="#surprise">Open Your Surprise 🎁</a>
-  </main>
+
+  <section class="hero" id="home">
+    <div class="content">
+      <h1>🎉 Happy Birthday <span>Puja</span> 🎉</h1>
+
+      <p class="message">
+        আজ তোমার special দিন।<br>
+        তোমার হাসি, স্বপ্ন আর ভালোবাসায়<br>
+        জীবন সবসময় সুন্দর থাকুক। ❤️
+      </p>
+
+      <button class="open-btn" id="openBtn">
+        Open Your Surprise 🎁
+      </button>
+    </div>
+  </section>
+
+  <section class="surprise" id="surprise">
+    <div class="card">
+      <h2>Happy Birthday Puja ❤️</h2>
+      <p>
+        তোমার জন্য অনেক ভালোবাসা, হাসি আর সুন্দর মুহূর্ত থাকুক।<br>
+        তুমি সবসময় এভাবেই হাসিখুশি থেকো। 🌸
+      </p>
+
+      <button class="love-btn" id="loveBtn">
+        Send Love ❤️
+      </button>
+    </div>
+
+    <div class="gallery">
+      <img src="IMG-20251021-WA0071.jpg" alt="Puja">
+      <img src="IMG-20260313-WA0046.jpg" alt="Puja">
+      <img src="IMG-20260313-WA0053.jpg" alt="Puja">
+      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
+      <img src="IMG-20260618-WA0019.jpg" alt="Puja">
+    </div>
+  </section>
+
+  <script>
+    const openBtn = document.getElementById("openBtn");
+    const surprise = document.getElementById("surprise");
+    const loveBtn = document.getElementById("loveBtn");
+
+    openBtn.addEventListener("click", function(){
+      surprise.style.display = "block";
+      surprise.scrollIntoView({behavior:"smooth"});
+      burstHearts();
+    });
+
+    loveBtn.addEventListener("click", function(){
+      burstHearts();
+      alert("Happy Birthday Puja ❤️ তোমাকে অনেক ভালোবাসা!");
+    });
+
+    function burstHearts(){
+      const items = ["❤️","💖","🌸","🎉","✨","🌹","💝"];
+
+      for(let i = 0; i < 30; i++){
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.innerText = items[Math.floor(Math.random() * items.length)];
+
+        heart.style.left = Math.random() * 90 + "vw";
+        heart.style.top = 65 + Math.random() * 25 + "vh";
+        heart.style.fontSize = (22 + Math.random() * 26) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(function(){
+          heart.remove();
+        }, 2100);
+      }
+    }
+  </script>
+
 </body>
 </html>
