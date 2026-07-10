@@ -1,555 +1,546 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Puja ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Puja ❤️</title>
 
-  <style>
-    *{
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-    html,body{
-      margin:0;
-      width:100%;
-      min-height:100%;
-      font-family:Arial,sans-serif;
-      overflow-x:hidden;
-      background:#fff4f7;
-    }
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+  background:#fff4f7;
+}
 
-    .page{
-      display:none;
-      width:100%;
-      min-height:100svh;
-      position:relative;
-      overflow:hidden;
-    }
+.page{
+  display:none;
+  width:100%;
+  min-height:100svh;
+  position:relative;
+  overflow:hidden;
+}
 
-    .page.active{
-      display:flex;
-    }
+.page.active{
+  display:flex;
+}
 
-    /* প্রথম পেজ: শুধু তোমার envelope/fingerprint photo */
-    #coverPage{
-      align-items:center;
-      justify-content:center;
-      background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-    }
+/* ===== FIRST PAGE ===== */
+#coverPage{
+  align-items:center;
+  justify-content:center;
+  background:url("cover.jpg") center/cover no-repeat;
+}
 
-    /* ছবির নিজের fingerprint-এর উপর invisible button */
-    .fingerprintTap{
-      position:absolute;
-      width:210px;
-      height:230px;
-      left:50%;
-      top:65%;
-      transform:translate(-50%,-50%);
-      border:0;
-      background:transparent;
-      cursor:pointer;
-      z-index:10;
-    }
+/* ছবির fingerprint-এর উপর invisible tap */
+.fingerprintTap{
+  position:absolute;
+  left:50%;
+  top:65%;
+  transform:translate(-50%,-50%);
+  width:220px;
+  height:240px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  z-index:10;
+}
 
-    /* fingerprint tap করার পর 4 second animation */
-    #animationPage{
-      align-items:center;
-      justify-content:center;
-      background:radial-gradient(circle at center,#8f2b35 0%,#3b0710 48%,#120004 100%);
-    }
+/* ===== 4 SECOND ANIMATION ===== */
+#animationPage{
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle,#b84550 0%,#4a0712 48%,#160004 100%);
+}
 
-    .goldCore{
-      position:absolute;
-      width:32px;
-      height:32px;
-      border-radius:50%;
-      background:#fff8cf;
-      box-shadow:
-        0 0 28px 16px #fff8cf,
-        0 0 85px 48px #ffd34f,
-        0 0 180px 95px #ff8b2d;
-      animation:coreBlast 4s ease-in-out forwards;
-    }
+.core{
+  position:absolute;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#fff7bd;
+  box-shadow:
+    0 0 30px 18px #fff7bd,
+    0 0 100px 55px #ffd04b,
+    0 0 190px 100px #ff8d31;
+  animation:blast 4s ease-in-out forwards;
+}
 
-    .wave{
-      position:absolute;
-      width:80px;
-      height:80px;
-      border-radius:50%;
-      border:4px solid #ffe88b;
-      box-shadow:0 0 20px #fff3b8,0 0 50px #ffc42f;
-      animation:waveBlast 4s ease-out forwards;
-    }
+.ring{
+  position:absolute;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:4px solid #ffe791;
+  box-shadow:0 0 25px #fff5c5,0 0 60px #ffc733;
+  animation:ringBlast 4s ease-out forwards;
+}
 
-    .wave2{animation-delay:.45s}
-    .wave3{animation-delay:.90s}
-    .wave4{animation-delay:1.35s}
+.r2{animation-delay:.45s}
+.r3{animation-delay:.9s}
+.r4{animation-delay:1.35s}
 
-    .spark{
-      position:absolute;
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#fff7b6;
-      box-shadow:0 0 12px #fff,0 0 26px #ffd453;
-      animation:sparkMove 3.4s ease-out forwards;
-    }
+.spark{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff7b6;
+  box-shadow:0 0 12px #fff,0 0 26px #ffd453;
+  animation:sparkMove 3.3s ease-out forwards;
+}
 
-    @keyframes coreBlast{
-      0%,18%{transform:scale(.2);opacity:0}
-      38%{transform:scale(1);opacity:1}
-      80%{transform:scale(10);opacity:1}
-      100%{transform:scale(18);opacity:0}
-    }
+@keyframes blast{
+  0%,20%{transform:scale(.15);opacity:0}
+  42%{transform:scale(1);opacity:1}
+  82%{transform:scale(12);opacity:1}
+  100%{transform:scale(20);opacity:0}
+}
 
-    @keyframes waveBlast{
-      0%{transform:scale(.15);opacity:0}
-      10%{opacity:1}
-      100%{transform:scale(15);opacity:0}
-    }
+@keyframes ringBlast{
+  0%{transform:scale(.1);opacity:0}
+  12%{opacity:1}
+  100%{transform:scale(16);opacity:0}
+}
 
-    @keyframes sparkMove{
-      0%{transform:translate(0,0) scale(.2);opacity:0}
-      10%{opacity:1}
-      100%{transform:translate(var(--x),var(--y)) scale(1.8);opacity:0}
-    }
+@keyframes sparkMove{
+  0%{transform:translate(0,0) scale(.2);opacity:0}
+  10%{opacity:1}
+  100%{transform:translate(var(--x),var(--y)) scale(1.7);opacity:0}
+}
 
-    /* Happy Birthday Puja full-screen page */
-    #birthdayPage{
-      align-items:flex-end;
-      justify-content:center;
-      padding:0 16px 32px;
-      background:url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
-    }
+/* ===== BIRTHDAY PAGE ===== */
+#birthdayPage{
+  align-items:flex-end;
+  justify-content:center;
+  padding:0 16px 34px;
+  background:url("birthday.jpg") center/cover no-repeat;
+}
 
-    .scratchWrap{
-      position:relative;
-      width:min(88vw,440px);
-      height:125px;
-      border-radius:30px;
-      overflow:hidden;
-      box-shadow:0 12px 30px rgba(143,0,68,.42);
-      touch-action:none;
-      z-index:20;
-    }
+.scratchWrap{
+  position:relative;
+  width:min(88vw,440px);
+  height:130px;
+  border-radius:30px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(120,0,60,.42);
+  touch-action:none;
+  z-index:20;
+}
 
-    .dateCard{
-      width:100%;
-      height:100%;
-      border:3px solid #fff;
-      border-radius:30px;
-      background:linear-gradient(135deg,#ff4e8c,#e7006b);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
+.dateCard{
+  position:absolute;
+  inset:0;
+  border:3px solid #fff;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff4f91,#e6006a);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
 
-    .dateCard b{
-      font-size:clamp(25px,7vw,38px);
-      letter-spacing:1px;
-    }
+.dateCard b{
+  font-size:clamp(25px,7vw,38px);
+  letter-spacing:1px;
+}
 
-    #scratchCanvas{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      touch-action:none;
-    }
+#scratchCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  touch-action:none;
+  z-index:3;
+}
 
-    .scratchText{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#fff;
-      font-size:17px;
-      font-weight:bold;
-      letter-spacing:1px;
-      pointer-events:none;
-      text-shadow:0 2px 6px rgba(0,0,0,.35);
-    }
+.scratchText{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:17px;
+  font-weight:bold;
+  letter-spacing:1px;
+  pointer-events:none;
+  text-shadow:0 2px 6px rgba(0,0,0,.35);
+}
 
-    /* Memory page */
-    #memoryPage{
-      flex-direction:column;
-      align-items:center;
-      padding:42px 16px 70px;
-      overflow-y:auto;
-      background:linear-gradient(#fffaf7,#ffe7ef);
-    }
+/* ===== MEMORY PAGE ===== */
+#memoryPage{
+  flex-direction:column;
+  align-items:center;
+  padding:40px 16px 70px;
+  overflow-y:auto;
+  background:linear-gradient(#fffaf7,#ffe4ee);
+}
 
-    .memorySmall{
-      color:#a75c69;
-      letter-spacing:5px;
-      font-size:14px;
-      margin:4px 0 8px;
-      text-align:center;
-    }
+.small{
+  color:#a75c69;
+  letter-spacing:4px;
+  font-size:13px;
+  margin:0;
+}
 
-    .memoryTitle{
-      color:#934957;
-      font-family:Georgia,serif;
-      font-size:clamp(44px,12vw,68px);
-      margin:0 0 28px;
-      text-align:center;
-    }
+.title{
+  color:#934957;
+  font-family:Georgia,serif;
+  font-size:clamp(45px,12vw,65px);
+  margin:8px 0 30px;
+  text-align:center;
+}
 
-    .gallery{
-      width:min(100%,560px);
-    }
+.gallery{
+  width:min(100%,560px);
+}
 
-    .photoCard{
-      background:#fff;
-      padding:13px 13px 20px;
-      border-radius:18px;
-      margin:0 auto 30px;
-      box-shadow:0 14px 30px rgba(120,55,78,.18);
-      opacity:0;
-    }
+.card{
+  opacity:0;
+  background:#fff;
+  padding:12px 12px 20px;
+  border-radius:18px;
+  margin-bottom:28px;
+  box-shadow:0 14px 30px rgba(120,55,78,.18);
+}
 
-    .photoCard.show{
-      animation:photoEnter .8s ease forwards,softFloat 4.2s ease-in-out infinite;
-    }
+.card.show{
+  animation:photoIn .8s ease forwards,photoFloat 4s ease-in-out infinite;
+}
 
-    .photoCard img{
-      display:block;
-      width:100%;
-      max-height:680px;
-      object-fit:cover;
-      border-radius:10px;
-    }
+.card img{
+  width:100%;
+  display:block;
+  border-radius:10px;
+  max-height:680px;
+  object-fit:cover;
+}
 
-    .caption{
-      color:#9d5361;
-      text-align:center;
-      font-family:Georgia,serif;
-      font-size:24px;
-      margin-top:14px;
-    }
+.caption{
+  text-align:center;
+  color:#9d5361;
+  font-size:22px;
+  font-family:Georgia,serif;
+  margin-top:12px;
+}
 
-    @keyframes photoEnter{
-      from{
-        opacity:0;
-        transform:translateY(45px) rotate(-2deg) scale(.96);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0) rotate(0) scale(1);
-      }
-    }
+@keyframes photoIn{
+  from{opacity:0;transform:translateY(45px) rotate(-2deg) scale(.96)}
+  to{opacity:1;transform:translateY(0) rotate(0) scale(1)}
+}
 
-    @keyframes softFloat{
-      0%,100%{transform:translateY(0) rotate(-.5deg)}
-      50%{transform:translateY(-7px) rotate(.5deg) scale(1.01)}
-    }
+@keyframes photoFloat{
+  0%,100%{transform:translateY(0) rotate(-.4deg)}
+  50%{transform:translateY(-7px) rotate(.4deg)}
+}
 
-    /* Petals and confetti */
-    .petal,.confetti{
-      position:fixed;
-      top:-50px;
-      pointer-events:none;
-      z-index:9999;
-      animation:petalFall linear forwards;
-    }
+/* ===== PETALS + CONFETTI ===== */
+.petal,.confetti{
+  position:fixed;
+  top:-45px;
+  z-index:9999;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
 
-    .petal{
-      border-radius:75% 15% 75% 15%;
-      box-shadow:0 2px 5px rgba(120,30,55,.18);
-    }
+.petal{
+  border-radius:75% 15% 75% 15%;
+}
 
-    .confetti{
-      border-radius:2px;
-    }
+.confetti{
+  border-radius:2px;
+}
 
-    @keyframes petalFall{
-      0%{
-        transform:translate3d(0,-60px,0) rotate(0);
-        opacity:0;
-      }
-      8%{opacity:1}
-      25%{
-        transform:translate3d(calc(var(--drift) * .25),25vh,0)
-        rotate(calc(var(--spin) * .25));
-      }
-      50%{
-        transform:translate3d(calc(var(--drift) * -.25),52vh,0)
-        rotate(calc(var(--spin) * .55));
-      }
-      75%{
-        transform:translate3d(calc(var(--drift) * .55),78vh,0)
-        rotate(calc(var(--spin) * .78));
-      }
-      100%{
-        transform:translate3d(var(--drift),112vh,0) rotate(var(--spin));
-        opacity:.15;
-      }
-    }
-  </style>
+@keyframes fall{
+  0%{transform:translate(0,-40px) rotate(0);opacity:0}
+  10%{opacity:1}
+  100%{transform:translate(var(--move),110vh) rotate(var(--spin));opacity:.15}
+}
+</style>
 </head>
 
 <body>
 
-  <section id="coverPage" class="page active">
-    <button class="fingerprintTap" onclick="startBirthday()" aria-label="Open birthday surprise"></button>
-  </section>
+<section id="coverPage" class="page active">
+  <button class="fingerprintTap" onclick="openAnimation()" aria-label="Open surprise"></button>
+</section>
 
-  <section id="animationPage" class="page"></section>
+<section id="animationPage" class="page"></section>
 
-  <section id="birthdayPage" class="page">
-    <div class="scratchWrap" id="scratchWrap">
-      <div class="dateCard">
-        <b>26 NOVEMBER 2026</b>
-      </div>
-      <canvas id="scratchCanvas"></canvas>
-      <div class="scratchText">SCRATCH HERE ✨</div>
+<section id="birthdayPage" class="page">
+  <div class="scratchWrap" id="scratchWrap">
+    <div class="dateCard">
+      <b>26 NOVEMBER 2026</b>
     </div>
-  </section>
 
-  <section id="memoryPage" class="page">
-    <p class="memorySmall">OUR MEMORIES</p>
-    <h1 class="memoryTitle">Forever Us</h1>
+    <canvas id="scratchCanvas"></canvas>
+    <div class="scratchText">SCRATCH HERE ✨</div>
+  </div>
+</section>
 
-    <div class="gallery">
-      <div class="photoCard">
-        <img src="IMG-20260528-WA0006(1).jpg" alt="Puja">
-        <div class="caption">Beautiful Puja ❤️</div>
-      </div>
+<section id="memoryPage" class="page">
+  <p class="small">OUR MEMORIES</p>
+  <h1 class="title">Forever Us</h1>
 
-      <div class="photoCard">
-        <img src="IMG-20260313-WA0046.jpg" alt="Puja">
-        <div class="caption">Our Sweet Memory ❤️</div>
-      </div>
+  <div class="gallery">
+    <div class="card"><img src="IMG-20260528-WA0006(1).jpg"><div class="caption">Beautiful Puja ❤️</div></div>
+    <div class="card"><img src="IMG-20260313-WA0046.jpg"><div class="caption">Our Sweet Memory ❤️</div></div>
+    <div class="card"><img src="IMG-20260618-WA0019.jpg"><div class="caption">My Favourite Smile 🌸</div></div>
+    <div class="card"><img src="IMG-20251021-WA0071.jpg"><div class="caption">Together Forever ❤️</div></div>
+    <div class="card"><img src="IMG-20260313-WA0053.jpg"><div class="caption">Happy Birthday Puja 🎂</div></div>
+  </div>
+</section>
 
-      <div class="photoCard">
-        <img src="IMG-20260618-WA0019.jpg" alt="Puja">
-        <div class="caption">My Favourite Smile 🌸</div>
-      </div>
+<script>
+let petalTimer = null;
+let drawing = false;
+let scratchDone = false;
+let lastPoint = null;
 
-      <div class="photoCard">
-        <img src="IMG-20251021-WA0071.jpg" alt="Puja">
-        <div class="caption">Together Forever ❤️</div>
-      </div>
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d");
+const scratchWrap = document.getElementById("scratchWrap");
+const scratchText = document.querySelector(".scratchText");
 
-      <div class="photoCard">
-        <img src="IMG-20260313-WA0053.jpg" alt="Puja">
-        <div class="caption">Happy Birthday Puja 🎂</div>
-      </div>
-    </div>
-  </section>
+function showPage(id){
+  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0,0);
+}
 
-  <script>
-    let scratchDone = false;
-    let drawing = false;
-    let scratchMoves = 0;
-    let petalInterval = null;
+function openAnimation(){
+  showPage("animationPage");
 
-    const canvas = document.getElementById("scratchCanvas");
-    const ctx = canvas.getContext("2d");
-    const scratchWrap = document.getElementById("scratchWrap");
-    const scratchText = document.querySelector(".scratchText");
+  const animationPage = document.getElementById("animationPage");
 
-    function showOnly(id){
-      document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-      });
+  animationPage.innerHTML = `
+    <div class="core"></div>
+    <div class="ring"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="ring r4"></div>
+  `;
 
-      document.getElementById(id).classList.add("active");
-      window.scrollTo(0,0);
+  for(let i=0;i<100;i++){
+    const spark = document.createElement("div");
+    spark.className = "spark";
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 100 + Math.random() * 500;
+
+    spark.style.left = "50%";
+    spark.style.top = "50%";
+    spark.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    spark.style.setProperty("--y", Math.sin(angle) * distance + "px");
+    spark.style.animationDelay = (Math.random() * 1.2) + "s";
+
+    animationPage.appendChild(spark);
+  }
+
+  setTimeout(() => {
+    showPage("birthdayPage");
+    setupScratch();
+    startPetals();
+  },4000);
+}
+
+function setupScratch(){
+  scratchDone = false;
+  lastPoint = null;
+
+  const rect = scratchWrap.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+
+  canvas.width = Math.floor(rect.width * dpr);
+  canvas.height = Math.floor(rect.height * dpr);
+  canvas.style.width = rect.width + "px";
+  canvas.style.height = rect.height + "px";
+
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.globalCompositeOperation = "source-over";
+
+  ctx.fillStyle = "#b65c7b";
+  ctx.fillRect(0,0,rect.width,rect.height);
+
+  ctx.fillStyle = "rgba(255,255,255,.18)";
+  for(let i=0;i<80;i++){
+    ctx.beginPath();
+    ctx.arc(
+      Math.random() * rect.width,
+      Math.random() * rect.height,
+      1 + Math.random() * 4,
+      0,
+      Math.PI * 2
+    );
+    ctx.fill();
+  }
+
+  scratchText.style.display = "flex";
+  canvas.style.pointerEvents = "auto";
+}
+
+function getPoint(event){
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x:event.clientX - rect.left,
+    y:event.clientY - rect.top
+  };
+}
+
+function eraseAt(point){
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 58;
+
+  ctx.beginPath();
+
+  if(lastPoint){
+    ctx.moveTo(lastPoint.x,lastPoint.y);
+    ctx.lineTo(point.x,point.y);
+    ctx.stroke();
+  }else{
+    ctx.arc(point.x,point.y,29,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  lastPoint = point;
+}
+
+function checkScratch(){
+  const pixels = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+  let cleared = 0;
+  let checked = 0;
+
+  for(let i=3;i<pixels.length;i+=120){
+    checked++;
+    if(pixels[i] < 25) cleared++;
+  }
+
+  return cleared / checked;
+}
+
+function finishScratch(){
+  if(scratchDone) return;
+
+  scratchDone = true;
+  drawing = false;
+  canvas.style.pointerEvents = "none";
+  scratchText.style.display = "none";
+
+  for(let i=0;i<110;i++){
+    setTimeout(makePetal,i*13);
+  }
+
+  setTimeout(() => {
+    showPage("memoryPage");
+    animateCards();
+    startPetals();
+  },1400);
+}
+
+canvas.addEventListener("pointerdown",event => {
+  if(scratchDone) return;
+
+  drawing = true;
+  lastPoint = null;
+  canvas.setPointerCapture(event.pointerId);
+
+  scratchText.style.display = "none";
+
+  const point = getPoint(event);
+  eraseAt(point);
+});
+
+canvas.addEventListener("pointermove",event => {
+  if(!drawing || scratchDone) return;
+
+  event.preventDefault();
+
+  const point = getPoint(event);
+  eraseAt(point);
+
+  if(checkScratch() > 0.28){
+    finishScratch();
+  }
+});
+
+canvas.addEventListener("pointerup",event => {
+  drawing = false;
+  lastPoint = null;
+
+  if(!scratchDone && checkScratch() > 0.28){
+    finishScratch();
+  }
+});
+
+canvas.addEventListener("pointercancel",() => {
+  drawing = false;
+  lastPoint = null;
+});
+
+function animateCards(){
+  document.querySelectorAll(".card").forEach((card,index) => {
+    card.classList.remove("show");
+
+    setTimeout(() => {
+      card.classList.add("show");
+    },index*350);
+  });
+}
+
+function makePetal(){
+  const petalColors = ["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
+  const confettiColors = ["#ffcf5c","#ff9fbd","#ffd1df","#aee8d4","#ffffff"];
+
+  const item = document.createElement("div");
+  const isPetal = Math.random() < .76;
+
+  item.className = isPetal ? "petal" : "confetti";
+  item.style.left = Math.random() * 100 + "vw";
+
+  item.style.background = isPetal
+    ? petalColors[Math.floor(Math.random() * petalColors.length)]
+    : confettiColors[Math.floor(Math.random() * confettiColors.length)];
+
+  item.style.setProperty("--move",(Math.random()*220-110)+"px");
+  item.style.setProperty("--spin",(Math.random()*900-450)+"deg");
+
+  const size = isPetal ? 7 + Math.random()*11 : 5 + Math.random()*6;
+
+  item.style.width = size + "px";
+  item.style.height = isPetal ? size*1.45 + "px" : size*1.5 + "px";
+  item.style.animationDuration = 6 + Math.random()*5 + "s";
+
+  document.body.appendChild(item);
+
+  setTimeout(() => item.remove(),12000);
+}
+
+function startPetals(){
+  if(petalTimer) clearInterval(petalTimer);
+
+  for(let i=0;i<45;i++){
+    setTimeout(makePetal,i*50);
+  }
+
+  petalTimer = setInterval(() => {
+    for(let i=0;i<3;i++){
+      setTimeout(makePetal,i*200);
     }
-
-    function startBirthday(){
-      showOnly("animationPage");
-
-      const animationPage = document.getElementById("animationPage");
-
-      animationPage.innerHTML = `
-        <div class="goldCore"></div>
-        <div class="wave"></div>
-        <div class="wave wave2"></div>
-        <div class="wave wave3"></div>
-        <div class="wave wave4"></div>
-      `;
-
-      for(let i = 0; i < 130; i++){
-        const spark = document.createElement("div");
-        spark.className = "spark";
-
-        const angle = Math.random() * Math.PI * 2;
-        const distance = 100 + Math.random() * 520;
-
-        spark.style.left = "50%";
-        spark.style.top = "50%";
-        spark.style.setProperty("--x", Math.cos(angle) * distance + "px");
-        spark.style.setProperty("--y", Math.sin(angle) * distance + "px");
-        spark.style.animationDelay = (Math.random() * 1.2) + "s";
-
-        animationPage.appendChild(spark);
-      }
-
-      setTimeout(() => {
-        showOnly("birthdayPage");
-        setupScratch();
-        startPetalRain();
-      }, 4000);
-    }
-
-    function setupScratch(){
-      scratchDone = false;
-      scratchMoves = 0;
-
-      const rect = scratchWrap.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = rect.width + "px";
-      canvas.style.height = rect.height + "px";
-
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      ctx.globalCompositeOperation = "source-over";
-
-      ctx.fillStyle = "#b55b79";
-      ctx.fillRect(0,0,rect.width,rect.height);
-
-      ctx.fillStyle = "rgba(255,255,255,.18)";
-
-      for(let i = 0; i < 70; i++){
-        ctx.beginPath();
-        ctx.arc(
-          Math.random() * rect.width,
-          Math.random() * rect.height,
-          Math.random() * 4 + 1,
-          0,
-          Math.PI * 2
-        );
-        ctx.fill();
-      }
-
-      scratchText.style.display = "flex";
-      canvas.style.pointerEvents = "auto";
-    }
-
-    function getPoint(e){
-      const rect = canvas.getBoundingClientRect();
-
-      return {
-        x:e.clientX - rect.left,
-        y:e.clientY - rect.top
-      };
-    }
-
-    function scratch(e){
-      if(!drawing || scratchDone) return;
-
-      e.preventDefault();
-
-      const point = getPoint(e);
-
-      scratchText.style.display = "none";
-
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.beginPath();
-      ctx.arc(point.x,point.y,42,0,Math.PI * 2);
-      ctx.fill();
-
-      scratchMoves++;
-
-      /* মোবাইলে নিশ্চিত কাজ করার জন্য 8 বার scratch হলেই open */
-      if(scratchMoves >= 8){
-        scratchDone = true;
-        drawing = false;
-        canvas.style.pointerEvents = "none";
-
-        for(let i = 0; i < 100; i++){
-          setTimeout(makePetal, i * 15);
-        }
-
-        setTimeout(() => {
-          showOnly("memoryPage");
-          animatePhotos();
-          startPetalRain();
-        }, 1300);
-      }
-    }
-
-    canvas.addEventListener("pointerdown", e => {
-      drawing = true;
-      canvas.setPointerCapture(e.pointerId);
-      scratch(e);
-    });
-
-    canvas.addEventListener("pointermove", scratch);
-
-    canvas.addEventListener("pointerup", () => {
-      drawing = false;
-    });
-
-    canvas.addEventListener("pointercancel", () => {
-      drawing = false;
-    });
-
-    function animatePhotos(){
-      document.querySelectorAll(".photoCard").forEach((card,index) => {
-        card.classList.remove("show");
-
-        setTimeout(() => {
-          card.classList.add("show");
-        }, index * 320);
-      });
-    }
-
-    function makePetal(){
-      const petalColors = ["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
-      const confettiColors = ["#ffcf5c","#ff9fbd","#ffd1df","#aee8d4","#ffffff"];
-
-      const item = document.createElement("div");
-      const isPetal = Math.random() < .75;
-
-      item.className = isPetal ? "petal" : "confetti";
-      item.style.left = (Math.random() * 100) + "vw";
-
-      item.style.background = isPetal
-        ? petalColors[Math.floor(Math.random() * petalColors.length)]
-        : confettiColors[Math.floor(Math.random() * confettiColors.length)];
-
-      item.style.setProperty("--drift",(Math.random() * 220 - 110) + "px");
-      item.style.setProperty("--spin",(Math.random() * 900 - 450) + "deg");
-
-      const size = isPetal ? (7 + Math.random() * 11) : (5 + Math.random() * 6);
-
-      item.style.width = size + "px";
-      item.style.height = isPetal ? (size * 1.45) + "px" : (size * 1.5) + "px";
-      item.style.animationDuration = (6 + Math.random() * 6) + "s";
-
-      document.body.appendChild(item);
-
-      setTimeout(() => {
-        item.remove();
-      }, 13000);
-    }
-
-    function startPetalRain(){
-      if(petalInterval){
-        clearInterval(petalInterval);
-      }
-
-      for(let i = 0; i < 70; i++){
-        setTimeout(makePetal, i * 45);
-      }
-
-      petalInterval = setInterval(() => {
-        for(let i = 0; i < 4; i++){
-          setTimeout(makePetal, i * 180);
-        }
-      }, 1200);
-    }
-  </script>
+  },1200);
+}
+</script>
 
 </body>
 </html>
