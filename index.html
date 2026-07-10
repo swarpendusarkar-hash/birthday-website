@@ -33,14 +33,13 @@ html,body{
   display:flex;
 }
 
-/* প্রথম পেজ: শুধু তোমার cover photo */
+/* COVER PAGE */
 #coverPage{
   align-items:center;
   justify-content:center;
   background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
 }
 
-/* ছবির fingerprint-এর উপরে invisible click area */
 .fingerprintTap{
   position:absolute;
   left:50%;
@@ -54,7 +53,7 @@ html,body{
   z-index:10;
 }
 
-/* Fingerprint tap animation */
+/* GOLDEN OPENING ANIMATION */
 #animationPage{
   align-items:center;
   justify-content:center;
@@ -67,7 +66,10 @@ html,body{
   height:34px;
   border-radius:50%;
   background:#fff7bd;
-  box-shadow:0 0 30px 18px #fff7bd,0 0 100px 55px #ffd04b,0 0 190px 100px #ff8d31;
+  box-shadow:
+    0 0 30px 18px #fff7bd,
+    0 0 100px 55px #ffd04b,
+    0 0 190px 100px #ff8d31;
   animation:blast 4s ease-in-out forwards;
 }
 
@@ -114,7 +116,7 @@ html,body{
   100%{transform:translate(var(--x),var(--y)) scale(1.6);opacity:0}
 }
 
-/* Birthday page */
+/* BIRTHDAY + SCRATCH PAGE */
 #birthdayPage{
   align-items:flex-end;
   justify-content:center;
@@ -147,7 +149,7 @@ html,body{
 }
 
 .dateCard b{
-  font-size:clamp(26px,7vw,38px);
+  font-size:clamp(25px,7vw,37px);
   letter-spacing:1px;
 }
 
@@ -160,21 +162,7 @@ html,body{
   touch-action:none;
 }
 
-.scratchText{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:17px;
-  font-weight:bold;
-  pointer-events:none;
-  text-shadow:0 2px 6px rgba(0,0,0,.35);
-}
-
-/* 2 second celebration */
+/* CELEBRATION PAGE */
 #celebrationPage{
   align-items:center;
   justify-content:center;
@@ -197,7 +185,7 @@ html,body{
   100%{transform:scale(1.3);opacity:0}
 }
 
-/* Memory page */
+/* MEMORY PAGE */
 #memoryPage{
   flex-direction:column;
   align-items:center;
@@ -221,7 +209,9 @@ html,body{
   text-align:center;
 }
 
-.gallery{width:min(100%,560px)}
+.gallery{
+  width:min(100%,560px);
+}
 
 .card{
   opacity:0;
@@ -253,8 +243,14 @@ html,body{
 }
 
 @keyframes photoIn{
-  from{opacity:0;transform:translateY(45px) scale(.96) rotate(-2deg)}
-  to{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+  from{
+    opacity:0;
+    transform:translateY(45px) scale(.96) rotate(-2deg);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1) rotate(0);
+  }
 }
 
 @keyframes photoFloat{
@@ -262,7 +258,76 @@ html,body{
   50%{transform:translateY(-7px) rotate(.4deg)}
 }
 
-/* Petals */
+/* MESSAGE BUTTON */
+.messageBtn{
+  width:min(88vw,420px);
+  border:0;
+  border-radius:50px;
+  padding:18px 22px;
+  margin:8px auto 20px;
+  background:linear-gradient(135deg,#ff4f91,#d90063);
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+  box-shadow:0 12px 25px rgba(170,0,76,.28);
+  cursor:pointer;
+}
+
+/* LOVE LETTER PAGE */
+#letterPage{
+  align-items:center;
+  justify-content:center;
+  padding:28px 16px;
+  overflow-y:auto;
+  background:linear-gradient(135deg,#fff7fa,#ffdce9);
+}
+
+.letterCard{
+  width:min(92vw,500px);
+  padding:34px 24px;
+  border-radius:26px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 18px 42px rgba(142,45,80,.22);
+  text-align:center;
+  color:#934957;
+  animation:letterOpen .9s ease both;
+}
+
+.letterSmall{
+  margin:0 0 12px;
+  color:#c66b82;
+  font-size:12px;
+  letter-spacing:3px;
+}
+
+.letterCard h1{
+  margin:0 0 24px;
+  font-family:Georgia,serif;
+  font-size:clamp(37px,10vw,55px);
+  color:#d72a70;
+}
+
+.letterCard p{
+  margin:0;
+  font-family:Georgia,serif;
+  font-size:20px;
+  line-height:1.7;
+}
+
+.letterSign{
+  margin-top:26px;
+  color:#d72a70;
+  font-family:Georgia,serif;
+  font-size:20px;
+  font-weight:bold;
+}
+
+@keyframes letterOpen{
+  from{opacity:0;transform:translateY(35px) scale(.92)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* PETALS */
 .petal{
   position:fixed;
   top:-45px;
@@ -281,9 +346,11 @@ html,body{
 </head>
 
 <body>
+
 <audio id="bgMusic" loop preload="auto">
   <source src="song.mp3" type="audio/mpeg">
 </audio>
+
 <section id="coverPage" class="page active">
   <button class="fingerprintTap" id="fingerprintTap" aria-label="Open birthday surprise"></button>
 </section>
@@ -293,10 +360,9 @@ html,body{
 <section id="birthdayPage" class="page">
   <div class="scratchWrap" id="scratchWrap">
     <div class="dateCard">
-      <b>26 NOVEMBER 2026</b>
+      <b>Happy Birthday Puja ❤️</b>
     </div>
     <canvas id="scratchCanvas"></canvas>
-    <div class="scratchText">SCRATCH HERE ✨</div>
   </div>
 </section>
 
@@ -309,100 +375,143 @@ html,body{
   <h1 class="title">Forever Us</h1>
 
   <div class="gallery">
-    <div class="card"><img src="IMG-20260528-WA0006(1).jpg"><div class="caption">Beautiful Puja ❤️</div></div>
-    <div class="card"><img src="IMG-20260313-WA0046.jpg"><div class="caption">Our Sweet Memory ❤️</div></div>
-    <div class="card"><img src="IMG-20260618-WA0019.jpg"><div class="caption">My Favourite Smile 🌸</div></div>
-    <div class="card"><img src="IMG-20251021-WA0071.jpg"><div class="caption">Together Forever ❤️</div></div>
-    <div class="card"><img src="IMG-20260313-WA0053.jpg"><div class="caption">Happy Birthday Puja 🎂</div></div>
+    <div class="card"><img src="IMG-20260528-WA0006(1).jpg" alt="Puja"><div class="caption">Beautiful Puja ❤️</div></div>
+    <div class="card"><img src="IMG-20260313-WA0046.jpg" alt="Puja"><div class="caption">Our Sweet Memory ❤️</div></div>
+    <div class="card"><img src="IMG-20260618-WA0019.jpg" alt="Puja"><div class="caption">My Favourite Smile 🌸</div></div>
+    <div class="card"><img src="IMG-20251021-WA0071.jpg" alt="Puja"><div class="caption">Together Forever ❤️</div></div>
+    <div class="card"><img src="IMG-20260313-WA0053.jpg" alt="Puja"><div class="caption">Happy Birthday Puja 🎂</div></div>
+  </div>
+
+  <button class="messageBtn" id="messageBtn">A Message For You ❤️</button>
+</section>
+
+<section id="letterPage" class="page">
+  <div class="letterCard">
+    <p class="letterSmall">FOR MY SPECIAL PERSON</p>
+    <h1>Happy Birthday<br>Puja ❤️</h1>
+    <p>
+      তুমি আমার জীবনের সবচেয়ে সুন্দর মানুষ।<br><br>
+      তোমার হাসি আমার সব দিনের আলো।<br><br>
+      আজকের দিনটা শুধু তোমার জন্য।<br>
+      সবসময় এভাবেই হাসতে থেকো।<br><br>
+      I Love You Forever ❤️
+    </p>
+    <div class="letterSign">— Always Yours ❤️</div>
   </div>
 </section>
 
 <script>
-let drawing=false;
-let scratchTurns=0;
-let opened=false;
-let lastPoint=null;
-let petalTimer=null;
+let drawing = false;
+let scratchTurns = 0;
+let opened = false;
+let lastPoint = null;
+let petalTimer = null;
 
-const canvas=document.getElementById("scratchCanvas");
-const ctx=canvas.getContext("2d");
-const scratchWrap=document.getElementById("scratchWrap");
-const scratchText=document.querySelector(".scratchText");
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d");
+const scratchWrap = document.getElementById("scratchWrap");
+const music = document.getElementById("bgMusic");
 
 function showPage(id){
-  document.querySelectorAll(".page").forEach(page=>page.classList.remove("active"));
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
   document.getElementById(id).classList.add("active");
   window.scrollTo(0,0);
 }
 
-document.getElementById("fingerprintTap").addEventListener("click",openAnimation);
+document.getElementById("fingerprintTap").addEventListener("click", openAnimation);
 
 function openAnimation(){
-  document.getElementById("bgMusic").play().catch(() => {});
   showPage("animationPage");
 
-  const page=document.getElementById("animationPage");
-  page.innerHTML='<div class="core"></div><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div>';
+  const page = document.getElementById("animationPage");
+  page.innerHTML = `
+    <div class="core"></div>
+    <div class="ring"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+    <div class="ring r4"></div>
+  `;
 
-  for(let i=0;i<90;i++){
-    const spark=document.createElement("div");
-    spark.className="spark";
+  for(let i = 0; i < 90; i++){
+    const spark = document.createElement("div");
+    spark.className = "spark";
 
-    const angle=Math.random()*Math.PI*2;
-    const distance=80+Math.random()*480;
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 80 + Math.random() * 480;
 
-    spark.style.left="50%";
-    spark.style.top="50%";
-    spark.style.setProperty("--x",Math.cos(angle)*distance+"px");
-    spark.style.setProperty("--y",Math.sin(angle)*distance+"px");
-    spark.style.animationDelay=(Math.random()*1.2)+"s";
+    spark.style.left = "50%";
+    spark.style.top = "50%";
+    spark.style.setProperty("--x", Math.cos(angle) * distance + "px");
+    spark.style.setProperty("--y", Math.sin(angle) * distance + "px");
+    spark.style.animationDelay = (Math.random() * 1.2) + "s";
 
     page.appendChild(spark);
   }
 
-  setTimeout(()=>{
+  music.currentTime = 0;
+  music.volume = 0.65;
+  music.play().catch(() => {});
+
+  setTimeout(() => {
     showPage("birthdayPage");
     setupScratch();
     startPetals();
-  },4000);
+  }, 4000);
 }
 
 function setupScratch(){
-  opened=false;
-  scratchTurns=0;
-  lastPoint=null;
+  opened = false;
+  scratchTurns = 0;
+  lastPoint = null;
 
-  const rect=scratchWrap.getBoundingClientRect();
-  const dpr=window.devicePixelRatio||1;
+  const rect = scratchWrap.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
 
-  canvas.width=Math.floor(rect.width*dpr);
-  canvas.height=Math.floor(rect.height*dpr);
+  canvas.width = Math.floor(rect.width * dpr);
+  canvas.height = Math.floor(rect.height * dpr);
 
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  ctx.globalCompositeOperation="source-over";
-  ctx.fillStyle="#b55b79";
-  ctx.fillRect(0,0,rect.width,rect.height);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.globalCompositeOperation = "source-over";
 
-  ctx.fillStyle="rgba(255,255,255,.20)";
-  for(let i=0;i<70;i++){
+  ctx.fillStyle = "#b55b79";
+  ctx.fillRect(0, 0, rect.width, rect.height);
+
+  ctx.fillStyle = "rgba(255,255,255,.22)";
+  for(let i = 0; i < 70; i++){
     ctx.beginPath();
-    ctx.arc(Math.random()*rect.width,Math.random()*rect.height,Math.random()*4+1,0,Math.PI*2);
+    ctx.arc(
+      Math.random() * rect.width,
+      Math.random() * rect.height,
+      Math.random() * 4 + 1,
+      0,
+      Math.PI * 2
+    );
     ctx.fill();
   }
 
-  scratchText.style.display="flex";
-  canvas.style.pointerEvents="auto";
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 29px Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("26 NOVEMBER 2026", rect.width / 2, rect.height / 2);
+
+  canvas.style.pointerEvents = "auto";
 }
 
 function getPoint(event){
-  const rect=canvas.getBoundingClientRect();
-  return {x:event.clientX-rect.left,y:event.clientY-rect.top};
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x:event.clientX - rect.left,
+    y:event.clientY - rect.top
+  };
 }
 
 function erase(x,y){
-  ctx.globalCompositeOperation="destination-out";
+  ctx.globalCompositeOperation = "destination-out";
   ctx.beginPath();
-  ctx.arc(x,y,46,0,Math.PI*2);
+  ctx.arc(x, y, 46, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -410,113 +519,122 @@ function scratch(event){
   if(!drawing || opened) return;
 
   event.preventDefault();
-  const point=getPoint(event);
 
-  scratchText.style.display="none";
-  erase(point.x,point.y);
+  const point = getPoint(event);
+  erase(point.x, point.y);
 
   if(lastPoint){
-    const distance=Math.hypot(point.x-lastPoint.x,point.y-lastPoint.y);
-    const steps=Math.ceil(distance/12);
+    const distance = Math.hypot(point.x-lastPoint.x, point.y-lastPoint.y);
+    const steps = Math.ceil(distance / 12);
 
-    for(let i=1;i<=steps;i++){
+    for(let i = 1; i <= steps; i++){
       erase(
-        lastPoint.x+(point.x-lastPoint.x)*(i/steps),
-        lastPoint.y+(point.y-lastPoint.y)*(i/steps)
+        lastPoint.x + (point.x-lastPoint.x) * (i / steps),
+        lastPoint.y + (point.y-lastPoint.y) * (i / steps)
       );
     }
   }
 
-  lastPoint=point;
+  lastPoint = point;
 }
 
-canvas.addEventListener("pointerdown",event=>{
+canvas.addEventListener("pointerdown", event => {
   if(opened) return;
 
-  drawing=true;
-  lastPoint=null;
+  drawing = true;
+  lastPoint = null;
 
   try{
     canvas.setPointerCapture(event.pointerId);
-  }catch(e){}
+  }catch(error){}
 
   scratchTurns++;
   scratch(event);
 
-  if(scratchTurns>=4){
-    setTimeout(openCelebration,350);
+  if(scratchTurns >= 4){
+    setTimeout(openCelebration, 350);
   }
 });
 
-canvas.addEventListener("pointermove",scratch);
+canvas.addEventListener("pointermove", scratch);
 
-canvas.addEventListener("pointerup",()=>{
-  drawing=false;
-  lastPoint=null;
+canvas.addEventListener("pointerup", () => {
+  drawing = false;
+  lastPoint = null;
 });
 
-canvas.addEventListener("pointercancel",()=>{
-  drawing=false;
-  lastPoint=null;
+canvas.addEventListener("pointercancel", () => {
+  drawing = false;
+  lastPoint = null;
 });
 
 function openCelebration(){
   if(opened) return;
 
-  opened=true;
-  drawing=false;
-  canvas.style.pointerEvents="none";
+  opened = true;
+  drawing = false;
+  canvas.style.pointerEvents = "none";
 
-  for(let i=0;i<70;i++){
-    setTimeout(makePetal,i*15);
+  for(let i = 0; i < 70; i++){
+    setTimeout(makePetal, i * 15);
   }
 
   showPage("celebrationPage");
 
-  setTimeout(()=>{
+  setTimeout(() => {
     showPage("memoryPage");
     animatePhotos();
     startPetals();
-  },2000);
+  }, 2000);
 }
 
 function animatePhotos(){
-  document.querySelectorAll(".card").forEach((card,index)=>{
+  document.querySelectorAll(".card").forEach((card,index) => {
     card.classList.remove("show");
-    setTimeout(()=>card.classList.add("show"),index*350);
+    setTimeout(() => {
+      card.classList.add("show");
+    }, index * 350);
   });
 }
 
-function makePetal(){
-  const colors=["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
-  const petal=document.createElement("div");
-  const size=7+Math.random()*12;
+document.getElementById("messageBtn").addEventListener("click", () => {
+  showPage("letterPage");
+  startPetals();
+});
 
-  petal.className="petal";
-  petal.style.left=Math.random()*100+"vw";
-  petal.style.width=size+"px";
-  petal.style.height=size*1.45+"px";
-  petal.style.background=colors[Math.floor(Math.random()*colors.length)];
-  petal.style.setProperty("--move",(Math.random()*220-110)+"px");
-  petal.style.setProperty("--spin",(Math.random()*900-450)+"deg");
-  petal.style.animationDuration=(6+Math.random()*5)+"s";
+function makePetal(){
+  const colors = ["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
+  const petal = document.createElement("div");
+  const size = 7 + Math.random() * 12;
+
+  petal.className = "petal";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.width = size + "px";
+  petal.style.height = size * 1.45 + "px";
+  petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+  petal.style.setProperty("--move", (Math.random() * 220 - 110) + "px");
+  petal.style.setProperty("--spin", (Math.random() * 900 - 450) + "deg");
+  petal.style.animationDuration = (6 + Math.random() * 5) + "s";
 
   document.body.appendChild(petal);
-  setTimeout(()=>petal.remove(),12000);
+
+  setTimeout(() => {
+    petal.remove();
+  }, 12000);
 }
 
 function startPetals(){
   clearInterval(petalTimer);
 
-  for(let i=0;i<40;i++){
-    setTimeout(makePetal,i*55);
+  for(let i = 0; i < 40; i++){
+    setTimeout(makePetal, i * 55);
   }
 
-  petalTimer=setInterval(()=>{
-    for(let i=0;i<3;i++){
-      setTimeout(makePetal,i*180);
+  petalTimer = setInterval(() => {
+    for(let i = 0; i < 3; i++){
+      setTimeout(makePetal, i * 180);
     }
-  },1200);
+  }, 1200);
 }
 </script>
 
