@@ -32,43 +32,42 @@
       display:flex;
     }
 
-    /* ================= FIRST PAGE ================= */
+    /* প্রথম পেজ: শুধু তোমার envelope/fingerprint photo */
     #coverPage{
       align-items:center;
       justify-content:center;
       background:url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
     }
 
-    /* ছবির নিজের fingerprint-এর উপর invisible tap button */
-    .realFingerprintTap{
+    /* ছবির নিজের fingerprint-এর উপর invisible button */
+    .fingerprintTap{
       position:absolute;
-      width:190px;
-      height:190px;
+      width:210px;
+      height:230px;
       left:50%;
-      top:64%;
+      top:65%;
       transform:translate(-50%,-50%);
       border:0;
       background:transparent;
       cursor:pointer;
-      z-index:5;
+      z-index:10;
     }
 
-    /* ================= 4 SECOND ANIMATION ================= */
+    /* fingerprint tap করার পর 4 second animation */
     #animationPage{
       align-items:center;
       justify-content:center;
-      background:
-        radial-gradient(circle at center,#8f2b35 0%,#3b0710 45%,#120004 100%);
+      background:radial-gradient(circle at center,#8f2b35 0%,#3b0710 48%,#120004 100%);
     }
 
     .goldCore{
       position:absolute;
-      width:30px;
-      height:30px;
+      width:32px;
+      height:32px;
       border-radius:50%;
-      background:#fff9d5;
+      background:#fff8cf;
       box-shadow:
-        0 0 28px 16px #fff9d5,
+        0 0 28px 16px #fff8cf,
         0 0 85px 48px #ffd34f,
         0 0 180px 95px #ff8b2d;
       animation:coreBlast 4s ease-in-out forwards;
@@ -99,53 +98,25 @@
     }
 
     @keyframes coreBlast{
-      0%,18%{
-        transform:scale(.2);
-        opacity:0;
-      }
-      38%{
-        transform:scale(1);
-        opacity:1;
-      }
-      80%{
-        transform:scale(10);
-        opacity:1;
-      }
-      100%{
-        transform:scale(18);
-        opacity:0;
-      }
+      0%,18%{transform:scale(.2);opacity:0}
+      38%{transform:scale(1);opacity:1}
+      80%{transform:scale(10);opacity:1}
+      100%{transform:scale(18);opacity:0}
     }
 
     @keyframes waveBlast{
-      0%{
-        transform:scale(.15);
-        opacity:0;
-      }
-      10%{
-        opacity:1;
-      }
-      100%{
-        transform:scale(15);
-        opacity:0;
-      }
+      0%{transform:scale(.15);opacity:0}
+      10%{opacity:1}
+      100%{transform:scale(15);opacity:0}
     }
 
     @keyframes sparkMove{
-      0%{
-        transform:translate(0,0) scale(.2);
-        opacity:0;
-      }
-      10%{
-        opacity:1;
-      }
-      100%{
-        transform:translate(var(--x),var(--y)) scale(1.8);
-        opacity:0;
-      }
+      0%{transform:translate(0,0) scale(.2);opacity:0}
+      10%{opacity:1}
+      100%{transform:translate(var(--x),var(--y)) scale(1.8);opacity:0}
     }
 
-    /* ================= BIRTHDAY PAGE ================= */
+    /* Happy Birthday Puja full-screen page */
     #birthdayPage{
       align-items:flex-end;
       justify-content:center;
@@ -204,7 +175,7 @@
       text-shadow:0 2px 6px rgba(0,0,0,.35);
     }
 
-    /* ================= MEMORY PAGE ================= */
+    /* Memory page */
     #memoryPage{
       flex-direction:column;
       align-items:center;
@@ -274,15 +245,11 @@
     }
 
     @keyframes softFloat{
-      0%,100%{
-        transform:translateY(0) rotate(-.5deg);
-      }
-      50%{
-        transform:translateY(-7px) rotate(.5deg) scale(1.01);
-      }
+      0%,100%{transform:translateY(0) rotate(-.5deg)}
+      50%{transform:translateY(-7px) rotate(.5deg) scale(1.01)}
     }
 
-    /* ================= PETALS + CONFETTI ================= */
+    /* Petals and confetti */
     .petal,.confetti{
       position:fixed;
       top:-50px;
@@ -305,17 +272,18 @@
         transform:translate3d(0,-60px,0) rotate(0);
         opacity:0;
       }
-      8%{
-        opacity:1;
-      }
+      8%{opacity:1}
       25%{
-        transform:translate3d(calc(var(--drift) * .25),25vh,0) rotate(calc(var(--spin) * .25));
+        transform:translate3d(calc(var(--drift) * .25),25vh,0)
+        rotate(calc(var(--spin) * .25));
       }
       50%{
-        transform:translate3d(calc(var(--drift) * -.25),52vh,0) rotate(calc(var(--spin) * .55));
+        transform:translate3d(calc(var(--drift) * -.25),52vh,0)
+        rotate(calc(var(--spin) * .55));
       }
       75%{
-        transform:translate3d(calc(var(--drift) * .55),78vh,0) rotate(calc(var(--spin) * .78));
+        transform:translate3d(calc(var(--drift) * .55),78vh,0)
+        rotate(calc(var(--spin) * .78));
       }
       100%{
         transform:translate3d(var(--drift),112vh,0) rotate(var(--spin));
@@ -327,27 +295,22 @@
 
 <body>
 
-  <!-- First page: only your original envelope image -->
   <section id="coverPage" class="page active">
-    <button class="realFingerprintTap" onclick="startBirthday()" aria-label="Open surprise"></button>
+    <button class="fingerprintTap" onclick="startBirthday()" aria-label="Open birthday surprise"></button>
   </section>
 
-  <!-- 4 second animation -->
   <section id="animationPage" class="page"></section>
 
-  <!-- Happy Birthday Puja image + scratch card -->
   <section id="birthdayPage" class="page">
     <div class="scratchWrap" id="scratchWrap">
       <div class="dateCard">
         <b>26 NOVEMBER 2026</b>
       </div>
-
       <canvas id="scratchCanvas"></canvas>
       <div class="scratchText">SCRATCH HERE ✨</div>
     </div>
   </section>
 
-  <!-- Memories -->
   <section id="memoryPage" class="page">
     <p class="memorySmall">OUR MEMORIES</p>
     <h1 class="memoryTitle">Forever Us</h1>
@@ -383,6 +346,7 @@
   <script>
     let scratchDone = false;
     let drawing = false;
+    let scratchMoves = 0;
     let petalInterval = null;
 
     const canvas = document.getElementById("scratchCanvas");
@@ -437,6 +401,7 @@
 
     function setupScratch(){
       scratchDone = false;
+      scratchMoves = 0;
 
       const rect = scratchWrap.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
@@ -490,23 +455,13 @@
 
       ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
-      ctx.arc(point.x,point.y,38,0,Math.PI * 2);
+      ctx.arc(point.x,point.y,42,0,Math.PI * 2);
       ctx.fill();
 
-      const data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      scratchMoves++;
 
-      let clear = 0;
-      let total = 0;
-
-      for(let i = 3; i < data.length; i += 60){
-        total++;
-
-        if(data[i] === 0){
-          clear++;
-        }
-      }
-
-      if(clear / total > .25){
+      /* মোবাইলে নিশ্চিত কাজ করার জন্য 8 বার scratch হলেই open */
+      if(scratchMoves >= 8){
         scratchDone = true;
         drawing = false;
         canvas.style.pointerEvents = "none";
@@ -557,7 +512,6 @@
       const isPetal = Math.random() < .75;
 
       item.className = isPetal ? "petal" : "confetti";
-
       item.style.left = (Math.random() * 100) + "vw";
 
       item.style.background = isPetal
