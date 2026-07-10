@@ -281,7 +281,9 @@ html,body{
 </head>
 
 <body>
-
+<audio id="bgMusic" loop preload="auto">
+  <source src="birthday-song.mp3.mp3" type="audio/mpeg">
+</audio>
 <section id="coverPage" class="page active">
   <button class="fingerprintTap" id="fingerprintTap" aria-label="Open birthday surprise"></button>
 </section>
@@ -336,6 +338,7 @@ function showPage(id){
 document.getElementById("fingerprintTap").addEventListener("click",openAnimation);
 
 function openAnimation(){
+  document.getElementById("bgMusic").play().catch(() => {});
   showPage("animationPage");
 
   const page=document.getElementById("animationPage");
