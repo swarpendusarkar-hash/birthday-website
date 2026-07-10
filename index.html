@@ -1,412 +1,455 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Puja</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Puja ❤️</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  font-family:Arial,sans-serif;
+  background:#fff5f7;
+  overflow-x:hidden;
+}
+.page{
+  display:none;
+  width:100%;
+  min-height:100svh;
+  position:relative;
+  overflow:hidden;
+}
+.page.active{display:flex}
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      font-family: Arial, sans-serif;
-      background: #fff7f7;
-      overflow-x: hidden;
-    }
+/* COVER */
+#coverPage{
+  background:
+    linear-gradient(rgba(35,0,15,.18),rgba(35,0,15,.30)),
+    url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.coverTap{position:absolute;inset:0;z-index:5}
+.fingerprintBox{
+  position:absolute;
+  top:60%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:3px solid rgba(255,220,125,.85);
+  background:rgba(80,20,25,.28);
+  box-shadow:0 0 18px #ffe790,0 0 58px #ffbf3d;
+  animation:fingerPulse 1.8s ease-in-out infinite;
+  pointer-events:none;
+}
+.fingerprintBox span{
+  font-size:92px;
+  filter:drop-shadow(0 0 8px #ffe993);
+}
+.fingerText{
+  position:absolute;
+  top:74%;
+  left:50%;
+  transform:translateX(-50%);
+  color:#ffe49a;
+  font-weight:bold;
+  letter-spacing:3px;
+  font-size:15px;
+  text-shadow:0 2px 8px #34000c;
+  pointer-events:none;
+}
+@keyframes fingerPulse{
+  0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.60}
+  50%{transform:translate(-50%,-50%) scale(1.10);opacity:1}
+}
 
-    .page {
-      display: none;
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
+/* GOLDEN ANIMATION */
+#goldenPage{
+  align-items:center;
+  justify-content:center;
+  background:#240608;
+}
+.goldenBg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(55,5,8,.55),rgba(25,0,0,.75)),
+    url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
+  opacity:.68;
+}
+.goldRing{
+  position:absolute;
+  width:70vw;
+  height:70vw;
+  max-width:420px;
+  max-height:420px;
+  border-radius:50%;
+  border:6px solid #ffe68c;
+  box-shadow:0 0 20px #fff6be,0 0 60px #ffca42,0 0 125px #ff852d;
+  animation:ringGrow 3.2s ease-in-out forwards;
+}
+.goldRing:before,.goldRing:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:3px solid rgba(255,235,155,.8);
+  box-shadow:0 0 18px #ffd55c;
+  animation:spin 1.5s linear infinite;
+}
+.goldRing:before{inset:-22px}
+.goldRing:after{
+  inset:30px;
+  border-color:rgba(255,145,48,.9);
+  animation-direction:reverse;
+}
+.lightBurst{
+  position:absolute;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#fffbd8;
+  box-shadow:0 0 30px 14px #fffbd8,0 0 95px 42px #ffd65c,0 0 190px 90px #ff962b;
+  animation:burst 3.2s ease-out forwards;
+}
+.spark{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff6b0;
+  box-shadow:0 0 12px #fff,0 0 25px #ffd453;
+  animation:sparkFly 3s ease-out forwards;
+}
+@keyframes ringGrow{
+  0%{transform:scale(.06) rotate(0);opacity:0}
+  18%{opacity:1}
+  75%{transform:scale(1.2) rotate(270deg);opacity:1}
+  100%{transform:scale(2.5) rotate(420deg);opacity:0}
+}
+@keyframes burst{
+  0%{transform:scale(.2);opacity:0}
+  18%{opacity:1}
+  75%{transform:scale(12);opacity:1}
+  100%{transform:scale(25);opacity:0}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes sparkFly{
+  0%{transform:translate(0,0) scale(.2);opacity:0}
+  12%{opacity:1}
+  100%{transform:translate(var(--x),var(--y)) scale(1.8);opacity:0}
+}
 
-    .page.active { display: block; }
+/* BIRTHDAY PAGE */
+#birthdayPage{
+  background-color:#f5a0aa;
+  background-image:url("file_00000000f70471fb966e130dbdfbbd9d.png");
+  background-size:contain;
+  background-position:center center;
+  background-repeat:no-repeat;
+  align-items:flex-end;
+  justify-content:center;
+  padding:0 16px 34px;
+}
+.scratchWrap{
+  position:relative;
+  width:min(88vw,440px);
+  height:126px;
+  border-radius:30px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(143,0,68,.42);
+  touch-action:none;
+  z-index:5;
+}
+.dateCard{
+  width:100%;
+  height:100%;
+  border-radius:30px;
+  border:3px solid #fff;
+  background:linear-gradient(135deg,#ff4e8c,#e7006b);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.dateCard b{font-size:clamp(26px,7vw,38px);letter-spacing:1px}
+.dateCard span{margin-top:9px;font-size:13px;letter-spacing:4px;font-weight:bold}
+#scratchCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  cursor:pointer;
+  touch-action:none;
+}
+.scratchText{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:bold;
+  font-size:17px;
+  letter-spacing:1px;
+  pointer-events:none;
+  text-shadow:0 2px 6px rgba(0,0,0,.35);
+}
 
-    /* BIRTHDAY PAGE */
-    #birthdayPage {
-      min-height: 100vh;
-      background-image: url("file_000000001794720bbe1f6708d96e5b55.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 72vh 0 28px;
-    }
+/* MEMORY PAGE */
+#memoryPage{
+  background:linear-gradient(#fffaf7,#ffe7ef);
+  flex-direction:column;
+  align-items:center;
+  padding:42px 16px 70px;
+  overflow-y:auto;
+}
+.memorySmall{
+  color:#a75c69;
+  font-size:14px;
+  letter-spacing:5px;
+  text-align:center;
+  margin:4px 0 8px;
+}
+.memoryTitle{
+  color:#934957;
+  font-family:Georgia,serif;
+  font-size:clamp(44px,12vw,68px);
+  text-align:center;
+  margin:0 0 28px;
+}
+.gallery{width:min(100%,560px)}
+.photoCard{
+  background:#fff;
+  border-radius:18px;
+  padding:13px 13px 20px;
+  margin:0 auto 30px;
+  box-shadow:0 14px 30px rgba(120,55,78,.18);
+  opacity:0;
+  animation:photoEnter .8s ease forwards,softFloat 4.2s ease-in-out infinite;
+}
+.photoCard:nth-child(1){animation-delay:0s,1s}
+.photoCard:nth-child(2){animation-delay:.18s,1.2s}
+.photoCard:nth-child(3){animation-delay:.36s,1.4s}
+.photoCard:nth-child(4){animation-delay:.54s,1.6s}
+.photoCard:nth-child(5){animation-delay:.72s,1.8s}
+.photoCard img{
+  display:block;
+  width:100%;
+  max-height:680px;
+  object-fit:cover;
+  border-radius:10px;
+}
+.caption{
+  color:#9d5361;
+  text-align:center;
+  font-family:Georgia,serif;
+  font-size:24px;
+  margin-top:14px;
+}
+@keyframes photoEnter{
+  from{opacity:0;transform:translateY(45px) rotate(-2deg) scale(.96)}
+  to{opacity:1;transform:translateY(0) rotate(0) scale(1)}
+}
+@keyframes softFloat{
+  0%,100%{transform:translateY(0) rotate(-.5deg)}
+  50%{transform:translateY(-7px) rotate(.5deg) scale(1.01)}
+}
 
-    .scratch-wrap {
-      width: min(88%, 420px);
-      margin: 0 auto;
-      position: relative;
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 12px 35px rgba(117, 18, 69, .35);
-      touch-action: none;
-    }
-
-    .date-card {
-      height: 140px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #ff5192, #e9006e);
-      border: 3px solid white;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 12px;
-    }
-
-    .date-card b {
-      font-size: clamp(26px, 7vw, 38px);
-      letter-spacing: 1px;
-    }
-
-    .date-card span {
-      margin-top: 10px;
-      font-size: 15px;
-      letter-spacing: 4px;
-      font-weight: bold;
-    }
-
-    #scratchCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 30px;
-      cursor: pointer;
-    }
-
-    .scratch-help {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 17px;
-      letter-spacing: 1px;
-      pointer-events: none;
-      text-shadow: 0 2px 6px rgba(0,0,0,.4);
-    }
-
-    /* GOLDEN REVEAL */
-    #goldenReveal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(75, 13, 38, .28);
-      z-index: 20;
-      overflow: hidden;
-    }
-
-    #goldenReveal.show { display: flex; }
-
-    .gold-ring {
-      width: 100px;
-      height: 100px;
-      border: 6px solid #ffd35b;
-      border-radius: 50%;
-      box-shadow:
-        0 0 20px #fff1a0,
-        0 0 60px #ffc400,
-        0 0 130px #ffb000;
-      animation: goldenOpen 1.8s ease-out forwards;
-    }
-
-    .gold-core {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #fff7c2;
-      box-shadow: 0 0 30px 18px #ffe173, 0 0 90px 45px #ffb300;
-      animation: coreFlash 1.8s ease-out forwards;
-    }
-
-    @keyframes goldenOpen {
-      0% { transform: scale(.15) rotate(0deg); opacity: 0; }
-      25% { opacity: 1; }
-      100% { transform: scale(13) rotate(540deg); opacity: 0; }
-    }
-
-    @keyframes coreFlash {
-      0% { transform: scale(.1); opacity: 0; }
-      30% { opacity: 1; }
-      100% { transform: scale(22); opacity: 0; }
-    }
-
-    /* MEMORY PAGE */
-    #memoryPage {
-      min-height: 100vh;
-      background: linear-gradient(180deg, #fff8f4, #ffe7ee);
-      padding: 45px 18px 70px;
-    }
-
-    .memory-title {
-      text-align: center;
-      color: #9b4d5a;
-      letter-spacing: 5px;
-      font-size: 14px;
-      margin: 10px 0 8px;
-    }
-
-    .memory-heading {
-      text-align: center;
-      color: #934957;
-      font-family: Georgia, serif;
-      font-size: clamp(42px, 12vw, 65px);
-      margin: 0 0 30px;
-    }
-
-    .photo-card {
-      width: min(100%, 520px);
-      margin: 0 auto 28px;
-      background: white;
-      padding: 16px 16px 22px;
-      border-radius: 18px;
-      box-shadow: 0 14px 30px rgba(118, 55, 75, .18);
-      animation: photoIn .8s ease both;
-    }
-
-    .photo-card:nth-of-type(2) { animation-delay: .15s; }
-    .photo-card:nth-of-type(3) { animation-delay: .3s; }
-    .photo-card:nth-of-type(4) { animation-delay: .45s; }
-    .photo-card:nth-of-type(5) { animation-delay: .6s; }
-
-    .photo-card img {
-      width: 100%;
-      display: block;
-      border-radius: 10px;
-      max-height: 680px;
-      object-fit: cover;
-    }
-
-    .photo-caption {
-      text-align: center;
-      color: #9b4d5a;
-      font-family: Georgia, serif;
-      font-size: 25px;
-      margin-top: 15px;
-    }
-
-    @keyframes photoIn {
-      from { opacity: 0; transform: translateY(35px) scale(.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* PETALS + CONFETTI */
-    .petal, .confetti {
-      position: fixed;
-      top: -40px;
-      z-index: 30;
-      pointer-events: none;
-      animation: fall linear forwards;
-    }
-
-    .petal {
-      width: 13px;
-      height: 20px;
-      border-radius: 70% 20% 70% 20%;
-      background: #ff9ab7;
-      opacity: .85;
-    }
-
-    .confetti {
-      width: 8px;
-      height: 14px;
-      background: #ffd35b;
-      opacity: .9;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translate(var(--drift), 115vh) rotate(720deg);
-        opacity: .15;
-      }
-    }
-  </style>
+/* PETALS + CONFETTI */
+.petal,.confetti{
+  position:fixed;
+  top:-40px;
+  pointer-events:none;
+  z-index:100;
+  animation:fallDown linear forwards;
+}
+.petal{width:12px;height:19px;border-radius:70% 20% 70% 20%}
+.confetti{width:7px;height:12px;border-radius:2px}
+@keyframes fallDown{
+  0%{transform:translate3d(0,-35px,0) rotate(0);opacity:0}
+  8%{opacity:.9}
+  100%{transform:translate3d(var(--drift),112vh,0) rotate(720deg);opacity:.18}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- BIRTHDAY PAGE -->
-  <section id="birthdayPage" class="page active">
-    <div class="scratch-wrap" id="scratchWrap">
-      <div class="date-card">
-        <b>26 NOVEMBER 2026</b>
-        <span>TAP &amp; SCRATCH</span>
-      </div>
-      <canvas id="scratchCanvas"></canvas>
-      <div class="scratch-help">SCRATCH HERE ✨</div>
-    </div>
-  </section>
+<section id="coverPage" class="page active">
+  <div class="fingerprintBox"><span>☝</span></div>
+  <div class="fingerText">TAP TO REVEAL</div>
+  <div class="coverTap" onclick="openGolden('birthdayPage')"></div>
+</section>
 
-  <!-- GOLDEN ANIMATION -->
-  <div id="goldenReveal">
-    <div class="gold-ring"></div>
-    <div class="gold-core"></div>
+<section id="goldenPage" class="page"></section>
+
+<section id="birthdayPage" class="page">
+  <div class="scratchWrap" id="scratchWrap">
+    <div class="dateCard">
+      <b>26 NOVEMBER 2026</b>
+      <span>SCRATCH TO OPEN ✨</span>
+    </div>
+    <canvas id="scratchCanvas"></canvas>
+    <div class="scratchText">SCRATCH HERE ✨</div>
   </div>
+</section>
 
-  <!-- MEMORY PAGE -->
-  <section id="memoryPage" class="page">
-    <p class="memory-title">OUR MEMORIES</p>
-    <h1 class="memory-heading">Forever Us</h1>
+<section id="memoryPage" class="page">
+  <p class="memorySmall">OUR MEMORIES</p>
+  <h1 class="memoryTitle">Forever Us</h1>
 
-    <div class="photo-card">
-      <img src="IMG-20260528-WA0006(1).jpg" alt="Puja photo 1">
-      <div class="photo-caption">Beautiful Puja ❤️</div>
-    </div>
+  <div class="gallery">
+    <div class="photoCard"><img src="IMG-20260528-WA0006(1).jpg"><div class="caption">Beautiful Puja ❤️</div></div>
+    <div class="photoCard"><img src="IMG-20260313-WA0046.jpg"><div class="caption">Our Sweet Memory ❤️</div></div>
+    <div class="photoCard"><img src="IMG-20260618-WA0019.jpg"><div class="caption">My Favourite Smile 🌸</div></div>
+    <div class="photoCard"><img src="IMG-20251021-WA0071.jpg"><div class="caption">Together Forever ❤️</div></div>
+    <div class="photoCard"><img src="IMG-20260313-WA0053.jpg"><div class="caption">Happy Birthday Puja 🎂</div></div>
+  </div>
+</section>
 
-    <div class="photo-card">
-      <img src="IMG-20260313-WA0046.jpg" alt="Puja photo 2">
-      <div class="photo-caption">Our Sweet Memory ❤️</div>
-    </div>
+<script>
+let scratchDone=false;
+let drawing=false;
 
-    <div class="photo-card">
-      <img src="IMG-20260618-WA0019.jpg" alt="Puja photo 3">
-      <div class="photo-caption">My Favourite Smile ❤️</div>
-    </div>
+function showOnly(id){
+  document.querySelectorAll(".page").forEach(page=>page.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0,0);
+}
 
-    <div class="photo-card">
-      <img src="IMG-20251021-WA0071.jpg" alt="Puja photo 4">
-      <div class="photo-caption">Together Forever ❤️</div>
-    </div>
+function openGolden(nextPage){
+  showOnly("goldenPage");
 
-    <div class="photo-card">
-      <img src="IMG-20260313-WA0053.jpg" alt="Puja photo 5">
-      <div class="photo-caption">Happy Birthday Puja ❤️</div>
-    </div>
-  </section>
+  const golden=document.getElementById("goldenPage");
+  golden.innerHTML='<div class="goldenBg"></div><div class="goldRing"></div><div class="lightBurst"></div>';
 
-  <script>
-    const canvas = document.getElementById("scratchCanvas");
-    const ctx = canvas.getContext("2d");
-    const wrap = document.getElementById("scratchWrap");
-    const help = document.querySelector(".scratch-help");
-    let drawing = false;
-    let completed = false;
+  for(let i=0;i<90;i++){
+    const spark=document.createElement("div");
+    spark.className="spark";
+    const angle=Math.random()*Math.PI*2;
+    const distance=100+Math.random()*430;
+    spark.style.left="50%";
+    spark.style.top="50%";
+    spark.style.setProperty("--x",Math.cos(angle)*distance+"px");
+    spark.style.setProperty("--y",Math.sin(angle)*distance+"px");
+    spark.style.animationDelay=(Math.random()*.7)+"s";
+    golden.appendChild(spark);
+  }
 
-    function setupCanvas() {
-      const rect = wrap.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
+  setTimeout(()=>{
+    showOnly(nextPage);
 
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      canvas.style.width = rect.width + "px";
-      canvas.style.height = rect.height + "px";
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "#b45b78";
-      ctx.fillRect(0, 0, rect.width, rect.height);
-
-      ctx.fillStyle = "rgba(255,255,255,.16)";
-      for (let i = 0; i < 65; i++) {
-        ctx.beginPath();
-        ctx.arc(
-          Math.random() * rect.width,
-          Math.random() * rect.height,
-          Math.random() * 4 + 1,
-          0,
-          Math.PI * 2
-        );
-        ctx.fill();
-      }
+    if(nextPage==="birthdayPage"){
+      setupScratch();
+      createPetalsAndConfetti(42);
+    }else{
+      createPetalsAndConfetti(105);
     }
+  },3200);
+}
 
-    function point(event) {
-      const rect = canvas.getBoundingClientRect();
-      const touch = event.touches ? event.touches[0] : event;
-      return {
-        x: touch.clientX - rect.left,
-        y: touch.clientY - rect.top
-      };
-    }
+const canvas=document.getElementById("scratchCanvas");
+const ctx=canvas.getContext("2d");
+const scratchWrap=document.getElementById("scratchWrap");
+const scratchText=document.querySelector(".scratchText");
 
-    function scratch(event) {
-      if (!drawing || completed) return;
-      event.preventDefault();
+function setupScratch(){
+  scratchDone=false;
 
-      const p = point(event);
-      help.style.display = "none";
+  const rect=scratchWrap.getBoundingClientRect();
+  const dpr=window.devicePixelRatio||1;
 
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 28, 0, Math.PI * 2);
-      ctx.fill();
+  canvas.width=rect.width*dpr;
+  canvas.height=rect.height*dpr;
+  canvas.style.width=rect.width+"px";
+  canvas.style.height=rect.height+"px";
 
-      checkScratch();
-    }
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.globalCompositeOperation="source-over";
+  ctx.fillStyle="#b55b79";
+  ctx.fillRect(0,0,rect.width,rect.height);
 
-    function checkScratch() {
-      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-      let clear = 0;
+  ctx.fillStyle="rgba(255,255,255,.18)";
+  for(let i=0;i<60;i++){
+    ctx.beginPath();
+    ctx.arc(Math.random()*rect.width,Math.random()*rect.height,Math.random()*4+1,0,Math.PI*2);
+    ctx.fill();
+  }
 
-      for (let i = 3; i < pixels.length; i += 40) {
-        if (pixels[i] === 0) clear++;
-      }
+  scratchText.style.display="flex";
+}
 
-      const total = pixels.length / 40;
-      if (clear / total > 0.42) openMemory();
-    }
+function getPoint(e){
+  const rect=canvas.getBoundingClientRect();
+  return {x:e.clientX-rect.left,y:e.clientY-rect.top};
+}
 
-    function openMemory() {
-      if (completed) return;
-      completed = true;
+function scratch(e){
+  if(!drawing || scratchDone)return;
 
-      document.getElementById("goldenReveal").classList.add("show");
-      createPetalsAndConfetti(45);
+  e.preventDefault();
+  const p=getPoint(e);
+  scratchText.style.display="none";
 
-      setTimeout(() => {
-        document.getElementById("birthdayPage").classList.remove("active");
-        document.getElementById("memoryPage").classList.add("active");
-        document.getElementById("goldenReveal").classList.remove("show");
-        createPetalsAndConfetti(75);
-        window.scrollTo(0, 0);
-      }, 1700);
-    }
+  ctx.globalCompositeOperation="destination-out";
+  ctx.beginPath();
+  ctx.arc(p.x,p.y,30,0,Math.PI*2);
+  ctx.fill();
 
-    canvas.addEventListener("pointerdown", (e) => {
-      drawing = true;
-      canvas.setPointerCapture(e.pointerId);
-      scratch(e);
-    });
+  const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+  let clear=0,total=0;
 
-    canvas.addEventListener("pointermove", scratch);
+  for(let i=3;i<data.length;i+=60){
+    total++;
+    if(data[i]===0)clear++;
+  }
 
-    canvas.addEventListener("pointerup", () => drawing = false);
-    canvas.addEventListener("pointercancel", () => drawing = false);
+  if(clear/total>.32){
+    scratchDone=true;
+    drawing=false;
+    openGolden("memoryPage");
+  }
+}
 
-    function createPetalsAndConfetti(count) {
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement("div");
-        el.className = Math.random() > 0.42 ? "petal" : "confetti";
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = (4 + Math.random() * 5) + "s";
-        el.style.animationDelay = (Math.random() * 1.2) + "s";
-        el.style.setProperty("--drift", (Math.random() * 180 - 90) + "px");
+canvas.addEventListener("pointerdown",e=>{
+  drawing=true;
+  canvas.setPointerCapture(e.pointerId);
+  scratch(e);
+});
+canvas.addEventListener("pointermove",scratch);
+canvas.addEventListener("pointerup",()=>drawing=false);
+canvas.addEventListener("pointercancel",()=>drawing=false);
+canvas.addEventListener("touchmove",e=>e.preventDefault(),{passive:false});
 
-        if (el.className === "petal") {
-          el.style.background = Math.random() > .5 ? "#ff9ab7" : "#ffe18b";
-        } else {
-          el.style.background = Math.random() > .5 ? "#ffd35b" : "#f29ab2";
-        }
+function createPetalsAndConfetti(total){
+  const colors=["#f6a8bf","#ffd0db","#f4c95d","#fff0a8","#ec91ad"];
 
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 10500);
-      }
-    }
+  for(let i=0;i<total;i++){
+    const item=document.createElement("div");
+    item.className=Math.random()>.38?"petal":"confetti";
+    item.style.left=(Math.random()*100)+"vw";
+    item.style.background=colors[Math.floor(Math.random()*colors.length)];
+    item.style.setProperty("--drift",(Math.random()*190-95)+"px");
+    item.style.animationDuration=(5+Math.random()*5)+"s";
+    item.style.animationDelay=(Math.random()*2)+"s";
 
-    window.addEventListener("resize", setupCanvas);
-    setupCanvas();
-  </script>
+    document.body.appendChild(item);
+    setTimeout(()=>item.remove(),12000);
+  }
+}
+</script>
 
 </body>
 </html>
