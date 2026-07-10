@@ -22,9 +22,10 @@ html,body{
 
 .page{
   display:none;
-  width:100%;
-  min-height:100svh;
   position:relative;
+  width:100%;
+  min-height:100vh;
+  min-height:100svh;
   overflow:hidden;
 }
 
@@ -32,14 +33,18 @@ html,body{
   display:flex;
 }
 
-/* ===== FIRST PAGE ===== */
+/* প্রথম page: শুধু তোমার cover photo */
 #coverPage{
   align-items:center;
   justify-content:center;
-  background:url("cover.jpg") center/cover no-repeat;
+  background-color:#5c1420;
+  background-image:url("file_00000000792471fab9d1ed26ab406cbf.png");
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
-/* ছবির fingerprint-এর উপর invisible tap */
+/* ছবির fingerprint-এর উপর invisible tap area */
 .fingerprintTap{
   position:absolute;
   left:50%;
@@ -53,7 +58,7 @@ html,body{
   z-index:10;
 }
 
-/* ===== 4 SECOND ANIMATION ===== */
+/* Fingerprint tap-এর পর 4 second animation */
 #animationPage{
   align-items:center;
   justify-content:center;
@@ -92,9 +97,9 @@ html,body{
   width:7px;
   height:7px;
   border-radius:50%;
-  background:#fff7b6;
-  box-shadow:0 0 12px #fff,0 0 26px #ffd453;
-  animation:sparkMove 3.3s ease-out forwards;
+  background:#fff6ae;
+  box-shadow:0 0 10px #fff,0 0 22px #ffd34f;
+  animation:sparkMove 3.5s ease-out forwards;
 }
 
 @keyframes blast{
@@ -113,15 +118,19 @@ html,body{
 @keyframes sparkMove{
   0%{transform:translate(0,0) scale(.2);opacity:0}
   10%{opacity:1}
-  100%{transform:translate(var(--x),var(--y)) scale(1.7);opacity:0}
+  100%{transform:translate(var(--x),var(--y)) scale(1.6);opacity:0}
 }
 
-/* ===== BIRTHDAY PAGE ===== */
+/* Birthday page */
 #birthdayPage{
   align-items:flex-end;
   justify-content:center;
   padding:0 16px 34px;
-  background:url("birthday.jpg") center/cover no-repeat;
+  background-color:#f78a9e;
+  background-image:url("file_00000000f70471fb966e130dbdfbbd9d.png");
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
 }
 
 .scratchWrap{
@@ -131,25 +140,25 @@ html,body{
   border-radius:30px;
   overflow:hidden;
   box-shadow:0 12px 30px rgba(120,0,60,.42);
-  touch-action:none;
   z-index:20;
+  touch-action:none;
 }
 
 .dateCard{
   position:absolute;
   inset:0;
-  border:3px solid #fff;
-  border-radius:30px;
-  background:linear-gradient(135deg,#ff4f91,#e6006a);
-  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
+  border:3px solid white;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff4f91,#e6006a);
+  color:white;
   text-align:center;
 }
 
 .dateCard b{
-  font-size:clamp(25px,7vw,38px);
+  font-size:clamp(26px,7vw,38px);
   letter-spacing:1px;
 }
 
@@ -158,26 +167,26 @@ html,body{
   inset:0;
   width:100%;
   height:100%;
+  z-index:2;
   touch-action:none;
-  z-index:3;
 }
 
 .scratchText{
   position:absolute;
   inset:0;
-  z-index:4;
+  z-index:3;
   display:flex;
   align-items:center;
   justify-content:center;
   color:#fff;
-  font-size:17px;
+  font-size:18px;
   font-weight:bold;
   letter-spacing:1px;
   pointer-events:none;
   text-shadow:0 2px 6px rgba(0,0,0,.35);
 }
 
-/* ===== MEMORY PAGE ===== */
+/* Memory page */
 #memoryPage{
   flex-direction:column;
   align-items:center;
@@ -196,7 +205,7 @@ html,body{
 .title{
   color:#934957;
   font-family:Georgia,serif;
-  font-size:clamp(45px,12vw,65px);
+  font-size:clamp(45px,12vw,64px);
   margin:8px 0 30px;
   text-align:center;
 }
@@ -235,30 +244,23 @@ html,body{
 }
 
 @keyframes photoIn{
-  from{opacity:0;transform:translateY(45px) rotate(-2deg) scale(.96)}
-  to{opacity:1;transform:translateY(0) rotate(0) scale(1)}
+  from{opacity:0;transform:translateY(45px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 @keyframes photoFloat{
-  0%,100%{transform:translateY(0) rotate(-.4deg)}
-  50%{transform:translateY(-7px) rotate(.4deg)}
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
 }
 
-/* ===== PETALS + CONFETTI ===== */
-.petal,.confetti{
+/* Petals */
+.petal{
   position:fixed;
   top:-45px;
   z-index:9999;
   pointer-events:none;
-  animation:fall linear forwards;
-}
-
-.petal{
   border-radius:75% 15% 75% 15%;
-}
-
-.confetti{
-  border-radius:2px;
+  animation:fall linear forwards;
 }
 
 @keyframes fall{
@@ -272,7 +274,7 @@ html,body{
 <body>
 
 <section id="coverPage" class="page active">
-  <button class="fingerprintTap" onclick="openAnimation()" aria-label="Open surprise"></button>
+  <button class="fingerprintTap" id="fingerprintTap" aria-label="Open surprise"></button>
 </section>
 
 <section id="animationPage" class="page"></section>
@@ -282,7 +284,6 @@ html,body{
     <div class="dateCard">
       <b>26 NOVEMBER 2026</b>
     </div>
-
     <canvas id="scratchCanvas"></canvas>
     <div class="scratchText">SCRATCH HERE ✨</div>
   </div>
@@ -293,19 +294,19 @@ html,body{
   <h1 class="title">Forever Us</h1>
 
   <div class="gallery">
-    <div class="card"><img src="IMG-20260528-WA0006(1).jpg"><div class="caption">Beautiful Puja ❤️</div></div>
-    <div class="card"><img src="IMG-20260313-WA0046.jpg"><div class="caption">Our Sweet Memory ❤️</div></div>
-    <div class="card"><img src="IMG-20260618-WA0019.jpg"><div class="caption">My Favourite Smile 🌸</div></div>
-    <div class="card"><img src="IMG-20251021-WA0071.jpg"><div class="caption">Together Forever ❤️</div></div>
-    <div class="card"><img src="IMG-20260313-WA0053.jpg"><div class="caption">Happy Birthday Puja 🎂</div></div>
+    <div class="card"><img src="IMG-20260528-WA0006(1).jpg" alt="Puja"><div class="caption">Beautiful Puja ❤️</div></div>
+    <div class="card"><img src="IMG-20260313-WA0046.jpg" alt="Puja"><div class="caption">Our Sweet Memory ❤️</div></div>
+    <div class="card"><img src="IMG-20260618-WA0019.jpg" alt="Puja"><div class="caption">My Favourite Smile 🌸</div></div>
+    <div class="card"><img src="IMG-20251021-WA0071.jpg" alt="Puja"><div class="caption">Together Forever ❤️</div></div>
+    <div class="card"><img src="IMG-20260313-WA0053.jpg" alt="Puja"><div class="caption">Happy Birthday Puja 🎂</div></div>
   </div>
 </section>
 
 <script>
-let petalTimer = null;
+let scratchCount = 0;
 let drawing = false;
-let scratchDone = false;
-let lastPoint = null;
+let opened = false;
+let petalTimer;
 
 const canvas = document.getElementById("scratchCanvas");
 const ctx = canvas.getContext("2d");
@@ -318,11 +319,12 @@ function showPage(id){
   window.scrollTo(0,0);
 }
 
+document.getElementById("fingerprintTap").addEventListener("click", openAnimation);
+
 function openAnimation(){
   showPage("animationPage");
 
   const animationPage = document.getElementById("animationPage");
-
   animationPage.innerHTML = `
     <div class="core"></div>
     <div class="ring"></div>
@@ -331,12 +333,12 @@ function openAnimation(){
     <div class="ring r4"></div>
   `;
 
-  for(let i=0;i<100;i++){
+  for(let i=0;i<90;i++){
     const spark = document.createElement("div");
     spark.className = "spark";
 
     const angle = Math.random() * Math.PI * 2;
-    const distance = 100 + Math.random() * 500;
+    const distance = 80 + Math.random() * 480;
 
     spark.style.left = "50%";
     spark.style.top = "50%";
@@ -351,37 +353,28 @@ function openAnimation(){
     showPage("birthdayPage");
     setupScratch();
     startPetals();
-  },4000);
+  }, 4000);
 }
 
 function setupScratch(){
-  scratchDone = false;
-  lastPoint = null;
+  opened = false;
+  scratchCount = 0;
 
   const rect = scratchWrap.getBoundingClientRect();
   const dpr = window.devicePixelRatio || 1;
 
   canvas.width = Math.floor(rect.width * dpr);
   canvas.height = Math.floor(rect.height * dpr);
-  canvas.style.width = rect.width + "px";
-  canvas.style.height = rect.height + "px";
 
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.globalCompositeOperation = "source-over";
-
-  ctx.fillStyle = "#b65c7b";
+  ctx.fillStyle = "#b55b79";
   ctx.fillRect(0,0,rect.width,rect.height);
 
-  ctx.fillStyle = "rgba(255,255,255,.18)";
-  for(let i=0;i<80;i++){
+  ctx.fillStyle = "rgba(255,255,255,.20)";
+  for(let i=0;i<70;i++){
     ctx.beginPath();
-    ctx.arc(
-      Math.random() * rect.width,
-      Math.random() * rect.height,
-      1 + Math.random() * 4,
-      0,
-      Math.PI * 2
-    );
+    ctx.arc(Math.random()*rect.width, Math.random()*rect.height, Math.random()*4+1, 0, Math.PI*2);
     ctx.fill();
   }
 
@@ -389,154 +382,96 @@ function setupScratch(){
   canvas.style.pointerEvents = "auto";
 }
 
-function getPoint(event){
-  const rect = canvas.getBoundingClientRect();
-  return {
-    x:event.clientX - rect.left,
-    y:event.clientY - rect.top
-  };
-}
+function scratchAt(event){
+  if(!drawing || opened) return;
 
-function eraseAt(point){
-  ctx.globalCompositeOperation = "destination-out";
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  ctx.lineWidth = 58;
-
-  ctx.beginPath();
-
-  if(lastPoint){
-    ctx.moveTo(lastPoint.x,lastPoint.y);
-    ctx.lineTo(point.x,point.y);
-    ctx.stroke();
-  }else{
-    ctx.arc(point.x,point.y,29,0,Math.PI*2);
-    ctx.fill();
-  }
-
-  lastPoint = point;
-}
-
-function checkScratch(){
-  const pixels = ctx.getImageData(0,0,canvas.width,canvas.height).data;
-  let cleared = 0;
-  let checked = 0;
-
-  for(let i=3;i<pixels.length;i+=120){
-    checked++;
-    if(pixels[i] < 25) cleared++;
-  }
-
-  return cleared / checked;
-}
-
-function finishScratch(){
-  if(scratchDone) return;
-
-  scratchDone = true;
-  drawing = false;
-  canvas.style.pointerEvents = "none";
+  event.preventDefault();
   scratchText.style.display = "none";
 
-  for(let i=0;i<110;i++){
-    setTimeout(makePetal,i*13);
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.beginPath();
+  ctx.arc(x,y,46,0,Math.PI*2);
+  ctx.fill();
+
+  scratchCount++;
+
+  /* 6 বার আঙুল চালালেই memory page খুলবে */
+  if(scratchCount >= 6){
+    openMemories();
+  }
+}
+
+canvas.addEventListener("pointerdown", event => {
+  drawing = true;
+  try{canvas.setPointerCapture(event.pointerId)}catch(e){}
+  scratchAt(event);
+});
+
+canvas.addEventListener("pointermove", scratchAt);
+
+canvas.addEventListener("pointerup", () => {
+  drawing = false;
+});
+
+canvas.addEventListener("pointercancel", () => {
+  drawing = false;
+});
+
+function openMemories(){
+  if(opened) return;
+
+  opened = true;
+  drawing = false;
+  canvas.style.pointerEvents = "none";
+
+  for(let i=0;i<90;i++){
+    setTimeout(makePetal, i*15);
   }
 
   setTimeout(() => {
     showPage("memoryPage");
-    animateCards();
+
+    document.querySelectorAll(".card").forEach((card,index) => {
+      setTimeout(() => card.classList.add("show"), index*350);
+    });
+
     startPetals();
-  },1400);
-}
-
-canvas.addEventListener("pointerdown",event => {
-  if(scratchDone) return;
-
-  drawing = true;
-  lastPoint = null;
-  canvas.setPointerCapture(event.pointerId);
-
-  scratchText.style.display = "none";
-
-  const point = getPoint(event);
-  eraseAt(point);
-});
-
-canvas.addEventListener("pointermove",event => {
-  if(!drawing || scratchDone) return;
-
-  event.preventDefault();
-
-  const point = getPoint(event);
-  eraseAt(point);
-
-  if(checkScratch() > 0.28){
-    finishScratch();
-  }
-});
-
-canvas.addEventListener("pointerup",event => {
-  drawing = false;
-  lastPoint = null;
-
-  if(!scratchDone && checkScratch() > 0.28){
-    finishScratch();
-  }
-});
-
-canvas.addEventListener("pointercancel",() => {
-  drawing = false;
-  lastPoint = null;
-});
-
-function animateCards(){
-  document.querySelectorAll(".card").forEach((card,index) => {
-    card.classList.remove("show");
-
-    setTimeout(() => {
-      card.classList.add("show");
-    },index*350);
-  });
+  }, 1300);
 }
 
 function makePetal(){
-  const petalColors = ["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
-  const confettiColors = ["#ffcf5c","#ff9fbd","#ffd1df","#aee8d4","#ffffff"];
+  const colors = ["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
 
-  const item = document.createElement("div");
-  const isPetal = Math.random() < .76;
+  const petal = document.createElement("div");
+  const size = 7 + Math.random()*12;
 
-  item.className = isPetal ? "petal" : "confetti";
-  item.style.left = Math.random() * 100 + "vw";
+  petal.className = "petal";
+  petal.style.left = Math.random()*100 + "vw";
+  petal.style.width = size + "px";
+  petal.style.height = size*1.45 + "px";
+  petal.style.background = colors[Math.floor(Math.random()*colors.length)];
+  petal.style.setProperty("--move",(Math.random()*220-110)+"px");
+  petal.style.setProperty("--spin",(Math.random()*900-450)+"deg");
+  petal.style.animationDuration = (6+Math.random()*5)+"s";
 
-  item.style.background = isPetal
-    ? petalColors[Math.floor(Math.random() * petalColors.length)]
-    : confettiColors[Math.floor(Math.random() * confettiColors.length)];
-
-  item.style.setProperty("--move",(Math.random()*220-110)+"px");
-  item.style.setProperty("--spin",(Math.random()*900-450)+"deg");
-
-  const size = isPetal ? 7 + Math.random()*11 : 5 + Math.random()*6;
-
-  item.style.width = size + "px";
-  item.style.height = isPetal ? size*1.45 + "px" : size*1.5 + "px";
-  item.style.animationDuration = 6 + Math.random()*5 + "s";
-
-  document.body.appendChild(item);
-
-  setTimeout(() => item.remove(),12000);
+  document.body.appendChild(petal);
+  setTimeout(() => petal.remove(), 12000);
 }
 
 function startPetals(){
-  if(petalTimer) clearInterval(petalTimer);
+  clearInterval(petalTimer);
 
-  for(let i=0;i<45;i++){
-    setTimeout(makePetal,i*50);
+  for(let i=0;i<40;i++){
+    setTimeout(makePetal,i*55);
   }
 
   petalTimer = setInterval(() => {
     for(let i=0;i<3;i++){
-      setTimeout(makePetal,i*200);
+      setTimeout(makePetal,i*180);
     }
   },1200);
 }
