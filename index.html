@@ -9,17 +9,16 @@
 *{box-sizing:border-box}
 html,body{
   margin:0;
-  padding:0;
   width:100%;
   min-height:100%;
   font-family:Arial,sans-serif;
-  background:#fff5f7;
   overflow-x:hidden;
+  background:#fff4f7;
 }
 .page{
   display:none;
-  width:100%;
   min-height:100svh;
+  width:100%;
   position:relative;
   overflow:hidden;
 }
@@ -27,90 +26,71 @@ html,body{
 
 /* COVER */
 #coverPage{
+  align-items:center;
+  justify-content:center;
   background:
     linear-gradient(rgba(35,0,15,.18),rgba(35,0,15,.30)),
     url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
 }
-.coverTap{position:absolute;inset:0;z-index:5}
-.fingerprintBox{
-  position:absolute;
-  top:60%;
-  left:50%;
-  transform:translate(-50%,-50%);
+.fingerprintButton{
   width:180px;
   height:180px;
+  border:none;
   border-radius:50%;
+  cursor:pointer;
+  background:rgba(255,185,45,.10);
+  border:4px solid rgba(255,224,130,.92);
+  box-shadow:0 0 18px #fff2a6,0 0 52px #ffc12d,0 0 105px #ff8b21;
   display:flex;
   align-items:center;
   justify-content:center;
-  border:3px solid rgba(255,220,125,.85);
-  background:rgba(80,20,25,.28);
-  box-shadow:0 0 18px #ffe790,0 0 58px #ffbf3d;
-  animation:fingerPulse 1.8s ease-in-out infinite;
-  pointer-events:none;
+  animation:fingerPulse 1.7s ease-in-out infinite;
 }
-.fingerprintBox span{
-  font-size:92px;
-  filter:drop-shadow(0 0 8px #ffe993);
-}
-.fingerText{
-  position:absolute;
-  top:74%;
-  left:50%;
-  transform:translateX(-50%);
-  color:#ffe49a;
-  font-weight:bold;
-  letter-spacing:3px;
-  font-size:15px;
-  text-shadow:0 2px 8px #34000c;
-  pointer-events:none;
+.fingerprintLines{
+  width:68px;
+  height:98px;
+  border:4px solid #ffe47b;
+  border-bottom-color:transparent;
+  border-radius:48% 48% 42% 42%;
+  transform:rotate(7deg);
+  filter:drop-shadow(0 0 8px #ffc83d);
+  box-shadow:
+    0 0 0 8px transparent,
+    0 0 0 12px #ffe47b,
+    0 0 0 16px transparent,
+    0 0 0 20px #ffe47b,
+    0 0 0 24px transparent,
+    0 0 0 28px #ffe47b;
 }
 @keyframes fingerPulse{
-  0%,100%{transform:translate(-50%,-50%) scale(.92);opacity:.60}
-  50%{transform:translate(-50%,-50%) scale(1.10);opacity:1}
+  0%,100%{transform:scale(.90);opacity:.58}
+  50%{transform:scale(1.12);opacity:1}
 }
 
 /* GOLDEN ANIMATION */
 #goldenPage{
   align-items:center;
   justify-content:center;
-  background:#240608;
+  background:#26030a;
 }
 .goldenBg{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(rgba(55,5,8,.55),rgba(25,0,0,.75)),
+    linear-gradient(rgba(55,5,8,.55),rgba(25,0,0,.78)),
     url("file_00000000792471fab9d1ed26ab406cbf.png") center/cover no-repeat;
-  opacity:.68;
+  opacity:.75;
 }
 .goldRing{
   position:absolute;
-  width:70vw;
-  height:70vw;
+  width:72vw;
+  height:72vw;
   max-width:420px;
   max-height:420px;
   border-radius:50%;
   border:6px solid #ffe68c;
   box-shadow:0 0 20px #fff6be,0 0 60px #ffca42,0 0 125px #ff852d;
-  animation:ringGrow 3.2s ease-in-out forwards;
-}
-.goldRing:before,.goldRing:after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  border:3px solid rgba(255,235,155,.8);
-  box-shadow:0 0 18px #ffd55c;
-  animation:spin 1.5s linear infinite;
-}
-.goldRing:before{inset:-22px}
-.goldRing:after{
-  inset:30px;
-  border-color:rgba(255,145,48,.9);
-  animation-direction:reverse;
+  animation:ringGrow 3s ease-in-out forwards;
 }
 .lightBurst{
   position:absolute;
@@ -119,7 +99,7 @@ html,body{
   border-radius:50%;
   background:#fffbd8;
   box-shadow:0 0 30px 14px #fffbd8,0 0 95px 42px #ffd65c,0 0 190px 90px #ff962b;
-  animation:burst 3.2s ease-out forwards;
+  animation:burst 3s ease-out forwards;
 }
 .spark{
   position:absolute;
@@ -128,13 +108,13 @@ html,body{
   border-radius:50%;
   background:#fff6b0;
   box-shadow:0 0 12px #fff,0 0 25px #ffd453;
-  animation:sparkFly 3s ease-out forwards;
+  animation:sparkFly 2.8s ease-out forwards;
 }
 @keyframes ringGrow{
-  0%{transform:scale(.06) rotate(0);opacity:0}
+  0%{transform:scale(.05) rotate(0);opacity:0}
   18%{opacity:1}
-  75%{transform:scale(1.2) rotate(270deg);opacity:1}
-  100%{transform:scale(2.5) rotate(420deg);opacity:0}
+  75%{transform:scale(1.25) rotate(270deg);opacity:1}
+  100%{transform:scale(2.7) rotate(420deg);opacity:0}
 }
 @keyframes burst{
   0%{transform:scale(.2);opacity:0}
@@ -142,7 +122,6 @@ html,body{
   75%{transform:scale(12);opacity:1}
   100%{transform:scale(25);opacity:0}
 }
-@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes sparkFly{
   0%{transform:translate(0,0) scale(.2);opacity:0}
   12%{opacity:1}
@@ -151,14 +130,29 @@ html,body{
 
 /* BIRTHDAY PAGE */
 #birthdayPage{
-  background-color:#f5a0aa;
-  background-image:url("file_00000000f70471fb966e130dbdfbbd9d.png");
-  background-size:contain;
-  background-position:center center;
-  background-repeat:no-repeat;
   align-items:flex-end;
   justify-content:center;
-  padding:0 16px 34px;
+  padding:0 16px 28px;
+  background:#f5a0aa url("file_00000000f70471fb966e130dbdfbbd9d.png") center/cover no-repeat;
+}
+.birthdayActions{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
+.surpriseTitle{
+  width:min(78vw,360px);
+  padding:16px 12px;
+  border-radius:50px;
+  border:3px solid #fff;
+  background:linear-gradient(135deg,#ff70a5,#ee1a72);
+  color:#fff;
+  text-align:center;
+  font-size:clamp(20px,5vw,27px);
+  font-weight:bold;
+  box-shadow:0 8px 22px rgba(129,0,59,.42);
 }
 .scratchWrap{
   position:relative;
@@ -168,13 +162,12 @@ html,body{
   overflow:hidden;
   box-shadow:0 12px 30px rgba(143,0,68,.42);
   touch-action:none;
-  z-index:5;
 }
 .dateCard{
   width:100%;
   height:100%;
-  border-radius:30px;
   border:3px solid #fff;
+  border-radius:30px;
   background:linear-gradient(135deg,#ff4e8c,#e7006b);
   color:#fff;
   display:flex;
@@ -183,14 +176,13 @@ html,body{
   justify-content:center;
   text-align:center;
 }
-.dateCard b{font-size:clamp(26px,7vw,38px);letter-spacing:1px}
+.dateCard b{font-size:clamp(25px,7vw,38px);letter-spacing:1px}
 .dateCard span{margin-top:9px;font-size:13px;letter-spacing:4px;font-weight:bold}
 #scratchCanvas{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  cursor:pointer;
   touch-action:none;
 }
 .scratchText{
@@ -200,50 +192,46 @@ html,body{
   align-items:center;
   justify-content:center;
   color:#fff;
-  font-weight:bold;
   font-size:17px;
+  font-weight:bold;
   letter-spacing:1px;
   pointer-events:none;
   text-shadow:0 2px 6px rgba(0,0,0,.35);
 }
 
-/* MEMORY PAGE */
+/* MEMORY */
 #memoryPage{
-  background:linear-gradient(#fffaf7,#ffe7ef);
   flex-direction:column;
   align-items:center;
   padding:42px 16px 70px;
   overflow-y:auto;
+  background:linear-gradient(#fffaf7,#ffe7ef);
 }
 .memorySmall{
   color:#a75c69;
-  font-size:14px;
   letter-spacing:5px;
-  text-align:center;
+  font-size:14px;
   margin:4px 0 8px;
 }
 .memoryTitle{
   color:#934957;
   font-family:Georgia,serif;
   font-size:clamp(44px,12vw,68px);
-  text-align:center;
   margin:0 0 28px;
+  text-align:center;
 }
 .gallery{width:min(100%,560px)}
 .photoCard{
   background:#fff;
-  border-radius:18px;
   padding:13px 13px 20px;
+  border-radius:18px;
   margin:0 auto 30px;
   box-shadow:0 14px 30px rgba(120,55,78,.18);
   opacity:0;
+}
+.photoCard.show{
   animation:photoEnter .8s ease forwards,softFloat 4.2s ease-in-out infinite;
 }
-.photoCard:nth-child(1){animation-delay:0s,1s}
-.photoCard:nth-child(2){animation-delay:.18s,1.2s}
-.photoCard:nth-child(3){animation-delay:.36s,1.4s}
-.photoCard:nth-child(4){animation-delay:.54s,1.6s}
-.photoCard:nth-child(5){animation-delay:.72s,1.8s}
 .photoCard img{
   display:block;
   width:100%;
@@ -267,20 +255,26 @@ html,body{
   50%{transform:translateY(-7px) rotate(.5deg) scale(1.01)}
 }
 
-/* PETALS + CONFETTI */
+/* PETALS */
 .petal,.confetti{
   position:fixed;
-  top:-40px;
+  top:-50px;
   pointer-events:none;
-  z-index:100;
-  animation:fallDown linear forwards;
+  z-index:9999;
+  animation:petalFall linear forwards;
 }
-.petal{width:12px;height:19px;border-radius:70% 20% 70% 20%}
-.confetti{width:7px;height:12px;border-radius:2px}
-@keyframes fallDown{
-  0%{transform:translate3d(0,-35px,0) rotate(0);opacity:0}
-  8%{opacity:.9}
-  100%{transform:translate3d(var(--drift),112vh,0) rotate(720deg);opacity:.18}
+.petal{
+  border-radius:75% 15% 75% 15%;
+  box-shadow:0 2px 5px rgba(120,30,55,.18);
+}
+.confetti{border-radius:2px}
+@keyframes petalFall{
+  0%{transform:translate3d(0,-60px,0) rotate(0);opacity:0}
+  8%{opacity:1}
+  25%{transform:translate3d(calc(var(--drift) * .25),25vh,0) rotate(calc(var(--spin) * .25))}
+  50%{transform:translate3d(calc(var(--drift) * -.25),52vh,0) rotate(calc(var(--spin) * .55))}
+  75%{transform:translate3d(calc(var(--drift) * .55),78vh,0) rotate(calc(var(--spin) * .78))}
+  100%{transform:translate3d(var(--drift),112vh,0) rotate(var(--spin));opacity:.15}
 }
 </style>
 </head>
@@ -288,21 +282,25 @@ html,body{
 <body>
 
 <section id="coverPage" class="page active">
-  <div class="fingerprintBox"><span>☝</span></div>
-  <div class="fingerText">TAP TO REVEAL</div>
-  <div class="coverTap" onclick="openGolden('birthdayPage')"></div>
+  <button class="fingerprintButton" onclick="openGolden('birthdayPage')" aria-label="Open surprise">
+    <div class="fingerprintLines"></div>
+  </button>
 </section>
 
 <section id="goldenPage" class="page"></section>
 
 <section id="birthdayPage" class="page">
-  <div class="scratchWrap" id="scratchWrap">
-    <div class="dateCard">
-      <b>26 NOVEMBER 2026</b>
-      <span>SCRATCH TO OPEN ✨</span>
+  <div class="birthdayActions">
+    <div class="surpriseTitle">Open Your Surprise 🎁</div>
+
+    <div class="scratchWrap" id="scratchWrap">
+      <div class="dateCard">
+        <b>26 NOVEMBER 2026</b>
+        <span>SCRATCH TO OPEN ✨</span>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+      <div class="scratchText">SCRATCH HERE ✨</div>
     </div>
-    <canvas id="scratchCanvas"></canvas>
-    <div class="scratchText">SCRATCH HERE ✨</div>
   </div>
 </section>
 
@@ -322,6 +320,12 @@ html,body{
 <script>
 let scratchDone=false;
 let drawing=false;
+let petalInterval=null;
+
+const canvas=document.getElementById("scratchCanvas");
+const ctx=canvas.getContext("2d");
+const scratchWrap=document.getElementById("scratchWrap");
+const scratchText=document.querySelector(".scratchText");
 
 function showOnly(id){
   document.querySelectorAll(".page").forEach(page=>page.classList.remove("active"));
@@ -338,13 +342,16 @@ function openGolden(nextPage){
   for(let i=0;i<90;i++){
     const spark=document.createElement("div");
     spark.className="spark";
+
     const angle=Math.random()*Math.PI*2;
     const distance=100+Math.random()*430;
+
     spark.style.left="50%";
     spark.style.top="50%";
     spark.style.setProperty("--x",Math.cos(angle)*distance+"px");
     spark.style.setProperty("--y",Math.sin(angle)*distance+"px");
     spark.style.animationDelay=(Math.random()*.7)+"s";
+
     golden.appendChild(spark);
   }
 
@@ -353,17 +360,14 @@ function openGolden(nextPage){
 
     if(nextPage==="birthdayPage"){
       setupScratch();
-      createPetalsAndConfetti(42);
-    }else{
-      createPetalsAndConfetti(105);
     }
-  },3200);
-}
 
-const canvas=document.getElementById("scratchCanvas");
-const ctx=canvas.getContext("2d");
-const scratchWrap=document.getElementById("scratchWrap");
-const scratchText=document.querySelector(".scratchText");
+    if(nextPage==="memoryPage"){
+      animatePhotos();
+      startPetalRain();
+    }
+  },3000);
+}
 
 function setupScratch(){
   scratchDone=false;
@@ -382,13 +386,14 @@ function setupScratch(){
   ctx.fillRect(0,0,rect.width,rect.height);
 
   ctx.fillStyle="rgba(255,255,255,.18)";
-  for(let i=0;i<60;i++){
+  for(let i=0;i<65;i++){
     ctx.beginPath();
     ctx.arc(Math.random()*rect.width,Math.random()*rect.height,Math.random()*4+1,0,Math.PI*2);
     ctx.fill();
   }
 
   scratchText.style.display="flex";
+  canvas.style.pointerEvents="auto";
 }
 
 function getPoint(e){
@@ -401,25 +406,30 @@ function scratch(e){
 
   e.preventDefault();
   const p=getPoint(e);
+
   scratchText.style.display="none";
 
   ctx.globalCompositeOperation="destination-out";
   ctx.beginPath();
-  ctx.arc(p.x,p.y,30,0,Math.PI*2);
+  ctx.arc(p.x,p.y,38,0,Math.PI*2);
   ctx.fill();
 
   const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
   let clear=0,total=0;
 
-  for(let i=3;i<data.length;i+=60){
+  for(let i=3;i<data.length;i+=80){
     total++;
-    if(data[i]===0)clear++;
+    if(data[i]<20)clear++;
   }
 
-  if(clear/total>.32){
+  if(clear/total>.18){
     scratchDone=true;
     drawing=false;
-    openGolden("memoryPage");
+    canvas.style.pointerEvents="none";
+
+    setTimeout(()=>{
+      openGolden("memoryPage");
+    },250);
   }
 }
 
@@ -431,23 +441,53 @@ canvas.addEventListener("pointerdown",e=>{
 canvas.addEventListener("pointermove",scratch);
 canvas.addEventListener("pointerup",()=>drawing=false);
 canvas.addEventListener("pointercancel",()=>drawing=false);
-canvas.addEventListener("touchmove",e=>e.preventDefault(),{passive:false});
 
-function createPetalsAndConfetti(total){
-  const colors=["#f6a8bf","#ffd0db","#f4c95d","#fff0a8","#ec91ad"];
+function animatePhotos(){
+  document.querySelectorAll(".photoCard").forEach((card,index)=>{
+    card.classList.remove("show");
+    setTimeout(()=>{
+      card.classList.add("show");
+    },index*220);
+  });
+}
 
-  for(let i=0;i<total;i++){
-    const item=document.createElement("div");
-    item.className=Math.random()>.38?"petal":"confetti";
-    item.style.left=(Math.random()*100)+"vw";
-    item.style.background=colors[Math.floor(Math.random()*colors.length)];
-    item.style.setProperty("--drift",(Math.random()*190-95)+"px");
-    item.style.animationDuration=(5+Math.random()*5)+"s";
-    item.style.animationDelay=(Math.random()*2)+"s";
+function makePetal(){
+  const petalColors=["#ff9fbd","#ffd1df","#ffcf5c","#fff0a8","#f47fa7","#ffffff"];
+  const confettiColors=["#ffcf5c","#ff9fbd","#ffd1df","#aee8d4","#ffffff"];
 
-    document.body.appendChild(item);
-    setTimeout(()=>item.remove(),12000);
+  const item=document.createElement("div");
+  const isPetal=Math.random()<.72;
+
+  item.className=isPetal?"petal":"confetti";
+  item.style.left=(Math.random()*100)+"vw";
+  item.style.background=isPetal
+    ?petalColors[Math.floor(Math.random()*petalColors.length)]
+    :confettiColors[Math.floor(Math.random()*confettiColors.length)];
+
+  item.style.setProperty("--drift",(Math.random()*220-110)+"px");
+  item.style.setProperty("--spin",(Math.random()*900-450)+"deg");
+
+  const size=isPetal?(7+Math.random()*11):(5+Math.random()*6);
+  item.style.width=size+"px";
+  item.style.height=isPetal?(size*1.45)+"px":(size*1.5)+"px";
+  item.style.animationDuration=(6+Math.random()*6)+"s";
+
+  document.body.appendChild(item);
+  setTimeout(()=>item.remove(),13000);
+}
+
+function startPetalRain(){
+  if(petalInterval)clearInterval(petalInterval);
+
+  for(let i=0;i<50;i++){
+    setTimeout(makePetal,i*65);
   }
+
+  petalInterval=setInterval(()=>{
+    for(let i=0;i<4;i++){
+      setTimeout(makePetal,i*180);
+    }
+  },1200);
 }
 </script>
 
