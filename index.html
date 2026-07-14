@@ -342,6 +342,73 @@ html,body{
   10%{opacity:1}
   100%{transform:translate(var(--move),110vh) rotate(var(--spin));opacity:.15}
 }
+  #saveDatePage{
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#fff6fb,#ffdce8);
+padding:25px;
+}
+
+.saveBox{
+text-align:center;
+width:100%;
+max-width:600px;
+}
+
+.saveSmall{
+letter-spacing:4px;
+color:#c04d72;
+}
+
+.saveTitle{
+font-size:42px;
+color:#d81b60;
+margin-bottom:25px;
+}
+
+.scratchRow{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.scratchCard{
+position:relative;
+border-radius:18px;
+overflow:hidden;
+background:#ffffff;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+.scratchCard canvas{
+width:100%;
+height:110px;
+display:block;
+}
+
+.hiddenText{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+font-weight:bold;
+color:#d81b60;
+pointer-events:none;
+}
+
+.continueBtn{
+margin-top:30px;
+padding:16px 35px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:#ff3f80;
+color:white;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -635,6 +702,138 @@ function startPetals(){
       setTimeout(makePetal, i * 180);
     }
   }, 1200);
+}
+<!-- SAVE THE DATE PAGE -->
+<section id="saveDatePage" class="page">
+  <div class="saveBox">
+
+    <h3 class="saveSmall">SAVE THE DATE</h3>
+
+    <h1 class="saveTitle">Our Special Day ❤️</h1>
+
+    <div class="scratchRow">
+
+      <div class="scratchCard">
+        <canvas id="monthCanvas" width="220" height="120"></canvas>
+        <div class="hiddenText">NOVEMBER</div>
+      </div>
+
+      <div class="scratchCard">
+        <canvas id="dayCanvas" width="220" height="120"></canvas>
+        <div class="hiddenText">26</div>
+      </div>
+
+      <div class="scratchCard">
+        <canvas id="yearCanvas" width="220" height="120"></canvas>
+        <div class="hiddenText">2026</div>
+      </div>
+
+    </div>
+
+    <button id="continueCake" class="continueBtn" style="display:none;">
+      Continue 🎂
+    </button>
+
+  </div>
+</section>
+  const scratchList=[
+document.getElementById("monthCanvas"),
+document.getElementById("dayCanvas"),
+document.getElementById("yearCanvas")
+];
+
+let openedScratch=0;
+
+scratchList.forEach(canvas=>{
+
+const c=canvas.getContext("2d");
+
+c.fillStyle="#ff5d9d";
+c.fillRect(0,0,220,120);
+
+c.fillStyle="rgba(255,255,255,.25)";
+for(let i=0;i<80;i++){
+c.beginPath();
+c.arc(Math.random()*220,Math.random()*120,2+Math.random()*3,0,Math.PI*2);
+c.fill();
+}
+
+let down=false;
+
+canvas.onpointerdown=()=>down=true;
+
+canvas.onpointerup=()=>{
+
+if(down){
+
+openedScratch++;
+
+balloonBlast();
+
+if(openedScratch>=3){
+
+document.getElementById("continueCake").style.display="inline-block";
+
+}
+
+}
+
+down=false;
+
+};
+
+canvas.onpointermove=e=>{
+
+if(!down)return;
+
+const rect=canvas.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+c.globalCompositeOperation="destination-out";
+
+c.beginPath();
+
+c.arc(x,y,28,0,Math.PI*2);
+
+c.fill();
+
+};
+
+});
+
+function balloonBlast(){
+
+for(let i=0;i<25;i++){
+
+const b=document.createElement("div");
+
+b.innerHTML="🎈";
+
+b.style.position="fixed";
+
+b.style.left=Math.random()*100+"vw";
+
+b.style.bottom="-40px";
+
+b.style.fontSize=(20+Math.random()*25)+"px";
+
+b.style.transition="4s linear";
+
+document.body.appendChild(b);
+
+setTimeout(()=>{
+
+b.style.transform="translateY(-120vh)";
+
+},20);
+
+setTimeout(()=>b.remove(),4200);
+
+}
+
 }
 </script>
 
