@@ -571,10 +571,53 @@ ALWAYS WITH LOVE... 🫂💗।<br><br>
   </div>
   
 <div style="text-align:center; margin:35px 0;">
-  <button onclick="showPage('saveDatePage')"
-    style="background:linear-gradient(135deg,#ff4f87,#e91e63);color:white;border:none;padding:17px 28px;border-radius:40px;font-size:18px;font-weight:bold;">
-    🎂 Let's Cut the Cake ❤️
-  </button>
+  
+<section id="cakePage" class="page">
+  <div style="min-height:100vh;background:linear-gradient(135deg,#fff0f6,#ffd1e2);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;">
+
+    <h1 style="color:#e91e63;font-size:35px;">
+      Happy Birthday Puja ❤️
+    </h1>
+
+    <p style="color:#a33d60;font-size:20px;">
+      A Special Cake Just For You 🎂
+    </p>
+
+    <div id="birthdayCake" style="position:relative;margin:65px auto 35px;width:230px;height:150px;">
+
+      <div id="candle" style="position:absolute;top:-65px;left:105px;width:18px;height:65px;background:repeating-linear-gradient(45deg,#fff 0 8px,#ff72a5 8px 16px);border-radius:5px;z-index:3;">
+        <span id="flame" style="position:absolute;top:-27px;left:2px;font-size:25px;">🔥</span>
+      </div>
+
+      <div style="position:absolute;bottom:0;width:230px;height:75px;background:#ff78aa;border-radius:15px 15px 25px 25px;border-bottom:12px solid #e83d78;">
+      </div>
+
+      <div style="position:absolute;bottom:75px;left:15px;width:200px;height:48px;background:#fff0f6;border-radius:15px 15px 8px 8px;">
+      </div>
+
+      <div style="position:absolute;bottom:120px;left:0;width:230px;height:30px;background:#ffb3cc;border-radius:50%;">
+      </div>
+    </div>
+
+    <button id="cutButton" onclick="cutCake()" style="background:#e91e63;color:white;border:0;border-radius:35px;padding:17px 35px;font-size:21px;font-weight:bold;">
+      🔪 Cut the Cake 🎂
+    </button>
+
+    <h2 id="cakeMessage" style="display:none;color:#e91e63;margin-top:30px;">
+      🎉 Happy Birthday My Love Puja! ❤️
+    </h2>
+
+    <p id="loveMessage" style="display:none;color:#a33d60;font-size:20px;line-height:1.8;">
+      তুমি আমার জীবনের সবচেয়ে সুন্দর উপহার।
+      তোমার মুখে সবসময় হাসি থাকুক।
+      I LOVE YOU FOREVER! ❤️
+    </p>
+
+    <div id="cakeConfetti" style="font-size:30px;margin-top:15px;"></div>
+
+  </div>
+</section>
+  
 </div>
   
 </section>
